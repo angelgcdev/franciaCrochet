@@ -6,9 +6,18 @@ import { compare } from "bcryptjs";
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
+
+  // Expiración de la sesión
   session: {
     strategy: "jwt",
+    maxAge: 60 * 60 * 24, // 1 día
   },
+
+  // Expiración del JWT
+  jwt: {
+    maxAge: 60 * 60 * 24, // 1 día
+  },
+
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -25,7 +34,7 @@ export const authOptions: AuthOptions = {
 
         if (!user) return null;
 
-        const isValid = await compare(credentials.password, user.password_hash);
+        const isValid = await compare(credentials.password, user.password);
 
         if (!isValid) return null;
 
@@ -39,6 +48,21 @@ export const authOptions: AuthOptions = {
   ],
   pages: {
     signIn: "/login",
+  },
+
+  callbacks: {
+    async session({ session, token }) {
+      if (session.user && token.id) {
+        session.user.id = token.id as string;
+      }
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
   },
 };
 

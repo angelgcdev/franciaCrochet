@@ -93,6 +93,7 @@ export function LoginForm({
                         id="email"
                         type="email"
                         placeholder="ejemplo@ejemplo.com"
+                        autoComplete="email"
                         {...field}
                       />
                     </FormControl>
@@ -114,6 +115,7 @@ export function LoginForm({
                           id="password"
                           type={showPassword ? "text" : "password"}
                           placeholder="********"
+                          autoComplete="new-password"
                           {...field}
                         />
                         {/* BOTÓN MOSTRAR/OCULTAR */}
