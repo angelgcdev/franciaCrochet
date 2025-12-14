@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 function Footer() {
+  const message = "Hola \u{1F44B} quiero conocer más sobre tus productos";
+
   return (
     <footer id="contacto" className="bg-[#F9EFEE] border-t border-border/40">
       <div className="container mx-auto px-4 py-12 md:py-16">
@@ -25,7 +27,9 @@ function Footer() {
               asChild
             >
               <a
-                href="https://wa.me/78614070?text=Hola, %20%20quiero%20conocer%20m%C3%A1s%20sobre%20tus%20productos"
+                href={`https://api.whatsapp.com/send?phone=59178614070&text=${encodeURIComponent(
+                  message
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -49,7 +53,7 @@ function Footer() {
                 asChild
               >
                 <a
-                  href="https://instagram.com/franciacrochet"
+                  href="https://www.tiktok.com/@wfrancia.crochet_"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -69,7 +73,27 @@ function Footer() {
                 asChild
               >
                 <a
-                  href="https://facebook.com/franciacrochet"
+                  href="https://www.instagram.com/francia.crochet_/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <Image
+                    src="/instagram.svg"
+                    alt="Logo de tiktok"
+                    width={48}
+                    height={48}
+                  />
+                </a>
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                className="rounded-full bg-transparent"
+                asChild
+              >
+                <a
+                  href="https://www.facebook.com/profile.php?id=61582653155695"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
