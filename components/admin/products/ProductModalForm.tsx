@@ -9,12 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,7 +25,7 @@ import z from "zod";
 import { Input } from "@/components/ui/input";
 
 import { toast } from "sonner";
-import { Loader2, Trash, Trash2, Upload } from "lucide-react";
+import { Loader2, Trash, Upload } from "lucide-react";
 import { Category, ImageData, ProductInfo } from "@/app/admin/products/types";
 import {
   Select,
@@ -40,10 +35,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { createProductInfo } from "@/lib/products/actions";
+import { createProductInfo, updateProductInfo } from "@/lib/products/actions";
 import { compressImage } from "@/lib/utils/compressImage";
 import { uploadImageToCloudinary } from "@/lib/utils/uploadImageToCloudinary";
 import Image from "next/image";
+import { deleteImageFromCloudinary } from "@/lib/utils/deleteImageFromCloudinary";
 
 export interface Props {
   fetchProducts: () => void;
@@ -75,14 +71,16 @@ const ProductModalForm = ({
 }: Props) => {
   const isEditing = !!product;
 
-  // 1. Estado
+  // 1. Estados
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [imageChanged, setImageChanged] = useState(false);
 
   // 4. Librerias
-  const form = useForm<ProductFormInput>({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const form = useForm<ProductFormInput, any, ProductFormOutput>({
     resolver: zodResolver(ProductSchema),
     defaultValues: {
       name: product?.name || "",
@@ -109,6 +107,8 @@ const ProductModalForm = ({
         category_id: product?.category_id ? product.category_id.toString() : "",
       });
 
+      setImageChanged(false);
+
       // Setear preview con la imagen guardada si estamos editando y hay imagen
       if (isEditing && product?.images[0]?.image_url) {
         setPreviewUrl(product.images[0].image_url);
@@ -123,11 +123,19 @@ const ProductModalForm = ({
       reset();
       setPreviewUrl(null);
       setSelectedFile(null);
+      setImageChanged(false);
     }
   }, [isOpen, product, reset, isEditing]);
 
+  // funcion on submit
   const onSubmit = async (productDataForm: ProductFormOutput) => {
+    if (!isEditing && !previewUrl && !selectedFile) {
+      toast.error("Debes subir una imagen para el producto.");
+      return;
+    }
+
     const categoryIdNum = Number(productDataForm.category_id);
+    const publicId = product?.images?.[0]?.public_id;
 
     let imageData: ImageData | undefined;
 
@@ -136,7 +144,8 @@ const ProductModalForm = ({
       // Suponiendo que uploadImageToCloudinary devuelve un objeto { image_url, public_id }
       imageData = uploaded;
     } else {
-      imageData = product?.images[0] ?? undefined;
+      // No enviar nada, mantener imagen actutal
+      imageData = undefined;
     }
 
     console.log("Datos de la imagen:", imageData);
@@ -149,16 +158,25 @@ const ProductModalForm = ({
     };
     if (isEditing) {
       // Modo edición
-      console.log("Datos a actualizar del cliente:", productData);
+      console.log("Datos a actualizar del producto:", productData);
+      console.log("Datos a actualizar de la imagen del producto:", imageData);
 
-      // const res = await updateClient(clientDataForm, client.id);
+      const res = await updateProductInfo(product.id, productData, imageData);
 
-      // if (!res.ok) {
-      //   toast.error(res.message);
-      //   return;
-      // }
+      if (!res.ok) {
+        toast.error(res.message);
+        return;
+      }
 
-      toast.success(`Cliente actualizado correctamente.`);
+      if (imageData && publicId) {
+        const result = await deleteImageFromCloudinary(publicId);
+        if (!result.ok) {
+          toast.error(res.message);
+          return;
+        }
+      }
+
+      toast.success(`Producto actualizado correctamente.`);
     } else {
       // Modo agregar
       console.log("Producto a guardar:", productData);
@@ -195,6 +213,7 @@ const ProductModalForm = ({
 
       setSelectedFile(compressed);
       setPreviewUrl(previewUrl);
+      setImageChanged(true);
     } catch (err) {
       console.error("Error al comprimir:", err);
     } finally {
@@ -218,7 +237,7 @@ const ProductModalForm = ({
       }}
     >
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="overflow-auto h-[70vh] sm:h-auto">
+      <DialogContent className="overflow-auto h-[70vh] sm:h-auto bg-[#F2EADF]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             {isEditing ? "Editar Producto" : "Agrega un nuevo producto"}
@@ -230,21 +249,21 @@ const ProductModalForm = ({
           </DialogDescription>
         </DialogHeader>
 
-        <Card className="w-full border rounded">
+        <Card className="w-full border rounded bg-[#F2EADF] ">
           <CardContent>
             <Form {...form}>
               <form className="space-y-8">
                 <FormField
                   control={form.control}
                   name="image_url"
-                  render={({ field }) => (
+                  render={({}) => (
                     <FormItem>
                       <FormLabel>Imagen</FormLabel>
 
-                      <div className="flex flex-col gap-4 items-center p-4">
+                      <div className="flex flex-col gap-4 items-center">
                         {!previewUrl && (
                           <label
-                            className={`flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer hover:bg-muted ${
+                            className={`mt-2 flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-[#8C6B64] rounded-lg cursor-pointer hover:bg-muted ${
                               loading ? "opacity-50 cursor-not-allowed" : ""
                             }`}
                           >
@@ -282,6 +301,7 @@ const ProductModalForm = ({
                               onClick={() => {
                                 setPreviewUrl(null);
                                 setSelectedFile(null);
+                                setImageChanged(true);
                               }}
                               className="absolute top-2 right-2 bg-black/60 hover:bg-red-600 text-white rounded-full p-1 shadow-md transition-colors"
                             >
@@ -292,8 +312,8 @@ const ProductModalForm = ({
                               <Image
                                 src={previewUrl}
                                 alt="preview"
-                                width={100}
-                                height={100}
+                                width={150}
+                                height={150}
                                 className="rounded-lg object-contain max-w-[300px] max-h-[300px]"
                               />
                             </CardContent>
@@ -313,6 +333,7 @@ const ProductModalForm = ({
                       <FormLabel>Nombre</FormLabel>
                       <FormControl>
                         <Input
+                          className="border-[#8C6B64]/30"
                           id="name"
                           placeholder="Nombre del producto"
                           {...field}
@@ -330,7 +351,7 @@ const ProductModalForm = ({
                       <FormLabel>Descripción</FormLabel>
                       <FormControl>
                         <Textarea
-                          className="overflow-auto max-h-40 resize-y"
+                          className="overflow-auto max-h-40 resize-y border-[#8C6B64]/30"
                           id="tiktok-comment-text"
                           placeholder="Escribe alguna descripción......"
                           {...field}
@@ -350,6 +371,7 @@ const ProductModalForm = ({
                         <FormLabel>Precio (BOB)</FormLabel>
                         <FormControl>
                           <Input
+                            className="border-[#8C6B64]/30"
                             type="text"
                             inputMode="decimal" // ayuda en móviles
                             id="price"
@@ -380,12 +402,19 @@ const ProductModalForm = ({
                             onValueChange={(value) => field.onChange(value)}
                             value={field.value?.toString() ?? ""}
                           >
-                            <SelectTrigger>
+                            <SelectTrigger className="border-[#8C6B64]/30">
                               <SelectValue placeholder="Selecciona una opción." />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className="bg-[#F2EADF]">
                               {categories.map((category) => (
                                 <SelectItem
+                                  className=" bg-[#F2EADF]
+    data-[highlighted]:bg-[#D9CFCF]
+    data-[state=checked]:bg-[#CBB6B6]
+    data-[state=checked]:font-semibold
+    data-[highlighted]:text-foreground
+    cursor-pointer
+  "
                                   key={category.id}
                                   value={category.id.toString()}
                                 >
@@ -420,7 +449,11 @@ const ProductModalForm = ({
 
             <Button
               onClick={form.handleSubmit(onSubmit)}
-              disabled={!isDirty || isSubmitting}
+              disabled={
+                (!isDirty && !imageChanged) ||
+                isSubmitting ||
+                (!isEditing && !previewUrl && !selectedFile)
+              }
               className="bg-black hover:bg-black/40 text-white"
             >
               {isSubmitting ? (

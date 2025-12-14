@@ -64,7 +64,7 @@ export function LoginForm({
     }
 
     toast.success("Login exitoso");
-    router.push("/admin");
+    router.push("/admin/products");
   };
 
   return (

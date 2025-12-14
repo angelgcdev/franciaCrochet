@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { Playwrite_US_Trad } from "next/font/google";
 
 import {
@@ -11,19 +10,16 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { Box, CircleGauge } from "lucide-react";
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
 import Image from "next/image";
 import { Separator } from "../ui/separator";
+import { useEffect, useState } from "react";
 
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   navMain: [
     {
       title: "Dashboard",
@@ -44,12 +40,35 @@ const playwriteUS = Playwrite_US_Trad({
 });
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [email, setEmail] = useState("usuario@ejemplo.com");
+  const { state, setOpenMobile } = useSidebar(); // <- aquí obtenés el estado ("expanded" | "collapsed")
+
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    if (email) {
+      setEmail(email);
+    }
+
+    // Obtener rol y actualizar menú si es ADM
+    const role = localStorage.getItem("role");
+  }, []);
+
+  const user = {
+    email,
+    avatar: "/images/user.png",
+  };
+
+  console.log("Estado del UseSidebar:", state);
+
   return (
-    <Sidebar className="p-0" collapsible="offcanvas" {...props}>
-      <SidebarHeader className="bg-[#f2eade] py-2 px-4">
+    <Sidebar collapsible="offcanvas" {...props}>
+      <SidebarHeader className="bg-[#f2eade]">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild className="h-16">
+            <SidebarMenuButton
+              asChild
+              className="h-16 hover:bg-[#D9CFCF] focus:bg-[#D9CFCF] active:bg-[#D9CFCF]"
+            >
               <a href="#">
                 <div className="relative w-14 h-14">
                   <Image
@@ -70,11 +89,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <Separator />
-      <SidebarContent className="p-4">
+      <SidebarContent className="bg-[#f2eade]">
         <NavMain items={data.navMain} />
       </SidebarContent>
-      <SidebarFooter className="p-4">
-        <NavUser user={data.user} />
+      <SidebarFooter className="bg-[#f2eade]">
+        <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>
   );

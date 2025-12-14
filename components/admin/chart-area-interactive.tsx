@@ -28,8 +28,6 @@ import {
   Users,
 } from "lucide-react";
 import { NavMain } from "./nav-main";
-import { NavDocuments } from "./nav-documents";
-import { NavSecondary } from "./nav-secondary";
 import { NavUser } from "./nav-user";
 
 const data = {
@@ -169,8 +167,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

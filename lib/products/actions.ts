@@ -103,3 +103,53 @@ export async function deleteProductInfo(id: number) {
     };
   }
 }
+
+export async function updateProductInfo(
+  productId: number,
+  data: CreateProductDto,
+  imageData?: ImageData
+) {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.id) {
+    return {
+      ok: false,
+      message: "No autorizado",
+    };
+  }
+
+  try {
+    const updated = await prisma.$transaction(async (tx) => {
+      // 1. Actualizar datos del producto
+      const product = await tx.product.update({
+        where: { id: productId },
+        data: data,
+      });
+
+      // 2. Actualizar imagen si hay una nueva
+      if (imageData) {
+        // eliminar imagen anterior
+        await tx.productImage.deleteMany({
+          where: { product_id: productId },
+        });
+
+        // crear nueva imagen
+        await tx.productImage.create({
+          data: { ...imageData, product_id: productId },
+        });
+      }
+
+      return product;
+    });
+
+    return {
+      ok: true,
+      data: updated,
+    };
+  } catch (error) {
+    console.error("Error al actualizar producto:", error);
+    return {
+      ok: false,
+      message: error instanceof Error ? error.message : "Error inesperado",
+    };
+  }
+}

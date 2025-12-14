@@ -23,6 +23,7 @@ export type Product = {
 };
 
 export type ProductImage = {
+  id: number;
   product_id: number;
   image_url: string;
   public_id: string;

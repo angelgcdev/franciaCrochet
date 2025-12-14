@@ -92,15 +92,18 @@ export const ProductList = ({
           </p>
         }
       >
-        <div>
+        <div className="bg-[#F2EADF] m-4 rounded-2xl p-4 shadow-lg">
           <div className="flex items-center justify-end mb-4">
-            <Badge variant="secondary">{products.length} productos</Badge>
+            <Badge className="bg-[#8C6B64] font-bold">
+              {products.length} productos
+            </Badge>
           </div>
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>Imagen</TableHead>
                 <TableHead>Nombre</TableHead>
+                <TableHead>Descripción</TableHead>
                 <TableHead>Categoría</TableHead>
                 <TableHead>Precio</TableHead>
                 <TableHead>Fecha de creación</TableHead>
@@ -110,7 +113,7 @@ export const ProductList = ({
             </TableHeader>
             <TableBody>
               {products.map((product) => (
-                <TableRow key={product.id}>
+                <TableRow key={product.id} className="hover:bg-[#D9CFCF]">
                   <TableCell>
                     <div className="relative h-12 w-12 rounded-md overflow-hidden">
                       <Image
@@ -121,11 +124,18 @@ export const ProductList = ({
                       />
                     </div>
                   </TableCell>
-
                   <TableCell>
                     <div>
                       <p className="text-sm text-muted-foreground">
                         {product.name}
+                      </p>
+                    </div>
+                  </TableCell>
+
+                  <TableCell>
+                    <div>
+                      <p className="text-sm text-muted-foreground">
+                        {product.description}
                       </p>
                     </div>
                   </TableCell>
@@ -141,7 +151,7 @@ export const ProductList = ({
                   <TableCell>
                     <div>
                       <p className="text-sm text-muted-foreground">
-                        {product.price}
+                        {product.price} BOB
                       </p>
                     </div>
                   </TableCell>

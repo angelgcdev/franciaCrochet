@@ -58,7 +58,6 @@ const ProductsPage = () => {
     loadIntial();
   }, [fetchProducts]);
 
-  console.log("aquiiu:", products);
   return (
     <div className=" ">
       <header className="flex items-center justify-between px-8 py-4">
@@ -68,7 +67,7 @@ const ProductsPage = () => {
             categories={categories}
             fetchProducts={() => fetchProducts(null, true)}
             trigger={
-              <Button className="w-full bg-gradient-to-r from-rose-500 to-rose-700">
+              <Button className="w-full bg-[#D99AA5] hover:bg-[#403330] cursor-pointer font-bold">
                 <Plus />
                 <span>Nuevo Producto</span>
               </Button>

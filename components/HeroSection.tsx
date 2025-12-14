@@ -14,6 +14,8 @@ const HeroSection = () => {
     }
   };
 
+  const message = "Hola \u{1F44B} quiero conocer más sobre tus productos";
+
   return (
     <section id="inicio" className="h-[90vh] w-full">
       <Card className="bg-[#F9EFEE] h-full w-full">
@@ -57,7 +59,9 @@ sm:flex-1 grid-rows-[auto_auto_auto_auto] text-center md:text-left md:h-[50%]"
                   asChild
                 >
                   <a
-                    href="https://wa.me/1234567890?text=Hola%20👋%20quiero%20conocer%20más%20sobre%20tus%20productos"
+                    href={`https://api.whatsapp.com/send?phone=59178614070&text=${encodeURIComponent(
+                      message
+                    )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

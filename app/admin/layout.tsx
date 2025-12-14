@@ -8,9 +8,9 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <SidebarProvider>
-      <AppSidebar variant="inset" />
-      <SidebarInset>
+    <SidebarProvider className="">
+      <AppSidebar variant="sidebar" className="shadow-2xl p-0" />
+      <SidebarInset className="bg-[#F6F1EA]">
         <SiteHeader />
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">

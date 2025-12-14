@@ -1,22 +1,21 @@
+import { ProductInfo } from "@/app/admin/products/types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 
-interface Product {
-  id: number;
-  name: string;
-  price: string;
-  image: string;
-  description: string;
-}
-
 interface ProductCardProps {
-  product: Product;
+  product: ProductInfo;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const whatsappMessage = `Hola 👋 quiero pedir este producto: ${product.name}`;
-  const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(
+  const whatsappMessage = `
+Hola 👋 quiero pedir este producto:
+
+🧶 Producto: ${product.name}
+💰 Precio: ${product.price}
+🖼 Foto: ${product.images[0].image_url}
+`;
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=59178614070&text=${encodeURIComponent(
     whatsappMessage
   )}`;
 
@@ -24,7 +23,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <Card className="overflow-hidden group hover:shadow-lg transition-shadow duration-300">
       <div className="relative aspect-square overflow-hidden bg-muted">
         <Image
-          src={product.image || "/placeholder.svg"}
+          src={product.images[0].image_url || "/placeholder.svg"}
           alt={product.name}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-300"
