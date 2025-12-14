@@ -3,9 +3,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { ProductCard } from "./ProductCard";
 import { ProductInfo } from "@/app/admin/products/types";
-import { getProducts } from "@/app/admin/products/api";
 import { toast } from "sonner";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { getPublicProducts } from "@/app/api";
 
 // const products = [
 //   {
@@ -67,7 +67,7 @@ const FeaturedProducts = () => {
   // Funcion para obtener datos de los productos
   const fetchProducts = useCallback(
     async (cursor: number | null, reset = false) => {
-      const res = await getProducts(cursor);
+      const res = await getPublicProducts(cursor);
 
       if (!res.ok) {
         toast.error(res.message);
@@ -107,6 +107,8 @@ const FeaturedProducts = () => {
     if (!nextCursor) return; // no hay más datos
     fetchProducts(nextCursor);
   };
+
+  console.log("products:", products);
 
   return (
     <InfiniteScroll
