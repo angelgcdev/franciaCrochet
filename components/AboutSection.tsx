@@ -23,18 +23,16 @@ sm:flex-1 grid-rows-[auto_auto_auto] gap-8 text-center md:text-left "
 
               <div className="row-start-3">
                 <p className="text-muted-foreground leading-relaxed tracking-normal text-base">
-                  Soy Francia, artesana apasionada del crochet con más de 5 años
-                  de experiencia creando piezas únicas para los más pequeños del
-                  hogar.
+                  Soy Francia, artesana apasionada del crochet, creando piezas
+                  únicas que acompañan y cuidan a los más pequeños del hogar.
                 </p>
                 <p className="text-muted-foreground leading-relaxed tracking-normal text-base">
-                  Cada producto que creo está hecho con materiales
-                  hipoalergénicos de la más alta calidad, pensando siempre en la
-                  seguridad y comodidad de tu bebé. Mi trabajo es mi pasión, y
-                  cada puntada lleva mi amor y dedicación.
+                  Cada producto nace del amor y la paciencia, usando solo
+                  materiales de alta calidad para proteger la delicada piel de
+                  tu bebé y brindarle comodidad en cada momento.
                 </p>
                 <p className="text-muted-foreground leading-relaxed tracking-normal text-base">
-                  Me especializo en mantitas, ropita para bebés y amigurumis
+                  Me especializo en ropita para bebés y amigurumis
                   personalizados que se convierten en los compañeros perfectos
                   para los primeros años de vida.
                 </p>

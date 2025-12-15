@@ -129,8 +129,8 @@ const FeaturedProducts = () => {
               Productos Destacados
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-              Cada pieza es única y hecha con materiales de la más alta calidad
-              para garantizar la seguridad y comodidad de tu bebé.
+              Cada pieza es única y hecha con materiales de calidad para
+              garantizar la seguridad y comodidad de tu bebé.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">

@@ -40,7 +40,7 @@ const Header = () => {
           <div
             className={`text-2xl font-bold text-[#DC999E] ${playwriteUS.className}`}
           >
-            Francia Crochet
+            <h1>Francia Crochet</h1>
           </div>
         </div>
 

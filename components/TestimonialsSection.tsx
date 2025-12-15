@@ -4,8 +4,8 @@ import { Star } from "lucide-react";
 const testimonials = [
   {
     id: 1,
-    name: "María González",
-    text: "La mantita que compré para mi bebé es hermosa y de excelente calidad. Se nota el amor con el que está hecha. ¡Totalmente recomendado!",
+    name: "olauwu_ mari 😋",
+    text: "muy bonito trabajo, lo recomiendo chicos yo hice mi pedido y llegó súper bien y es confiable 😸💕",
     rating: 5,
   },
   {
@@ -47,7 +47,7 @@ const TestimonialsSection = () => {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-4 text-pretty leading-relaxed">
-                  "{testimonial.text}"
+                  {testimonial.text}
                 </p>
                 <p className="font-semibold text-foreground">
                   {testimonial.name}

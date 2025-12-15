@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { Playwrite_US_Trad } from "next/font/google";
 import Image from "next/image";
+
+const playwriteUS = Playwrite_US_Trad({
+  weight: ["100", "200", "300", "400"],
+  variable: "--font-playwrite",
+});
 
 function Footer() {
   const message = "Hola \u{1F44B} quiero conocer más sobre tus productos";
@@ -9,14 +15,18 @@ function Footer() {
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col gap-4">
-            <h3 className="text-2xl font-bold text-primary">Francia Crochet</h3>
+            <div
+              className={`text-2xl font-bold text-[#DC999E] ${playwriteUS.className}`}
+            >
+              <h1>Francia Crochet</h1>
+            </div>
             <p className="text-muted-foreground text-pretty leading-relaxed">
               Tejidos artesanales hechos con amor para los más pequeños del
               hogar.
             </p>
           </div>
           <div className="flex flex-col gap-4">
-            <h4 className="font-semibold text-lg">Contacto</h4>
+            <h4 className="font-semibold text-lg">Contáctame</h4>
             <p className="text-muted-foreground text-pretty leading-relaxed">
               ¿Tienes alguna pregunta o quieres hacer un pedido personalizado?
               ¡Contáctame!
@@ -44,7 +54,7 @@ function Footer() {
             </Button>
           </div>
           <div className="flex flex-col gap-4">
-            <h4 className="font-semibold text-lg">Síguenos</h4>
+            <h4 className="font-semibold text-lg">Síguenos en:</h4>
             <div className="flex gap-4">
               <Button
                 size="icon"

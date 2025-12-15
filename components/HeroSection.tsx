@@ -42,8 +42,10 @@ sm:flex-1 grid-rows-[auto_auto_auto_auto] text-center md:text-left md:h-[50%]"
               </h1>
 
               <p className="text-muted-foreground leading-relaxed tracking-normal text-base md:text-lg row-start-3">
-                Cada pieza es única, tejida con dedicación y cariño para crear
-                recuerdos especiales que durarán toda la vida.
+                Detrás de cada uno de nuestros tejidos hay horas de dedicación y
+                mucho amor. Más que un producto, ofrecemos un abrazo cálido que
+                protege y acompaña a tus seres queridos, creando recuerdos que
+                quedarán en el corazón
               </p>
 
               <div className="flex flex-col sm:flex-row gap-2 row-start-4 w-full justify-start items-center">
