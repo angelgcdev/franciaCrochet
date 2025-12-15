@@ -12,7 +12,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 Hola 👋 quiero pedir este producto:
 
 🧶 Producto: ${product.name}
-💰 Precio: ${product.price}
+💰 Precio: Bs. ${product.price}
 🖼 Foto: ${product.images[0].image_url}
 `;
   const whatsappUrl = `https://api.whatsapp.com/send?phone=59178614070&text=${encodeURIComponent(
@@ -36,7 +36,7 @@ Hola 👋 quiero pedir este producto:
         <p className="text-sm text-muted-foreground mb-3 text-pretty leading-relaxed">
           {product.description}
         </p>
-        <p className="text-xl font-bold text-[#DC999E]">{product.price}</p>
+        <p className="text-xl font-bold text-[#DC999E]">Bs. {product.price}</p>
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Button
