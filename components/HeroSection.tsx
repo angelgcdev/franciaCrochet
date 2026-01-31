@@ -2,8 +2,6 @@
 
 import { Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 
 const HeroSection = () => {
@@ -17,78 +15,64 @@ const HeroSection = () => {
   const message = "Hola \u{1F44B} quiero conocer más sobre tus productos";
 
   return (
-    <section id="inicio" className="h-[90vh] w-full">
-      <Card className="bg-[#F9EFEE] h-full w-full">
-        <CardContent className="h-full w-full">
-          <div className="h-full flex flex-col md:flex-row gap-4 md:gap-8 items-center justify-center sm:w-[80%] lg:w-[70%] mx-auto">
-            <div
-              className="grid justify-items-center items-center h-[50%] flex-1 [@media(min-width:480px)]:w-[80%] 
-sm:flex-1 grid-rows-[auto_auto_auto_auto] text-center md:text-left md:h-[50%]"
+    <section id="inicio" className="h-[90vh] scroll-mt-[10vh]">
+      <div className="container mx-auto px-4 py-12 h-full flex flex-col sm:flex-row">
+        <div className="flex flex-col items-center justify-center gap-4 flex-1">
+          <h1
+            className={`font-bold leading-tight tracking-tight text-4xl md:text-5xl lg:text-6xl row-start-2 text-center`}
+          >
+            Tejidos hechos a mano con amor{" "}
+            <span className="inline-block">
+              <Heart className="h-10 w-10 text-[#f28080] fill-[#f28080] animate-pulse" />
+            </span>{" "}
+            para los más pequeños del hogar
+          </h1>
+
+          <p className="text-[#6E6666] leading-relaxed tracking-normal text-base md:text-lg row-start-3 text-center">
+            Detrás de cada uno de nuestros tejidos hay horas de dedicación y
+            mucho amor. Más que un producto, ofrecemos un abrazo cálido que
+            protege y acompaña a tus seres queridos, creando recuerdos que
+            quedarán en el corazón
+          </p>
+
+          <div className="flex flex-col w-full min-[500px]:flex-row min-[500px]:w-auto gap-4 row-start-4  justify-start items-center">
+            <Button
+              className="text-base font-semibold rounded-full bg-[#F28080] hover:bg-[#F25E5E] tracking-wide cursor-pointer transform transition-transform duration-300 hover:scale-105 w-full min-[500px]:w-auto"
+              onClick={scrollToProducts}
             >
-              <div className="flex items-center justify-center md:justify-start w-full row-start-1">
-                <Heart className="text-[#DC999E] fill-[#DC999E]" />
-                <Badge
-                  variant="secondary"
-                  className="uppercase tracking-wider text-xs md:text-sm lg:text-lg text-gray-500"
-                >
-                  Hecho a mano con amor
-                </Badge>
-              </div>
-
-              <h1
-                className={`font-bold text-[#443732] leading-tight tracking-tight text-3xl md:text-4xl lg:text-5xl row-start-2`}
+              <span style={{ textShadow: "1px 1px 4px #0D0000" }}>
+                Ver catálogo
+              </span>
+            </Button>
+            <Button
+              variant="outline"
+              className="text-base font-semibold bg-transparent border-2 rounded-full tracking-wide hover:bg-[#D9A29E] transform transition-transform duration-300 hover:scale-105 w-full w-full min-[500px]:w-auto"
+              asChild
+            >
+              <a
+                href={`https://api.whatsapp.com/send?phone=59178614070&text=${encodeURIComponent(
+                  message,
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Tejidos hechos con amor 💕 para los más pequeños del hogar
-              </h1>
-
-              <p className="text-muted-foreground leading-relaxed tracking-normal text-base md:text-lg row-start-3">
-                Detrás de cada uno de nuestros tejidos hay horas de dedicación y
-                mucho amor. Más que un producto, ofrecemos un abrazo cálido que
-                protege y acompaña a tus seres queridos, creando recuerdos que
-                quedarán en el corazón
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-2 row-start-4 w-full justify-start items-center">
-                <Button
-                  className="text-base font-semibold rounded-full bg-[#DC999E] hover:bg-[#C27E84] tracking-wide"
-                  onClick={scrollToProducts}
-                >
-                  Ver catálogo
-                </Button>
-                <Button
-                  variant="outline"
-                  className="text-base font-semibold bg-transparent border-2 rounded-full tracking-wide hover:bg-[#E6DDD9]"
-                  asChild
-                >
-                  <a
-                    href={`https://api.whatsapp.com/send?phone=59178614070&text=${encodeURIComponent(
-                      message
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Contactar por WhatsApp
-                  </a>
-                </Button>
-              </div>
-            </div>
-
-            {/* Imagen */}
-            <div className="flex-1 rounded-2xl overflow-hidden self-center">
-              <Image
-                src="https://res.cloudinary.com/dngkwtctt/image/upload/v1762649139/Adobe_Express_-_file_2_fefo0x.png"
-                alt="Productos tejidos a mano"
-                width={500}
-                height={500}
-                className=" object-cover rounded-2xl
-                  w-full h-full
-                  max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl"
-                loading="lazy"
-              />
-            </div>
+                Contactar por WhatsApp
+              </a>
+            </Button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+
+        {/* Imagen */}
+        <div className="relative w-full  h-[20vh] sm:h-full mx-auto flex-1">
+          <Image
+            src="https://res.cloudinary.com/dngkwtctt/image/upload/v1762649139/Adobe_Express_-_file_2_fefo0x.png"
+            alt="Descripción de la imagen"
+            fill
+            className="object-contain transform transition-transform duration-300 hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+      </div>
     </section>
   );
 };

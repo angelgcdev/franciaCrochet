@@ -11,12 +11,12 @@ function Footer() {
   const message = "Hola \u{1F44B} quiero conocer más sobre tus productos";
 
   return (
-    <footer id="contacto" className="bg-[#F9EFEE] border-t border-border/40">
+    <footer id="contacto" className="border-t border-border/40">
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col gap-4">
             <div
-              className={`text-2xl font-bold text-[#DC999E] ${playwriteUS.className}`}
+              className={`text-2xl font-bold text-primary ${playwriteUS.className}`}
             >
               <h1>Francia Crochet</h1>
             </div>
@@ -25,6 +25,7 @@ function Footer() {
               hogar.
             </p>
           </div>
+
           <div className="flex flex-col gap-4">
             <h4 className="font-semibold text-lg">Contáctame</h4>
             <p className="text-muted-foreground text-pretty leading-relaxed">
@@ -38,7 +39,7 @@ function Footer() {
             >
               <a
                 href={`https://api.whatsapp.com/send?phone=59178614070&text=${encodeURIComponent(
-                  message
+                  message,
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

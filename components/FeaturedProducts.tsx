@@ -82,7 +82,7 @@ const FeaturedProducts = () => {
         setProducts((prev) => {
           const ids = new Set(prev.map((p) => p.id));
           const uniqueNew = res.data.data.filter(
-            (item: ProductInfo) => !ids.has(item.id)
+            (item: ProductInfo) => !ids.has(item.id),
           );
           return [...prev, ...uniqueNew];
         });
@@ -91,7 +91,7 @@ const FeaturedProducts = () => {
       setHasMore(res.data.hasMore);
       setNextCursor(res.data.nextCursor || null);
     },
-    []
+    [],
   );
 
   // Efectos
@@ -115,20 +115,27 @@ const FeaturedProducts = () => {
       dataLength={products.length}
       next={loadMore}
       hasMore={hasMore}
-      loader={<div className="text-center py-4 text-gray-500">Cargando...</div>}
+      loader={
+        <div className="text-center py-12 text-primary-foreground  bg-primary">
+          Cargando...
+        </div>
+      }
       endMessage={
-        <p className="text-center text-gray-500 py-4">
+        <p className="text-center text-primary-foreground py-12  bg-primary">
           No hay más productos para mostrar
         </p>
       }
     >
-      <section id="productos" className="py-20 md:py-32 bg-[#F2EADF]">
+      <section
+        id="productos"
+        className="pt-20 md:pt-32 bg-primary text-primary-foreground min-h-screen scroll-mt-[10vh]"
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 md:mb-1">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-balance text-[#542622]">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-balance">
               Productos Destacados
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
+            <p className="text-lg  max-w-2xl mx-auto text-pretty leading-relaxed">
               Cada pieza es única y hecha con materiales de calidad para
               garantizar la seguridad y comodidad de tu bebé.
             </p>

@@ -12,9 +12,9 @@ import {
 import { useState } from "react";
 
 const links = [
-  { id: "inicio", label: "Inicio" },
   { id: "productos", label: "Productos" },
   { id: "sobre-mi", label: "Sobre mí" },
+  { id: "experiencias", label: "Experiencias" },
   { id: "contacto", label: "Contacto" },
 ];
 
@@ -34,14 +34,26 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 h-[10vh]">
+    <header className="h-[10vh] sticky top-0 z-50 w-full border-b border-border/40 bg-background backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="flex h-full items-center justify-between max-w-[90%] m-auto">
-        <div className="flex items-center gap-2">
-          <div
-            className={`text-2xl font-bold text-[#DC999E] ${playwriteUS.className}`}
-          >
-            <h1>Francia Crochet</h1>
-          </div>
+        <div
+          onClick={() => scrollToSection("inicio")}
+          tabIndex={0} // Para que sea focusable con teclado
+          role="button" // Para accesibilidad, que lo reconozca como botón
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              scrollToSection("inicio");
+            }
+          }}
+          className={`text-2xl font-bold text-primary cursor-pointer 
+              ${playwriteUS.className} 
+              transition-colors duration-200 
+              hover:text-primary/80 
+              active:scale-95 
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-primary
+              `}
+        >
+          <h1>Francia Crochet</h1>
         </div>
 
         {/* Desktop Navigation */}
@@ -50,7 +62,7 @@ const Header = () => {
             <button
               key={id}
               onClick={() => scrollToSection(id)}
-              className="text-base font-medium hover:text-[#DC999E] transition-colors cursor-pointer"
+              className="text-[#0D0000] font-medium hover:text-primary transition-colors cursor-pointer"
             >
               {label}
             </button>
@@ -70,7 +82,7 @@ const Header = () => {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X className="h-6 w-6 text-[#DC999E]" strokeWidth={3} />
+                    <X className="h-6 w-6 text-primary" strokeWidth={3} />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -80,7 +92,7 @@ const Header = () => {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu className="h-6 w-6 text-[#DC999E]" strokeWidth={3} />
+                    <Menu className="h-8 w-8 text-primary" strokeWidth={3} />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -94,7 +106,7 @@ const Header = () => {
                 onSelect={() => scrollToSection(id)}
                 className="cursor-pointer text-base"
               >
-                {label}
+                <div className="text-foreground">{label}</div>
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>

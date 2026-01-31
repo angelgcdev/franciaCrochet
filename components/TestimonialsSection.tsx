@@ -24,20 +24,24 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-20 md:py-32 bg-[#F2EADF]">
+    <section
+      id="experiencias"
+      className="py-20 md:py-32 bg-primary text-primary-foreground min-h-screen scroll-mt-[10vh]"
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-balance">
+          <p className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Lo que dicen nuestros clientes
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
+          </p>
+          <p className="text-lg max-w-2xl mx-auto text-pretty leading-relaxed">
             La satisfacción de nuestros clientes es nuestra mayor recompensa.
           </p>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {testimonials.map((testimonial) => (
-            <Card key={testimonial.id} className="bg-card">
-              <CardContent className="p-6">
+            <Card key={testimonial.id} className="bg-card text-card-foreground">
+              <CardContent>
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <Star
