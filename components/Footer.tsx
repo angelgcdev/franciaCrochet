@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Playwrite_US_Trad } from "next/font/google";
 import Image from "next/image";
+import { Playwrite_US_Trad } from "next/font/google";
+import { MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const playwriteUS = Playwrite_US_Trad({
   weight: ["100", "200", "300", "400"],
@@ -8,33 +9,38 @@ const playwriteUS = Playwrite_US_Trad({
 });
 
 function Footer() {
-  const message = "Hola \u{1F44B} quiero conocer más sobre tus productos";
+  const message = "Hola 👋 quiero conocer más sobre tus productos";
 
   return (
-    <footer id="contacto" className="border-t border-border/40">
-      <div className="container mx-auto px-4 py-12 md:py-16">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <div className="flex flex-col gap-4">
+    <footer
+      id="contacto"
+      className="border-t border-border/70 bg-[linear-gradient(180deg,#fff8f7_0%,#f7dcdf_100%)]"
+    >
+      <div className="section-shell py-space-48 md:py-space-64">
+        <div className="grid gap-space-48 md:grid-cols-[1fr_1fr_1fr]">
+          <div className="flex flex-col gap-space-16">
             <div
-              className={`text-2xl font-bold text-primary ${playwriteUS.className}`}
+              className={`${playwriteUS.className} stitch-h2 font-bold text-primary`}
             >
-              <h1>Francia Crochet</h1>
+              <h2>Francia Crochet</h2>
             </div>
-            <p className="text-muted-foreground text-pretty leading-relaxed">
-              Tejidos artesanales hechos con amor para los más pequeños del
-              hogar.
+            <p className="stitch-body max-w-md text-fg-muted">
+              Tejidos artesanales hechos con amor para bebés, regalos
+              especiales y pedidos personalizados.
             </p>
           </div>
 
-          <div className="flex flex-col gap-4">
-            <h4 className="font-semibold text-lg">Contáctame</h4>
-            <p className="text-muted-foreground text-pretty leading-relaxed">
-              ¿Tienes alguna pregunta o quieres hacer un pedido personalizado?
-              ¡Contáctame!
+          <div className="flex flex-col gap-space-16">
+            <h3 className="stitch-h2 font-semibold text-fg-primary">
+              Contáctame
+            </h3>
+            <p className="stitch-body text-fg-muted">
+              ¿Tienes una idea o quieres consultar disponibilidad? Escríbeme y
+              la tejemos juntas.
             </p>
             <Button
               variant="outline"
-              className="w-fit rounded-full bg-transparent"
+              className="stitch-button w-fit border-primary/30 bg-white/75 text-primary hover:bg-secondary-100"
               asChild
             >
               <a
@@ -44,83 +50,44 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Image
-                  src="/Whatsapp.svg"
-                  alt="Logo de Whatsapp"
-                  width={48}
-                  height={48}
-                />
+                <MessageCircle className="mr-2 size-5" aria-hidden="true" />
                 Enviar mensaje
               </a>
             </Button>
           </div>
-          <div className="flex flex-col gap-4">
-            <h4 className="font-semibold text-lg">Síguenos en:</h4>
-            <div className="flex gap-4">
-              <Button
-                size="icon"
-                variant="outline"
-                className="rounded-full bg-transparent"
-                asChild
-              >
-                <a
-                  href="https://www.tiktok.com/@wfrancia.crochet_"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
+
+          <div className="flex flex-col gap-space-16">
+            <h3 className="stitch-h2 font-semibold text-fg-primary">
+              Síguenos en
+            </h3>
+            <div className="flex gap-space-16">
+              {[
+                { label: "TikTok", href: "https://www.tiktok.com/@wfrancia.crochet_", icon: "/tiktok.svg" },
+                { label: "Instagram", href: "https://www.instagram.com/francia.crochet_/", icon: "/instagram.svg" },
+                { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61582653155695", icon: "/facebook.svg" },
+              ].map((social) => (
+                <Button
+                  key={social.label}
+                  size="icon"
+                  variant="outline"
+                  className="size-12 rounded-2xl border-primary/25 bg-white/75 hover:bg-secondary-100"
+                  asChild
                 >
-                  <Image
-                    src="/tiktok.svg"
-                    alt="Logo de tiktok"
-                    width={48}
-                    height={48}
-                  />
-                </a>
-              </Button>
-              <Button
-                size="icon"
-                variant="outline"
-                className="rounded-full bg-transparent"
-                asChild
-              >
-                <a
-                  href="https://www.instagram.com/francia.crochet_/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                >
-                  <Image
-                    src="/instagram.svg"
-                    alt="Logo de tiktok"
-                    width={48}
-                    height={48}
-                  />
-                </a>
-              </Button>
-              <Button
-                size="icon"
-                variant="outline"
-                className="rounded-full bg-transparent"
-                asChild
-              >
-                <a
-                  href="https://www.facebook.com/profile.php?id=61582653155695"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                >
-                  <Image
-                    src="/facebook.svg"
-                    alt="Logo de Facebook"
-                    width={48}
-                    height={48}
-                  />
-                </a>
-              </Button>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                  >
+                    <Image src={social.icon} alt="" width={24} height={24} />
+                  </a>
+                </Button>
+              ))}
             </div>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-border/40 text-center text-sm text-muted-foreground">
+
+        <div className="stitch-caption mt-space-48 border-t border-border/70 pt-space-24 text-center">
           <p>
             © {new Date().getFullYear()} Francia Crochet. Todos los derechos
             reservados.

@@ -1,23 +1,32 @@
-import { Card, CardContent } from "@/components/ui/card";
+"use client";
+
+import { Playwrite_US_Trad } from "next/font/google";
+import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+
+const playwriteUS = Playwrite_US_Trad({
+  weight: ["100", "200", "300", "400"],
+  variable: "--font-playwrite",
+});
 
 const testimonials = [
   {
     id: 1,
-    name: "olauwu_ mari 😋",
-    text: "muy bonito trabajo, lo recomiendo chicos yo hice mi pedido y llegó súper bien y es confiable 😸💕",
+    name: "olauwu_ mari",
+    text: "Muy bonito trabajo, lo recomiendo. Hice mi pedido, llegó súper bien y es confiable.",
     rating: 5,
   },
   {
     id: 2,
     name: "Laura Martínez",
-    text: "El amigurumi que pedí para mi hija es adorable. Francia es muy atenta y el trabajo es impecable. Volveré a comprar sin duda.",
+    text: "El amigurumi que pedí para mi hija es adorable. Francia es muy atenta y el trabajo es impecable.",
     rating: 5,
   },
   {
     id: 3,
     name: "Ana Rodríguez",
-    text: "Compré un conjunto de gorro y botitas y quedé encantada. Los colores son preciosos y la calidad es increíble. ¡Gracias Francia!",
+    text: "Compré un conjunto de gorro y botitas. Los colores son preciosos y la calidad es increíble.",
     rating: 5,
   },
 ];
@@ -26,38 +35,61 @@ const TestimonialsSection = () => {
   return (
     <section
       id="experiencias"
-      className="py-20 md:py-32 bg-primary text-primary-foreground min-h-screen scroll-mt-[10vh]"
+      className="bg-white py-20 scroll-mt-20 md:py-24"
     >
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md:mb-16">
-          <p className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+      <div className="section-shell">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <p className="stitch-caption font-semibold uppercase tracking-[0.25em] text-primary">
+            Experiencias
+          </p>
+          <h2
+            className={`${playwriteUS.className} stitch-h2 mt-4 font-semibold text-foreground`}
+          >
             Lo que dicen nuestros clientes
+          </h2>
+          <p className="stitch-body mt-4 text-muted-foreground">
+            La mejor parte de cada pedido es saber que una pieza tejida llegó a
+            una nueva historia.
           </p>
-          <p className="text-lg max-w-2xl mx-auto text-pretty leading-relaxed">
-            La satisfacción de nuestros clientes es nuestra mayor recompensa.
-          </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {testimonials.map((testimonial) => (
-            <Card key={testimonial.id} className="bg-card text-card-foreground">
-              <CardContent>
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-5 w-5 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-4 text-pretty leading-relaxed">
-                  {testimonial.text}
-                </p>
-                <p className="font-semibold text-foreground">
-                  {testimonial.name}
-                </p>
-              </CardContent>
-            </Card>
+        <div className="thread-divider" />
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={testimonial.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.3, delay: index * 0.08 }}
+            >
+              <Card className="h-full rounded-2xl border-border/80 bg-background p-6 shadow-lg shadow-primary/5">
+                <CardContent className="flex h-full flex-col px-0 py-0">
+                  <div className="mb-4 flex gap-1">
+                    {Array.from({ length: testimonial.rating }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className="size-6 fill-accent text-accent"
+                        aria-hidden="true"
+                      />
+                    ))}
+                  </div>
+                  <p className="stitch-body flex-1 text-muted-foreground">
+                    “{testimonial.text}”
+                  </p>
+                  <p className="stitch-body mt-6 font-semibold text-foreground">
+                    {testimonial.name}
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>

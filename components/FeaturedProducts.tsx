@@ -1,73 +1,27 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { ProductCard } from "./ProductCard";
-import { ProductInfo } from "@/app/admin/products/types";
-import { toast } from "sonner";
+import { Playwrite_US_Trad } from "next/font/google";
+import { motion } from "framer-motion";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { toast } from "sonner";
 import { getPublicProducts } from "@/app/api";
+import { ProductInfo } from "@/app/admin/products/types";
+import { ProductCard } from "./ProductCard";
 
-// const products = [
-//   {
-//     id: 1,
-//     name: "Mantita de Bebé",
-//     price: "$45.00",
-//     image:
-//       "https://res.cloudinary.com/dngkwtctt/image/upload/v1762224267/zapatito-mate-cars_kdalh5.jpg",
-//     description: "Suave mantita tejida en algodón 100% natural",
-//   },
-//   {
-//     id: 2,
-//     name: "Amigurumi Osito",
-//     price: "$28.00",
-//     image:
-//       "https://res.cloudinary.com/dngkwtctt/image/upload/v1762224259/oso-marron_gdf1hi.jpg",
-//     description: "Adorable osito tejido, perfecto para abrazar",
-//   },
-//   {
-//     id: 3,
-//     name: "Conjunto de Gorro y Botitas",
-//     price: "$35.00",
-//     image:
-//       "https://res.cloudinary.com/dngkwtctt/image/upload/v1762224253/oso_tmiati.jpg",
-//     description: "Set completo para mantener abrigado al bebé",
-//   },
-//   {
-//     id: 4,
-//     name: "Amigurumi Conejito",
-//     price: "$30.00",
-//     image:
-//       "https://res.cloudinary.com/dngkwtctt/image/upload/v1762224239/kitty_oup1wx.jpg",
-//     description: "Tierno conejito personalizable en colores",
-//   },
-//   {
-//     id: 5,
-//     name: "Amigurumi Conejito",
-//     price: "$30.00",
-//     image:
-//       "https://res.cloudinary.com/dngkwtctt/image/upload/v1762224200/conejo_ermnoi.jpg",
-//     description: "Tierno conejito personalizable en colores",
-//   },
-//   {
-//     id: 6,
-//     name: "Amigurumi Conejito",
-//     price: "$30.00",
-//     image:
-//       "https://res.cloudinary.com/dngkwtctt/image/upload/v1762224194/conejo-amigurumi_prinjy.jpg",
-//     description: "Tierno conejito personalizable en colores",
-//   },
-// ];
+const playwriteUS = Playwrite_US_Trad({
+  weight: ["100", "200", "300", "400"],
+  variable: "--font-playwrite",
+});
 
 const FeaturedProducts = () => {
-  // Estados
   const [products, setProducts] = useState<ProductInfo[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [nextCursor, setNextCursor] = useState<number | null>(null);
 
-  // Funcion para obtener datos de los productos
   const fetchProducts = useCallback(
     async (cursor: number | null, reset = false) => {
-      const res = await getPublicProducts(cursor);
+      const res = await getPublicProducts(cursor, 12);
 
       if (!res.ok) {
         toast.error(res.message);
@@ -75,10 +29,8 @@ const FeaturedProducts = () => {
       }
 
       if (reset) {
-        // 🔄 refresco total (reemplaza todo)
         setProducts(res.data.data);
       } else {
-        // ➕ scroll infinito (acumula)
         setProducts((prev) => {
           const ids = new Set(prev.map((p) => p.id));
           const uniqueNew = res.data.data.filter(
@@ -94,60 +46,84 @@ const FeaturedProducts = () => {
     [],
   );
 
-  // Efectos
   useEffect(() => {
-    async function loadIntial() {
+    async function loadInitial() {
       await fetchProducts(null);
     }
-    loadIntial();
+
+    loadInitial();
   }, [fetchProducts]);
 
-  // Función para cargar la siguiente página
   const loadMore = () => {
-    if (!nextCursor) return; // no hay más datos
+    if (!nextCursor) return;
     fetchProducts(nextCursor);
   };
 
-  console.log("products:", products);
-
   return (
-    <InfiniteScroll
-      dataLength={products.length}
-      next={loadMore}
-      hasMore={hasMore}
-      loader={
-        <div className="text-center py-12 text-primary-foreground  bg-primary">
-          Cargando...
-        </div>
-      }
-      endMessage={
-        <p className="text-center text-primary-foreground py-12  bg-primary">
-          No hay más productos para mostrar
-        </p>
-      }
+    <section
+      id="productos"
+      className="bg-[linear-gradient(180deg,#fff8f7_0%,#f7dcdf_100%)] py-20 scroll-mt-20 md:py-24"
     >
-      <section
-        id="productos"
-        className="pt-20 md:pt-32 bg-primary text-primary-foreground min-h-screen scroll-mt-[10vh]"
-      >
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 md:mb-1">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-balance">
-              Productos Destacados
-            </h2>
-            <p className="text-lg  max-w-2xl mx-auto text-pretty leading-relaxed">
-              Cada pieza es única y hecha con materiales de calidad para
-              garantizar la seguridad y comodidad de tu bebé.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+      <div className="section-shell">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <p className="stitch-caption font-semibold uppercase tracking-[0.25em] text-primary">
+            Catálogo
+          </p>
+          <h2
+            className={`${playwriteUS.className} stitch-h2 mt-4 font-semibold text-foreground`}
+          >
+            Piezas listas para regalar
+          </h2>
+          <p className="stitch-body mt-4 text-muted-foreground">
+            Amigurumis, ropita y accesorios tejidos con materiales suaves,
+            pensados para celebrar momentos pequeños con mucho cariño.
+          </p>
+        </motion.div>
+
+        <div className="thread-divider" />
+
+        <InfiniteScroll
+          dataLength={products.length}
+          next={loadMore}
+          hasMore={hasMore}
+          loader={
+            <div className="stitch-caption py-10 text-center font-medium text-primary">
+              Cargando más piezas...
+            </div>
+          }
+          endMessage={
+            products.length > 0 ? (
+              <p className="stitch-caption py-10 text-center font-medium text-muted-foreground">
+                Ya viste todas las piezas disponibles por ahora.
+              </p>
+            ) : null
+          }
+        >
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {products.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.3,
+                  delay: Math.min(index * 0.04, 0.16),
+                }}
+              >
+                <ProductCard product={product} />
+              </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-    </InfiniteScroll>
+        </InfiniteScroll>
+      </div>
+    </section>
   );
 };
 

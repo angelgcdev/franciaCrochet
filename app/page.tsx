@@ -1,4 +1,5 @@
 import AboutSection from "@/components/AboutSection";
+import CustomOrderSection from "@/components/CustomOrderSection";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -12,6 +13,7 @@ export default function Home() {
       <HeroSection />
       <FeaturedProducts />
       <AboutSection />
+      <CustomOrderSection />
       <TestimonialsSection />
       <Footer />
     </>
