@@ -37,7 +37,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/90 shadow-sm backdrop-blur-xl supports-backdrop-filter:bg-background/75">
+    <header className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/90 px-space-24 shadow-sm backdrop-blur-xl supports-backdrop-filter:bg-background/75">
       <div className="section-shell flex h-space-64 items-center justify-between md:h-20">
         <div
           onClick={() => scrollToSection("inicio")}

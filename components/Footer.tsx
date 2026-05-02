@@ -14,7 +14,7 @@ function Footer() {
   return (
     <footer
       id="contacto"
-      className="border-t border-border/70 bg-[linear-gradient(180deg,#fff8f7_0%,#f7dcdf_100%)]"
+      className="border-t border-border/70 bg-[linear-gradient(180deg,#fff8f7_0%,#f7dcdf_100%)] px-space-24"
     >
       <div className="section-shell py-space-48 md:py-space-64">
         <div className="grid gap-space-48 md:grid-cols-[1fr_1fr_1fr]">

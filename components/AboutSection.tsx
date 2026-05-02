@@ -11,7 +11,7 @@ const playwriteUS = Playwrite_US_Trad({
 
 const AboutSection = () => {
   return (
-    <section id="sobre-mi" className="bg-white py-20 scroll-mt-20 md:py-24">
+    <section id="sobre-mi" className="bg-white px-space-24 py-20 scroll-mt-20 md:py-24">
       <div className="section-shell">
         <div className="thread-divider" />
 

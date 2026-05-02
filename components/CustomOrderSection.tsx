@@ -64,7 +64,7 @@ Idea: ${values.idea}
   return (
     <section
       id="pedido-personalizado"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#f7dcdf_0%,#fff8f7_100%)] py-20 scroll-mt-20 md:py-24"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#f7dcdf_0%,#fff8f7_100%)] px-space-24 py-20 scroll-mt-20 md:py-24"
     >
       <div className="absolute inset-x-0 bottom-0 h-24 yarn-line opacity-25" />
       <div className="section-shell relative">

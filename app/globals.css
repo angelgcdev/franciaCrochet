@@ -26,22 +26,22 @@
   /* Shadcn Mapping */
   --color-background: var(--color-secondary-100);
   --color-foreground: var(--color-fg-primary);
-  
+
   --color-primary: var(--color-primary-400);
   --color-primary-foreground: var(--color-secondary-100);
-  
+
   --color-secondary: var(--color-secondary-300);
   --color-secondary-foreground: var(--color-fg-primary);
-  
+
   --color-muted: var(--color-secondary-200);
   --color-muted-foreground: var(--color-fg-muted);
-  
+
   --color-accent: var(--color-primary-100);
   --color-accent-foreground: var(--color-primary-700);
-  
+
   --color-destructive: #ef4444;
   --color-destructive-foreground: #ffffff;
-  
+
   --color-border: var(--color-secondary-400);
   --color-input: var(--color-secondary-400);
   --color-ring: var(--color-primary-400);
@@ -85,17 +85,19 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
     font-size: clamp(16px, 1.5vw, 18px);
     line-height: 1.6;
   }
-  
+
   h1 {
     font-size: clamp(32px, 5vw, 48px);
     line-height: 1.2;
     @apply font-bold;
   }
-  
+
   h2 {
     font-size: clamp(24px, 3vw, 32px);
     line-height: 1.3;
@@ -105,7 +107,7 @@
 
 @layer components {
   .section-shell {
-    @apply mx-auto w-full max-w-7xl px-space-16 sm:px-space-24 lg:px-space-64;
+    @apply mx-auto w-full max-w-7xl px-0;
   }
 
   .stitch-card {
@@ -133,13 +135,26 @@
     @apply absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full border border-primary-400 bg-background;
   }
 
-  .thread-divider::before { left: 18%; }
-  .thread-divider::after { right: 18%; }
+  .thread-divider::before {
+    left: 18%;
+  }
+  .thread-divider::after {
+    right: 18%;
+  }
 
   .yarn-line {
     background-image:
-      radial-gradient(circle at 8px 8px, color-mix(in srgb, var(--color-primary-400) 70%, transparent) 4px, transparent 4px),
-      linear-gradient(90deg, transparent 0 16px, color-mix(in srgb, var(--color-primary-400) 55%, transparent) 16px 24px, transparent 24px 32px);
+      radial-gradient(
+        circle at 8px 8px,
+        color-mix(in srgb, var(--color-primary-400) 70%, transparent) 4px,
+        transparent 4px
+      ),
+      linear-gradient(
+        90deg,
+        transparent 0 16px,
+        color-mix(in srgb, var(--color-primary-400) 55%, transparent) 16px 24px,
+        transparent 24px 32px
+      );
     background-size: 32px 16px;
   }
 }

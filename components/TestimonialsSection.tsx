@@ -35,7 +35,7 @@ const TestimonialsSection = () => {
   return (
     <section
       id="experiencias"
-      className="bg-white py-20 scroll-mt-20 md:py-24"
+      className="bg-white px-space-24 py-20 scroll-mt-20 md:py-24"
     >
       <div className="section-shell">
         <motion.div

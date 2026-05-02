@@ -62,7 +62,7 @@ const FeaturedProducts = () => {
   return (
     <section
       id="productos"
-      className="bg-[linear-gradient(180deg,#fff8f7_0%,#f7dcdf_100%)] py-20 scroll-mt-20 md:py-24"
+      className="bg-[linear-gradient(180deg,#fff8f7_0%,#f7dcdf_100%)] px-space-24 py-20 scroll-mt-20 md:py-24"
     >
       <div className="section-shell">
         <motion.div
