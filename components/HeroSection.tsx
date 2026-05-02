@@ -24,18 +24,18 @@ const HeroSection = () => {
   return (
     <section
       id="inicio"
-      className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#fff8f7_0%,#f7dcdf_100%)] py-16 scroll-mt-20 md:py-24"
+      className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#fff8f7_0%,#f7dcdf_100%)] scroll-mt-20 flex min-h-screen w-full items-center"
     >
       <div className="absolute inset-x-0 top-0 h-24 yarn-line opacity-30" />
       <div className="absolute -left-24 top-32 size-64 rounded-2xl border border-primary/20" />
       <div className="absolute -right-32 bottom-16 size-80 rounded-2xl border border-accent/20" />
 
-      <div className="section-shell relative grid items-center gap-12 lg:min-h-[calc(100vh-5rem)] lg:grid-cols-[1fr_1fr]">
+      <div className="section-shell relative grid items-center gap-12 md:grid-cols-2 py-space-64">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
-          className="flex flex-col items-center text-center lg:items-start lg:text-left"
+          className="flex flex-col items-center text-center md:items-start md:text-left"
         >
           <p className="stitch-caption mb-space-16 inline-flex items-center gap-2 rounded-xl border border-primary/20 bg-white/75 px-space-16 py-space-8 font-medium text-primary shadow-sm">
             <Heart className="size-5 fill-primary" aria-hidden="true" />
@@ -114,7 +114,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
-            className="absolute -right-space-16 -top-space-16 z-20 hidden rounded-full bg-accent-foreground px-space-16 py-space-8 text-sm font-bold text-white shadow-lg lg:block"
+            className="absolute -right-space-16 -top-space-16 z-20 hidden rounded-full bg-accent-foreground px-space-16 py-space-8 text-sm font-bold text-white shadow-lg md:block"
           >
             100% Artesanal
           </motion.div>
