@@ -62,12 +62,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
-      <SidebarHeader className="bg-[#f2eade]">
+      <SidebarHeader className="bg-secondary-200">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="h-16 hover:bg-[#D9CFCF] focus:bg-[#D9CFCF] active:bg-[#D9CFCF]"
+              className="h-16 hover:bg-secondary-300 focus:bg-secondary-300 active:bg-secondary-300"
             >
               <a href="#">
                 <div className="relative w-14 h-14">
@@ -79,7 +79,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   />
                 </div>
                 <span
-                  className={`text-base font-bold text-[#DC999E] ${playwriteUS.className}`}
+                  className={`text-base font-bold text-primary-400 ${playwriteUS.className}`}
                 >
                   Francia Crochet
                 </span>
@@ -89,10 +89,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <Separator />
-      <SidebarContent className="bg-[#f2eade]">
+      <SidebarContent className="bg-secondary-200">
         <NavMain items={data.navMain} />
       </SidebarContent>
-      <SidebarFooter className="bg-[#f2eade]">
+      <SidebarFooter className="bg-secondary-200">
         <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>

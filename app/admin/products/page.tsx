@@ -59,15 +59,15 @@ const ProductsPage = () => {
   }, [fetchProducts]);
 
   return (
-    <div className=" ">
-      <header className="flex items-center justify-between px-8 py-4">
+    <div className="">
+      <header className="flex items-center justify-between p-4">
         <h1 className="text-2xl font-bold">Productos</h1>
-        <div className="flex gap-4 ">
+        <div className="flex gap-4">
           <ProductModalForm
             categories={categories}
             fetchProducts={() => fetchProducts(null, true)}
             trigger={
-              <Button className="w-full bg-[#D99AA5] hover:bg-[#403330] cursor-pointer font-bold">
+              <Button className="h-12 px-6 bg-primary-400 hover:bg-primary-500 cursor-pointer font-medium rounded-lg">
                 <Plus />
                 <span>Nuevo Producto</span>
               </Button>

@@ -127,7 +127,7 @@ Se define una paleta basada en un color primario, un secundario neutro y un colo
 ### 6.1 Colores Base
 
 - **Primary:** `#f28080`
-- **Secondary:** `#f3ebee`
+- **Secondary:** `#e5ded1`
 - **Foreground (texto principal):** `#251a1a`
 
 ---

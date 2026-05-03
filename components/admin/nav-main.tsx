@@ -29,7 +29,7 @@ export function NavMain({
               <SidebarMenuButton
                 asChild
                 tooltip={item.title}
-                className="hover:bg-[#D9CFCF]"
+                className="hover:bg-secondary-300"
               >
                 <Link href={item.url}>
                   {item.icon && <item.icon />}

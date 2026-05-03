@@ -92,9 +92,9 @@ export const ProductList = ({
           </p>
         }
       >
-        <div className="bg-[#F2EADF] m-4 rounded-2xl p-4 shadow-lg">
+        <div className="bg-secondary-200 m-4 rounded-xl p-4 shadow-sm">
           <div className="flex items-center justify-end mb-4">
-            <Badge className="bg-[#8C6B64] font-bold">
+            <Badge className="bg-fg-secondary font-bold">
               {products.length} productos
             </Badge>
           </div>
@@ -113,7 +113,7 @@ export const ProductList = ({
             </TableHeader>
             <TableBody>
               {products.map((product) => (
-                <TableRow key={product.id} className="hover:bg-[#D9CFCF]">
+                <TableRow key={product.id} className="hover:bg-secondary-300">
                   <TableCell>
                     <div className="relative h-12 w-12 rounded-md overflow-hidden">
                       <Image
