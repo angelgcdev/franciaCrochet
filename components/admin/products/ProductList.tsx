@@ -17,7 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Loader2, SquarePen, Trash2, MoreHorizontal, Pencil, X } from "lucide-react";
+import { Loader2, SquarePen, Trash2, ArrowRightToLine, Pencil, X } from "lucide-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { ProductInfo, ProductListProps } from "@/app/admin/products/types";
 import { formatRelativeWithDateFns } from "@/lib/utils/formatRelativeWithDateFns";
@@ -43,8 +43,8 @@ const ProductCard = ({
 
   return (
     <>
-      <Card className="rounded-xl bg-white shadow-sm border border-secondary-400 p-4">
-        <div className="flex gap-4">
+      <Card className="rounded-xl shadow-sm border border-secondary-400 p-4 bg-secondary-200">
+        <div className="flex gap-4 items-center">
           <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
             <Image
               src={product.images?.[0]?.image_url || "/placeholder.svg"}
@@ -62,14 +62,14 @@ const ProductCard = ({
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-8 w-8 p-0 flex-shrink-0 hover:bg-secondary-300"
+                    className="h-8 w-8 p-0 flex-shrink-0 text-primary-400 font-semibold hover:bg-primary-100"
                   >
-                    <MoreHorizontal className="h-5 w-5" />
+                    <ArrowRightToLine className="h-5 w-5" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent 
                   align="end" 
-                  className="w-48 rounded-xl p-2 bg-white shadow-lg border border-secondary-400"
+                  className="w-48 rounded-xl p-2 bg-secondary-200 shadow-lg border border-secondary-400"
                 >
                   <DropdownMenuItem 
                     onClick={() => setShowEditModal(true)}
