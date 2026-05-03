@@ -2,7 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -17,16 +17,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Loader2, SquarePen, Trash2, MoreHorizontal } from "lucide-react";
+import { Loader2, SquarePen, Trash2, MoreHorizontal, Pencil, X } from "lucide-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { ProductInfo, ProductListProps } from "@/app/admin/products/types";
 import { formatRelativeWithDateFns } from "@/lib/utils/formatRelativeWithDateFns";
-import ProductModalForm from "./ProductModalForm";
 import Image from "next/image";
 import { toast } from "sonner";
 import { deleteProductInfo } from "@/lib/products/actions";
 import { deleteImageFromCloudinary } from "@/lib/utils/deleteImageFromCloudinary";
 import { useState } from "react";
+import ProductModalForm from "./ProductModalForm";
 
 const ProductCard = ({
   product,
@@ -39,69 +39,83 @@ const ProductCard = ({
   fetchProducts: () => void;
   handleDeleteProduct: (product: ProductInfo) => void;
 }) => {
+  const [showEditModal, setShowEditModal] = useState(false);
+
   return (
-    <Card className="rounded-xl bg-white shadow-sm border border-secondary-400 p-4">
-      <div className="flex gap-4">
-        <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
-          <Image
-            src={product.images?.[0]?.image_url || "/placeholder.svg"}
-            alt={product.name}
-            fill
-            className="object-cover"
-          />
-        </div>
-        
-        <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="font-semibold text-base truncate">{product.name}</h3>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 w-8 p-0 flex-shrink-0"
-                >
-                  <MoreHorizontal className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="rounded-lg">
-                <ProductModalForm
-                  product={product}
-                  categories={categories}
-                  fetchProducts={fetchProducts}
-                  trigger={
-                    <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-                      <SquarePen className="mr-2 h-4 w-4" />
-                      Editar
-                    </DropdownMenuItem>
-                  }
-                />
-                <DropdownMenuItem
-                  onClick={() => handleDeleteProduct(product)}
-                  className="text-red-600 focus:text-red-600"
-                >
-                  <Trash2 className="mr-2 h-4 w-4" />
-                  Eliminar
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+    <>
+      <Card className="rounded-xl bg-white shadow-sm border border-secondary-400 p-4">
+        <div className="flex gap-4">
+          <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+            <Image
+              src={product.images?.[0]?.image_url || "/placeholder.svg"}
+              alt={product.name}
+              fill
+              className="object-cover"
+            />
           </div>
           
-          <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
-            {product.description}
-          </p>
-          
-          <div className="flex items-center justify-between mt-3">
-            <Badge variant="secondary" className="text-xs">
-              {product.category.name}
-            </Badge>
-            <span className="font-bold text-primary-400">
-              {product.price} BOB
-            </span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="font-semibold text-base truncate">{product.name}</h3>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-8 w-8 p-0 flex-shrink-0 hover:bg-secondary-300"
+                  >
+                    <MoreHorizontal className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent 
+                  align="end" 
+                  className="w-48 rounded-xl p-2 bg-white shadow-lg border border-secondary-400"
+                >
+                  <DropdownMenuItem 
+                    onClick={() => setShowEditModal(true)}
+                    className="h-10 px-3 rounded-lg cursor-pointer focus:bg-secondary-200"
+                  >
+                    <Pencil className="mr-3 h-4 w-4 text-fg-secondary" />
+                    <span className="text-sm">Editar</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => handleDeleteProduct(product)}
+                    className="h-10 px-3 rounded-lg cursor-pointer text-destructive focus:text-destructive focus:bg-red-50"
+                  >
+                    <Trash2 className="mr-3 h-4 w-4" />
+                    <span className="text-sm">Eliminar</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+            
+            <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
+              {product.description}
+            </p>
+            
+            <div className="flex items-center justify-between mt-3">
+              <Badge variant="secondary" className="text-xs bg-secondary-300 text-fg-secondary">
+                {product.category.name}
+              </Badge>
+              <span className="font-bold text-primary-400 text-base">
+                {product.price} BOB
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+
+      <ProductModalForm
+        product={product}
+        categories={categories}
+        fetchProducts={fetchProducts}
+        open={showEditModal}
+        onOpenChange={setShowEditModal}
+        trigger={
+          <span className="hidden" />
+        }
+      />
+    </>
   );
 };
 
@@ -257,20 +271,20 @@ export const ProductList = ({
                           trigger={
                             <Button
                               variant="outline"
-                              className="cursor-pointer flex-1 border-gray-300 hover:bg-gray-50"
+                              className="cursor-pointer border-secondary-400 hover:bg-secondary-300 h-9 px-3 rounded-lg"
                               size="sm"
                             >
-                              <SquarePen className="w-4 h-4 mr-1" />
+                              <SquarePen className="w-4 h-4" />
                             </Button>
                           }
                         />
                         <Button
                           variant="outline"
-                          className="cursor-pointer flex-1 border-red-300 text-red-700 hover:bg-red-50"
+                          className="cursor-pointer border-red-300 text-red-600 hover:bg-red-50 h-9 px-3 rounded-lg"
                           size="sm"
                           onClick={() => handleDeleteProduct(product)}
                         >
-                          <Trash2 />
+                          <Trash2 className="w-4 h-4" />
                         </Button>
                       </div>
                     </TableCell>

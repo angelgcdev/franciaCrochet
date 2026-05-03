@@ -46,6 +46,8 @@ export interface Props {
   trigger: ReactNode;
   product?: ProductInfo;
   categories: Category[];
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 const ProductSchema = z.object({
@@ -68,12 +70,21 @@ const ProductModalForm = ({
   trigger,
   product,
   categories,
+  open,
+  onOpenChange,
 }: Props) => {
   const isEditing = !!product;
 
   // 1. Estados
   const [loading, setLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
+
+  // Controlled vs uncontrolled
+  const isControlled = open !== undefined;
+  const isOpen = isControlled ? open : internalOpen;
+  const setIsOpen = isControlled 
+    ? onOpenChange! 
+    : setInternalOpen;
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [imageChanged, setImageChanged] = useState(false);
