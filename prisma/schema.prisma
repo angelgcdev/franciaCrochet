@@ -38,6 +38,7 @@ model Product {
   name        String
   description String?
   price       Float?
+  is_visible  Boolean  @default(true)
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 

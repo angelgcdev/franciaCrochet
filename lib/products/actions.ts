@@ -10,6 +10,7 @@ export interface CreateProductDto {
   name: string;
   description?: string;
   price?: number;
+  is_visible?: boolean;
   category_id: number;
 }
 
@@ -147,6 +148,37 @@ export async function updateProductInfo(
     };
   } catch (error) {
     console.error("Error al actualizar producto:", error);
+    return {
+      ok: false,
+      message: error instanceof Error ? error.message : "Error inesperado",
+    };
+  }
+}
+
+export async function toggleProductVisibility(
+  productId: number,
+  isVisible: boolean
+) {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.id) {
+    return {
+      ok: false,
+      message: "No autorizado",
+    };
+  }
+
+  try {
+    const updated = await prisma.product.update({
+      where: { id: productId },
+      data: { is_visible: isVisible },
+    });
+
+    return {
+      ok: true,
+      data: updated,
+    };
+  } catch (error) {
+    console.error("Error al cambiar visibilidad:", error);
     return {
       ok: false,
       message: error instanceof Error ? error.message : "Error inesperado",

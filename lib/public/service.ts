@@ -4,26 +4,27 @@ export async function getPublicProductsService(
   cursor: number | null = null,
   limit: number = 20
 ) {
+  const cursorFilter = cursor ? { id: { lt: cursor } } : {};
+
   const products = await prisma.product.findMany({
     where: {
-      ...(cursor ? { id: { lt: cursor } } : {}), // Traer productos con id menor al cursor
+      is_visible: true,
+      ...cursorFilter,
     },
     include: {
       category: true,
-      // user: true,
       images: true,
     },
-    take: limit, // Cuántos traer por página
+    take: limit,
     orderBy: {
-      id: "desc", // Orden descendente para que el cursor funcione bien
+      id: "desc",
     },
   });
 
-  const nextCursor =
-    products.length > 0 ? products[products.length - 1].id : null;
+  const nextCursor = products.length > 0 ? products[products.length - 1].id : null;
   return {
     data: products,
     nextCursor,
-    hasMore: products.length === limit, // Si trajiste menos que limit, no hay más
+    hasMore: products.length === limit,
   };
 }

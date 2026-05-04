@@ -17,13 +17,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Loader2, SquarePen, Trash2, ArrowRightToLine, Pencil, X } from "lucide-react";
+import { Loader2, SquarePen, Trash2, ArrowRightToLine, Pencil, X, Eye, EyeClosed } from "lucide-react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { ProductInfo, ProductListProps } from "@/app/admin/products/types";
 import { formatRelativeWithDateFns } from "@/lib/utils/formatRelativeWithDateFns";
 import Image from "next/image";
 import { toast } from "sonner";
-import { deleteProductInfo } from "@/lib/products/actions";
+import { deleteProductInfo, toggleProductVisibility } from "@/lib/products/actions";
 import { deleteImageFromCloudinary } from "@/lib/utils/deleteImageFromCloudinary";
 import { useState } from "react";
 import ProductModalForm from "./ProductModalForm";
@@ -33,11 +33,13 @@ const ProductCard = ({
   categories,
   fetchProducts,
   handleDeleteProduct,
+  handleToggleVisibility,
 }: {
   product: ProductInfo;
   categories: { id: number; name: string }[];
   fetchProducts: () => void;
   handleDeleteProduct: (product: ProductInfo) => void;
+  handleToggleVisibility: (product: ProductInfo) => void;
 }) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -79,6 +81,22 @@ const ProductCard = ({
                     <span className="text-sm">Editar</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem 
+                    onClick={() => handleToggleVisibility(product)}
+                    className="h-10 px-3 rounded-lg cursor-pointer focus:bg-secondary-200"
+                  >
+                    {product.is_visible !== false ? (
+                      <>
+                        <Eye className="mr-3 h-4 w-4 text-green-600" />
+                        <span className="text-sm">Ocultar</span>
+                      </>
+                    ) : (
+                      <>
+                        <EyeClosed className="mr-3 h-4 w-4 text-gray-500" />
+                        <span className="text-sm">Mostrar</span>
+                      </>
+                    )}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
                     onClick={() => handleDeleteProduct(product)}
                     className="h-10 px-3 rounded-lg cursor-pointer text-destructive focus:text-destructive focus:bg-red-50"
                   >
@@ -94,9 +112,17 @@ const ProductCard = ({
             </p>
             
             <div className="flex items-center justify-between mt-3">
-              <Badge variant="secondary" className="text-xs bg-secondary-300 text-fg-secondary">
-                {product.category.name}
-              </Badge>
+              <div className="flex gap-2 items-center">
+                <Badge variant="secondary" className="text-xs bg-secondary-300 text-fg-secondary">
+                  {product.category.name}
+                </Badge>
+                <Badge 
+                  variant="secondary" 
+                  className={`text-xs ${product.is_visible !== false ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+                >
+                  {product.is_visible !== false ? "Visible" : "Oculto"}
+                </Badge>
+              </div>
               <span className="font-bold text-primary-400 text-base">
                 {product.price} BOB
               </span>
@@ -161,6 +187,23 @@ export const ProductList = ({
     }
   };
 
+  const handleToggleVisibility = async (product: ProductInfo) => {
+    try {
+      const newVisibility = product.is_visible === false ? true : false;
+      const res = await toggleProductVisibility(product.id, newVisibility);
+
+      if (!res.ok) {
+        toast.error(res.message);
+        return;
+      }
+
+      toast.success(newVisibility ? "Productovisible en tienda" : "Producto ocultado");
+      fetchProducts(null, true);
+    } catch (error) {
+      toast.error("Error al cambiar visibilidad");
+    }
+  };
+
   const loadMore = () => {
     if (!nextCursor) return;
     fetchProducts(nextCursor);
@@ -204,6 +247,7 @@ export const ProductList = ({
                 categories={categories}
                 fetchProducts={() => fetchProducts(null, true)}
                 handleDeleteProduct={handleDeleteProduct}
+                handleToggleVisibility={handleToggleVisibility}
               />
             ))}
           </div>
@@ -218,6 +262,7 @@ export const ProductList = ({
                   <TableHead>Descripción</TableHead>
                   <TableHead>Categoría</TableHead>
                   <TableHead>Precio</TableHead>
+                  <TableHead>Estado</TableHead>
                   <TableHead>Fecha de creación</TableHead>
                   <TableHead>Fecha de modificación</TableHead>
                   <TableHead className="w-[50px]">Acciones</TableHead>
@@ -256,6 +301,14 @@ export const ProductList = ({
                         {product.price} BOB
                       </p>
                     </TableCell>
+                    <TableCell>
+                      <Badge 
+                        variant="secondary" 
+                        className={`text-xs ${product.is_visible !== false ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+                      >
+                        {product.is_visible !== false ? "Visible" : "Oculto"}
+                      </Badge>
+                    </TableCell>
                     <TableCell className="text-sm text-muted-foreground">
                       {formatRelativeWithDateFns(product.created_at)}
                     </TableCell>
@@ -264,6 +317,18 @@ export const ProductList = ({
                     </TableCell>
                     <TableCell>
                       <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          className={`cursor-pointer h-9 px-3 rounded-lg ${product.is_visible !== false ? "border-green-300 text-green-600 hover:bg-green-50" : "border-gray-300 text-gray-500 hover:bg-gray-50"}`}
+                          size="sm"
+                          onClick={() => handleToggleVisibility(product)}
+                        >
+                          {product.is_visible !== false ? (
+                            <Eye className="w-4 h-4" />
+                          ) : (
+                            <EyeClosed className="w-4 h-4" />
+                          )}
+                        </Button>
                         <ProductModalForm
                           product={product}
                           categories={categories}

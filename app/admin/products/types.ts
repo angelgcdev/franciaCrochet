@@ -18,6 +18,7 @@ export type Product = {
   name: string;
   description?: string;
   price?: number;
+  is_visible?: boolean;
   created_at: Date;
   updated_at: Date;
 };
@@ -38,6 +39,7 @@ export type ProductInfo = {
   name: string;
   description?: string;
   price?: number;
+  is_visible?: boolean;
   created_at: Date;
   updated_at: Date;
   category: Category;
@@ -49,6 +51,7 @@ export type ProductForm = {
   name: string;
   description?: string;
   price?: number;
+  is_visible?: boolean;
   category_id: number;
 };
 

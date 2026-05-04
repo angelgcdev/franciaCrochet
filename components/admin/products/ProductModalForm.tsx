@@ -25,7 +25,7 @@ import z from "zod";
 import { Input } from "@/components/ui/input";
 
 import { toast } from "sonner";
-import { Loader2, Trash, Upload } from "lucide-react";
+import { Loader2, Trash, Upload, Eye, EyeOff } from "lucide-react";
 import { Category, ImageData, ProductInfo } from "@/app/admin/products/types";
 import {
   Select,
@@ -35,6 +35,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
 import { createProductInfo, updateProductInfo } from "@/lib/products/actions";
 import { compressImage } from "@/lib/utils/compressImage";
 import { uploadImageToCloudinary } from "@/lib/utils/uploadImageToCloudinary";
@@ -54,6 +55,7 @@ const ProductSchema = z.object({
   name: z.string(),
   image_url: z.string().optional(),
   description: z.string().optional(),
+  is_visible: z.boolean().default(true),
   price: z
     .union([z.string(), z.number()])
     .transform((val) => parseFloat(String(val).replace(",", ".")))
@@ -97,6 +99,7 @@ const ProductModalForm = ({
       name: product?.name || "",
       image_url: product?.images[0]?.image_url || "",
       description: product?.description || "",
+      is_visible: product?.is_visible ?? true,
       price: product?.price || undefined,
       category_id: product?.category_id ? product.category_id.toString() : "",
     },
@@ -114,6 +117,7 @@ const ProductModalForm = ({
         name: product?.name || "",
         image_url: product?.images[0]?.image_url || "",
         description: product?.description || "",
+        is_visible: product?.is_visible ?? true,
         price: product?.price || undefined,
         category_id: product?.category_id ? product.category_id.toString() : "",
       });
@@ -369,6 +373,27 @@ const ProductModalForm = ({
                         />
                       </FormControl>
                       <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="is_visible"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4 shadow-sm border-[#8C6B64]/30">
+                      <div className="space-y-0.5">
+                        <FormLabel className="text-base">Visible en tienda</FormLabel>
+                        <p className="text-sm text-muted-foreground">
+                          {field.value ? "Este producto se muestra a los clientes" : "Este producto está oculto para los clientes"}
+                        </p>
+                      </div>
+                      <FormControl>
+                        <Switch
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
                     </FormItem>
                   )}
                 />
