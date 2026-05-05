@@ -58,7 +58,7 @@ const Header = () => {
 
         <nav className="hidden items-center gap-1 rounded-2xl border border-border/80 bg-white/75 px-2 py-2 shadow-sm md:flex">
           {links.map(({ id, label }) => (
-            <button
+            <button suppressHydrationWarning
               key={id}
               onClick={() => scrollToSection(id)}
               className="rounded-lg px-4 py-2 text-sm font-medium leading-5 text-foreground/75 transition-colors hover:bg-secondary hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
@@ -70,7 +70,7 @@ const Header = () => {
 
         <DropdownMenu onOpenChange={(open) => setIsMenuOpen(open)}>
           <DropdownMenuTrigger asChild>
-            <button
+            <button suppressHydrationWarning
               className="flex size-12 items-center justify-center rounded-2xl border border-border bg-white text-primary shadow-sm md:hidden"
               aria-label="Abrir menú"
             >
