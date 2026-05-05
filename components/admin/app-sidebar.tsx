@@ -17,7 +17,7 @@ import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
 import Image from "next/image";
 import { Separator } from "../ui/separator";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 const data = {
   navMain: [
@@ -40,18 +40,13 @@ const playwriteUS = Playwrite_US_Trad({
 });
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const [email, setEmail] = useState("usuario@ejemplo.com");
-  const { state, setOpenMobile } = useSidebar(); // <- aquí obtenés el estado ("expanded" | "collapsed")
-
-  useEffect(() => {
-    const email = localStorage.getItem("email");
-    if (email) {
-      setEmail(email);
+  const email = useMemo(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("email") || "usuario@ejemplo.com";
     }
-
-    // Obtener rol y actualizar menú si es ADM
-    const role = localStorage.getItem("role");
+    return "usuario@ejemplo.com";
   }, []);
+  const { state, setOpenMobile } = useSidebar();
 
   const user = {
     email,
