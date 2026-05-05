@@ -95,7 +95,7 @@ const HeroSection = () => {
           {/* Decorative Backdrops */}
           <div className="absolute -left-space-8 top-space-8 z-0 hidden h-32 w-32 rounded-2xl bg-white/70 shadow-xl md:block" />
           <div className="absolute -right-space-8 bottom-space-16 z-0 hidden h-24 w-24 rounded-2xl bg-secondary-300 shadow-lg md:block" />
-          
+
           <div className="relative z-10 overflow-hidden rounded-2xl border border-white/80 bg-white p-space-8 shadow-2xl shadow-primary/10">
             <div className="relative aspect-square overflow-hidden rounded-xl bg-secondary-200 md:aspect-[4/5]">
               <Image
@@ -110,7 +110,7 @@ const HeroSection = () => {
           </div>
 
           {/* Floating Artisan Tag */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
