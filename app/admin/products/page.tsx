@@ -69,7 +69,7 @@ const ProductsPage = () => {
 
   return (
     <div className="">
-      <header className="p-4 space-y-4 sm:space-y-0">
+      <header className="py-4 px-4 sm:py-4 sm:px-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold">Productos</h1>
