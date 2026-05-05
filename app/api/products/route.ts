@@ -20,12 +20,13 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const cursorParam = searchParams.get("cursor");
   const limitParam = searchParams.get("limit");
+  const searchParam = searchParams.get("search");
 
   const cursor = cursorParam ? parseInt(cursorParam, 10) : null;
   const limit = limitParam ? parseInt(limitParam, 10) : 20;
+  const search = searchParam || null;
 
-  const result = await getAllProductsService(+userId, cursor, limit);
+  const result = await getAllProductsService(+userId, cursor, limit, search);
 
-  // Retorna JSON con el resultado
   return NextResponse.json(result);
 }

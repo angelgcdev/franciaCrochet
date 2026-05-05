@@ -1,6 +1,15 @@
-const getProducts = async (cursor: number | null, limit: number = 20) => {
+const getProducts = async (
+  cursor: number | null,
+  limit: number = 20,
+  search: string | null = null
+) => {
   try {
-    const res = await fetch(`/api/products?cursor=${cursor}&limit=${limit}`, {
+    const params = new URLSearchParams();
+    if (cursor) params.set("cursor", String(cursor));
+    if (limit) params.set("limit", String(limit));
+    if (search) params.set("search", search);
+
+    const res = await fetch(`/api/products?${params.toString()}`, {
       credentials: "include",
     });
 
