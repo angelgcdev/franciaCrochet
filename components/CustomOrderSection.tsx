@@ -75,12 +75,12 @@ Idea: ${values.idea}
             transition={{ duration: 0.35, ease: "easeOut" }}
             className="max-w-[560px]"
           >
-            <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-primary-400">
+            {/* <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-primary-400">
               Pedido personalizado
-            </p>
+            </p> */}
 
             <h2
-              className={`${handlee.className} mt-space-16 text-[clamp(32px,3.2vw,48px)] leading-[1.2] tracking-[-0.02em] text-fg-primary`}
+              className={`${handlee.className} mt-space-16 text-[clamp(32px,3.2vw,48px)] leading-[1.2] tracking-[-0.02em] text-primary-400`}
             >
               Tejemos tu idea a medida
             </h2>
@@ -187,10 +187,10 @@ Idea: ${values.idea}
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="mt-space-24 h-12 w-full rounded-full bg-primary px-space-24 text-base font-semibold leading-6 text-fg-primary shadow-[0_12px_24px_rgba(243,194,255,0.42)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-100 hover:shadow-[0_16px_28px_rgba(243,194,255,0.48)] active:scale-[0.98]"
+              className="mt-space-24 h-12 w-full rounded-full bg-primary px-space-24 text-base font-semibold leading-6 text-primary-400 shadow-[0_12px_24px_rgba(243,194,255,0.42)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-100 hover:shadow-[0_16px_28px_rgba(243,194,255,0.48)] active:scale-[0.98]"
             >
               <Send className="size-5" aria-hidden="true" />
-              Enviar idea por WhatsApp
+              Envía tu idea por WhatsApp
             </Button>
           </motion.form>
         </div>

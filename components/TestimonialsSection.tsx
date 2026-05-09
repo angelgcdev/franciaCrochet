@@ -1,13 +1,13 @@
 "use client";
 
-import { Playwrite_US_Trad } from "next/font/google";
+import { Handlee } from "next/font/google";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-const playwriteUS = Playwrite_US_Trad({
-  weight: ["100", "200", "300", "400"],
-  variable: "--font-playwrite",
+const handlee = Handlee({
+  weight: "400",
+  subsets: ["latin"],
 });
 
 const testimonials = [
@@ -35,7 +35,7 @@ const TestimonialsSection = () => {
   return (
     <section
       id="experiencias"
-      className="bg-white px-space-24 py-20 scroll-mt-20 md:py-24"
+      className="bg-[linear-gradient(180deg,#fff7fb_0%,#faf1f6_100%)] px-space-16 py-space-48 scroll-mt-20 md:px-space-32 md:py-space-64"
     >
       <div className="section-shell">
         <motion.div
@@ -43,25 +43,25 @@ const TestimonialsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="mx-auto max-w-3xl text-center"
+          className="mx-auto max-w-[640px] text-center"
         >
-          <p className="stitch-caption font-semibold uppercase tracking-[0.25em] text-primary">
+          {/* <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-primary-400">
             Experiencias
-          </p>
+          </p> */}
+
           <h2
-            className={`${playwriteUS.className} stitch-h2 mt-4 font-semibold text-foreground`}
+            className={`${handlee.className} mt-space-16 text-[clamp(32px,3.2vw,48px)] leading-[1.2] tracking-[-0.02em] text-primary-400`}
           >
             Lo que dicen nuestros clientes
           </h2>
-          <p className="stitch-body mt-4 text-muted-foreground">
+
+          <p className="mx-auto mt-space-16 max-w-[520px] text-[clamp(16px,1.4vw,18px)] leading-[1.6] text-fg-secondary">
             La mejor parte de cada pedido es saber que una pieza tejida llegó a
             una nueva historia.
           </p>
         </motion.div>
 
-        <div className="thread-divider" />
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mt-space-48 grid grid-cols-1 gap-space-24 md:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
@@ -70,21 +70,25 @@ const TestimonialsSection = () => {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.3, delay: index * 0.08 }}
             >
-              <Card className="h-full rounded-2xl border-border/80 bg-background p-6 shadow-lg shadow-primary/5">
+              <Card className="h-full rounded-[24px] border-transparent bg-white/92 p-space-24 shadow-[0_16px_36px_rgba(119,79,132,0.08)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_20px_42px_rgba(119,79,132,0.12)]">
                 <CardContent className="flex h-full flex-col px-0 py-0">
-                  <div className="mb-4 flex gap-1">
+                  <div className="mb-space-16 flex gap-space-8">
                     {Array.from({ length: testimonial.rating }).map((_, i) => (
                       <Star
                         key={i}
-                        className="size-6 fill-accent text-accent"
+                        className="size-5 fill-primary-300 text-primary-300"
                         aria-hidden="true"
                       />
                     ))}
                   </div>
-                  <p className="stitch-body flex-1 text-muted-foreground">
+
+                  <p className="flex-1 text-[clamp(15px,1.2vw,17px)] leading-[1.7] text-fg-secondary">
                     “{testimonial.text}”
                   </p>
-                  <p className="stitch-body mt-6 font-semibold text-foreground">
+
+                  <p
+                    className={`${handlee.className} mt-space-24 text-[clamp(22px,1.8vw,28px)] leading-[1.2] tracking-[-0.02em] text-fg-primary`}
+                  >
                     {testimonial.name}
                   </p>
                 </CardContent>
