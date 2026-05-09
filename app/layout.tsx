@@ -1,17 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Handlee, Varela_Round } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "./providers/SessionProvider";
 import { CategoriesProvider } from "@/context/CategoryContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const varelaRound = Varela_Round({
+  variable: "--font-varela-round",
+  weight: "400",
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const handlee = Handlee({
+  variable: "--font-handlee",
+  weight: "400",
   subsets: ["latin"],
 });
 
@@ -29,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased text-foreground bg-background`}
+        className={`${varelaRound.variable} ${geistMono.variable} ${handlee.variable} bg-background text-foreground antialiased`}
       >
         <SessionProvider>
           <CategoriesProvider>{children}</CategoriesProvider>

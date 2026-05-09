@@ -1,375 +1,151 @@
-# DESIGN SYSTEM: STITCH UI
-
-Este documento define las reglas de diseño y arquitectura visual para el proyecto. El objetivo es mantener la consistencia técnica y estética mediante un sistema matemático y una tipografía adaptativa.
-
+---
+name: Francia Crochet
+colors:
+  surface: "#fff7fb"
+  surface-dim: "#e0d8dd"
+  surface-bright: "#fff7fb"
+  surface-container-lowest: "#ffffff"
+  surface-container-low: "#faf1f6"
+  surface-container: "#f4ebf1"
+  surface-container-high: "#eee6eb"
+  surface-container-highest: "#e9e0e5"
+  on-surface: "#1e1a1e"
+  on-surface-variant: "#4c444d"
+  inverse-surface: "#332f33"
+  inverse-on-surface: "#f7eef4"
+  outline: "#7e747e"
+  outline-variant: "#cfc3ce"
+  surface-tint: "#774f84"
+  primary: "#774f84"
+  on-primary: "#ffffff"
+  primary-container: "#f3c2ff"
+  on-primary-container: "#734b80"
+  inverse-primary: "#e6b6f2"
+  secondary: "#5d5f5f"
+  on-secondary: "#ffffff"
+  secondary-container: "#dfe0e0"
+  on-secondary-container: "#616363"
+  tertiary: "#6f4e9b"
+  on-tertiary: "#ffffff"
+  tertiary-container: "#e1c8ff"
+  on-tertiary-container: "#6b4a96"
+  error: "#ba1a1a"
+  on-error: "#ffffff"
+  error-container: "#ffdad6"
+  on-error-container: "#93000a"
+  primary-fixed: "#f9d8ff"
+  primary-fixed-dim: "#e6b6f2"
+  on-primary-fixed: "#2e0a3c"
+  on-primary-fixed-variant: "#5e386b"
+  secondary-fixed: "#e2e2e2"
+  secondary-fixed-dim: "#c6c6c7"
+  on-secondary-fixed: "#1a1c1c"
+  on-secondary-fixed-variant: "#454747"
+  tertiary-fixed: "#eddcff"
+  tertiary-fixed-dim: "#d8b9ff"
+  on-tertiary-fixed: "#290153"
+  on-tertiary-fixed-variant: "#563681"
+  background: "#fff7fb"
+  on-background: "#1e1a1e"
+  surface-variant: "#e9e0e5"
+typography:
+  h1:
+    fontFamily: Handlee
+    fontSize: 48px
+    fontWeight: "400"
+    lineHeight: "1.2"
+    letterSpacing: -0.02em
+  h2:
+    fontFamily: Handlee
+    fontSize: 32px
+    fontWeight: "400"
+    lineHeight: "1.3"
+  h3:
+    fontFamily: Handlee
+    fontSize: 24px
+    fontWeight: "400"
+    lineHeight: "1.4"
+  body-lg:
+    fontFamily: Varela Round
+    fontSize: 18px
+    fontWeight: "400"
+    lineHeight: "1.6"
+  body-md:
+    fontFamily: Varela Round
+    fontSize: 16px
+    fontWeight: "400"
+    lineHeight: "1.6"
+  label-caps:
+    fontFamily: Varela Round
+    fontSize: 12px
+    fontWeight: "400"
+    lineHeight: "1.0"
+    letterSpacing: 0.05em
+rounded:
+  sm: 0.25rem
+  DEFAULT: 0.5rem
+  md: 0.75rem
+  lg: 1rem
+  xl: 1.5rem
+  full: 9999px
+spacing:
+  base: 8px
+  container-max: 1280px
+  gutter: 24px
+  margin: 32px
+  stack-sm: 12px
+  stack-md: 24px
+  stack-lg: 48px
 ---
 
-## 📐 1. Sistema de Grilla de 8 Puntos (8-Point Grid)
+## Marca y Estilo
 
-### 1.1 Regla de Oro
+Este sistema de diseño fue creado para reflejar la naturaleza caprichosa, táctil y meticulosa del crochet. La personalidad de la marca es cálida y acogedora, buscando evocar la comodidad de un regalo hecho a mano mientras mantiene una experiencia digital profesional y de calidad tipo boutique.
 
-- **Unidad Base:** 8px.
-- **Fórmula:** Espacio = n × 8px.
-- **Excepción:** Se permite el uso de 4px (n/2) exclusivamente para ajustes finos en micro-componentes.
+La estética utiliza un estilo híbrido **Minimalista-Táctil**. Emplea abundante espacio en blanco y diseños limpios para garantizar que la fotografía de los productos siga siendo el punto focal, mientras incorpora elementos de interfaz muy redondeados y “esponjosos” que reflejan la suavidad del hilo y de los puntos tejidos. La respuesta emocional debe ser una sensación de “modernismo acogedor”: un espacio que se sienta tan suave como un ovillo de lana, pero tan confiable como un atelier de alta gama.
 
-### 1.2 Escala de Espaciado (Sizing & Spacing)
+## Colores
 
-| Token      | Valor | Uso Sugerido                                       |
-| :--------- | :---- | :------------------------------------------------- |
-| `space-4`  | 4px   | Micro-ajustes y etiquetas.                         |
-| `space-8`  | 8px   | Padding interno de botones, separaciones pequeñas. |
-| `space-16` | 16px  | Espaciado estándar entre elementos.                |
-| `space-24` | 24px  | Padding interno de tarjetas.                       |
-| `space-32` | 32px  | Márgenes entre componentes.                        |
-| `space-48` | 48px  | Espaciado entre secciones.                         |
-| `space-64` | 64px  | Layout spacing grande.                             |
+La paleta de colores se aleja de los tradicionales tonos tierra y se orienta hacia un sofisticado y soñador espectro lavanda.
 
----
+- **Primario (#f3c2ff):** Utilizado para los principales elementos interactivos y momentos representativos de la marca. Representa la “suavidad” del arte del crochet.
+- **Secundario (#fafafa):** La base principal. Este blanco roto proporciona un lienzo limpio, similar al papel, evitando que los tonos púrpura se saturen demasiado.
+- **Terciario (#be9aed):** Reservado para acentos, estados hover y destacados de llamadas a la acción, aportando la profundidad visual necesaria.
+- **Colores de primer plano:** Un tono carbón de alto contraste garantiza accesibilidad para lecturas extensas, mientras que un gris pizarra secundario se usa para metadatos, subtítulos y etiquetas decorativas.
 
-## ✍️ 2. Tipografía y Ritmo Vertical (Responsive)
+## Tipografía
 
-Se implementa una escala tipográfica fluida basada en `clamp()` para adaptarse a mobile y desktop.
+Este sistema de diseño utiliza una combinación tipográfica expresiva para equilibrar el encanto artesanal con la legibilidad. **Handlee** se utiliza en encabezados, aportando una cualidad juguetona y manuscrita que sugiere la naturaleza personalizada de los patrones de crochet. Para el texto de contenido y etiquetas funcionales, se utiliza **Varela Round** para mantener una estética amigable y fácil de leer. Las terminaciones naturalmente redondeadas de Varela Round eliminan la dureza visual y reflejan las curvas orgánicas de los tejidos de crochet.
 
-### 2.1 Escala Tipográfica
+Los encabezados deben configurarse con un ligero espaciado negativo entre letras para sentirse más cohesivos. El texto de cuerpo requiere una altura de línea generosa (1.6) para mantener una sensación ligera y fácil de leer sobre el fondo blanco roto.
 
-- **H1 (Large Title):**
-  `clamp(32px, 5vw, 48px)` / line-height: **1.2**
+## Distribución y Espaciado
 
-- **H2 (Title):**
-  `clamp(24px, 3vw, 32px)` / line-height: **1.3**
+La distribución sigue una filosofía de **Grid Fijo** para escritorio, creando una sensación curada y similar a un catálogo visual, mientras que en dispositivos móviles se transforma en un modelo fluido.
 
-- **Body (Standard):**
-  `clamp(16px, 1.5vw, 18px)` / line-height: **1.6**
+Se utiliza una cuadrícula de 12 columnas con amplios espacios de 24px entre columnas para permitir que la interfaz “respire”. El espaciado está gobernado por una unidad base de 8px, aunque se prefieren valores de “stack” para crear agrupaciones claras de contenido. Se deben usar márgenes verticales más grandes (`stack-lg`) entre diferentes categorías o secciones de productos para enfatizar una experiencia de navegación relajada y sin prisa.
 
-- **Caption:**
-  **14px** / line-height: **1.4**
+## Elevación y Profundidad
 
----
+Para mantener la sensación artesanal, la profundidad se crea mediante **Sombras Ambientales** y **Capas Tonales**, en lugar de contornos duros.
 
-### 2.2 Reglas de Ritmo Vertical
+- **Niveles de superficie:** Utiliza el lavanda primario con opacidades muy bajas (5–8%) para crear contenedores de fondo sutiles destinados a contenido secundario.
+- **Perfil de sombras:** Las sombras deben ser extremadamente difusas y con un ligero tinte púrpura. Esto imita la sombra suave proyectada por la tela o el hilo.
+- **Interacción:** En estado hover, los elementos deben elevarse ligeramente (2–4px) junto con un incremento correspondiente en la expansión de la sombra para reforzar la sensación táctil y “esponjosa”.
 
-- El `line-height` debe generar bloques alineados al sistema de 4px u 8px.
-- Priorizar legibilidad en desktop aumentando el body a 18px cuando sea posible.
-- Evitar tamaños menores a 14px para texto legible.
+## Formas
 
----
+El lenguaje visual de las formas está definido por una **Redondez Moderadamente Alta**. No existen esquinas afiladas en este sistema de diseño.
 
-### 2.3 Jerarquía Visual
+- **Elementos estándar (botones, inputs):** Utilizar un radio de 0.5rem (8px).
+- **Contenedores grandes (cards, modales):** Utilizar un radio de 1rem (16px).
+- **Elementos destacados:** Utilizar 1.5rem (24px) para imágenes prominentes o secciones de “Agregar al carrito”, enfatizando la naturaleza suave y redondeada de los puntos de crochet.
 
-- H1 debe ser claramente dominante (mínimo 2× Body).
-- H2 debe diferenciarse por tamaño y peso (no solo tamaño).
-- Body debe priorizar legibilidad sobre densidad.
-- Caption se usa solo para metadata o información secundaria.
+## Componentes
 
----
-
-## 🍱 3. Componentes Atómicos (Dimensiones)
-
-| Componente      | Altura (Height) | Border Radius | Padding Horizontal |
-| :-------------- | :-------------- | :------------ | :----------------- |
-| **Botón (Std)** | 48px            | 8px           | 24px               |
-| **Input Field** | 48px            | 8px           | 16px               |
-| **Cards**       | Auto            | 16px          | 24px               |
-| **Iconos**      | 24px x 24px     | N/A           | N/A                |
-
-**Reglas adicionales:**
-
-- Texto en botones: 16px–18px.
-- Mantener padding vertical alineado al sistema de 8pt.
-
----
-
-## 📱 4. Layout & Contenedores
-
-- **Desktop (1440px+):** 12 columnas | Gutter: 24px | Margen lateral: 64px.
-- **Tablet (768px):** 8 columnas | Gutter: 16px | Margen lateral: 32px.
-- **Mobile (360px):** 4 columnas | Gutter: 16px | Margen lateral: 16px.
-
----
-
-## 🤖 5. Instrucciones para el Agente de AI
-
-### 5.1 Strict Mode
-
-- Prohibido usar valores no múltiplos de 8.
-- Permitido 4px solo en micro-ajustes.
-
----
-
-### 5.2 Tipografía
-
-- Usar `clamp()` para tamaños fluidos.
-- Nunca usar texto menor a 14px.
-- Priorizar legibilidad sobre densidad visual.
-
----
-
-### 5.3 Tailwind Preference
-
-- `p-2` → 8px
-- `p-4` → 16px
-- `gap-6` → 24px
-- `text-base` → 16–18px
-
----
-
-### 5.4 Refactorización
-
-- Cualquier valor fuera del sistema de 8pt debe corregirse.
-- Escalas tipográficas rígidas deben migrarse a `clamp()`.
-
----
-
-## 🎨 6. Sistema de Color
-
-Se define una paleta basada en un color primario, un secundario neutro y un color de foreground. Las variaciones deben mantener consistencia visual y accesibilidad (contraste adecuado).
-
-### 6.1 Colores Base
-
-- **Primary:** `#f28080`
-- **Secondary:** `#e5ded1`
-- **Foreground (texto principal):** `#251a1a`
-
----
-
-### 6.2 Escala del Primary (Tonalidades)
-
-Generar variaciones usando claridad/oscuridad manteniendo la identidad del color:
-
-| Token         | Valor   | Uso              |
-| ------------- | ------- | ---------------- |
-| `primary-100` | #fde6e6 | Fondos suaves    |
-| `primary-200` | #f9bcbc | Hover light      |
-| `primary-300` | #f59a9a | Elementos suaves |
-| `primary-400` | #f28080 | Base             |
-| `primary-500` | #e06666 | Hover            |
-| `primary-600` | #cc4d4d | Active           |
-| `primary-700` | #993838 | Estados fuertes  |
-
----
-
-### 6.3 Escala del Secondary (Neutrales cálidos)
-
-| Token           | Valor   | Uso             |
-| --------------- | ------- | --------------- |
-| `secondary-100` | #ffffff | Background base |
-| `secondary-200` | #f8f4f5 | Surface         |
-| `secondary-300` | #f3ebee | Base            |
-| `secondary-400` | #e6dede | Bordes          |
-| `secondary-500` | #d6cdcf | Divider         |
-
----
-
-### 6.4 **Foreground**# DESIGN SYSTEM: STITCH UI
-
-Este documento define las reglas de diseño y arquitectura visual para el proyecto. El objetivo es mantener la consistencia técnica y estética mediante un sistema matemático y una tipografía adaptativa.
-
----
-
-## 📐 1. Sistema de Grilla de 8 Puntos (8-Point Grid)
-
-### 1.1 Regla de Oro
-
-- **Unidad Base:** 8px.
-- **Fórmula:** Espacio = n × 8px.
-- **Excepción:** Se permite el uso de 4px (n/2) exclusivamente para ajustes finos en micro-componentes.
-
-### 1.2 Escala de Espaciado (Sizing & Spacing)
-
-| Token      | Valor | Uso Sugerido                                       |
-| :--------- | :---- | :------------------------------------------------- |
-| `space-4`  | 4px   | Micro-ajustes y etiquetas.                         |
-| `space-8`  | 8px   | Padding interno de botones, separaciones pequeñas. |
-| `space-16` | 16px  | Espaciado estándar entre elementos.                |
-| `space-24` | 24px  | Padding interno de tarjetas.                       |
-| `space-32` | 32px  | Márgenes entre componentes.                        |
-| `space-48` | 48px  | Espaciado entre secciones.                         |
-| `space-64` | 64px  | Layout spacing grande.                             |
-
----
-
-## ✍️ 2. Tipografía y Ritmo Vertical (Responsive)
-
-Se implementa una escala tipográfica fluida basada en `clamp()` para adaptarse a mobile y desktop.
-
-### 2.1 Escala Tipográfica
-
-- **H1 (Large Title):**
-  `clamp(32px, 5vw, 48px)` / line-height: **1.2**
-
-- **H2 (Title):**
-  `clamp(24px, 3vw, 32px)` / line-height: **1.3**
-
-- **Body (Standard):**
-  `clamp(16px, 1.5vw, 18px)` / line-height: **1.6**
-
-- **Caption:**
-  **14px** / line-height: **1.4**
-
----
-
-### 2.2 Reglas de Ritmo Vertical
-
-- El `line-height` debe generar bloques alineados al sistema de 4px u 8px.
-- Priorizar legibilidad en desktop aumentando el body a 18px cuando sea posible.
-- Evitar tamaños menores a 14px para texto legible.
-
----
-
-### 2.3 Jerarquía Visual
-
-- H1 debe ser claramente dominante (mínimo 2× Body).
-- H2 debe diferenciarse por tamaño y peso (no solo tamaño).
-- Body debe priorizar legibilidad sobre densidad.
-- Caption se usa solo para metadata o información secundaria.
-
----
-
-## 🍱 3. Componentes Atómicos (Dimensiones)
-
-| Componente      | Altura (Height) | Border Radius | Padding Horizontal |
-| :-------------- | :-------------- | :------------ | :----------------- |
-| **Botón (Std)** | 48px            | 8px           | 24px               |
-| **Input Field** | 48px            | 8px           | 16px               |
-| **Cards**       | Auto            | 16px          | 24px               |
-| **Iconos**      | 24px x 24px     | N/A           | N/A                |
-
-**Reglas adicionales:**
-
-- Texto en botones: 16px–18px.
-- Mantener padding vertical alineado al sistema de 8pt.
-
----
-
-## 📱 4. Layout & Contenedores
-
-- **Desktop (1440px+):** 12 columnas | Gutter: 24px | Margen lateral: 64px.
-- **Tablet (768px):** 8 columnas | Gutter: 16px | Margen lateral: 32px.
-- **Mobile (360px):** 4 columnas | Gutter: 16px | Margen lateral: 16px.
-
----
-
-## 🤖 5. Instrucciones para el Agente de AI
-
-### 5.1 Strict Mode
-
-- Prohibido usar valores no múltiplos de 8.
-- Permitido 4px solo en micro-ajustes.
-
----
-
-### 5.2 Tipografía
-
-- Usar `clamp()` para tamaños fluidos.
-- Nunca usar texto menor a 14px.
-- Priorizar legibilidad sobre densidad visual.
-
----
-
-### 5.3 Tailwind Preference
-
-- `p-2` → 8px
-- `p-4` → 16px
-- `gap-6` → 24px
-- `text-base` → 16–18px
-
----
-
-### 5.4 Refactorización
-
-- Cualquier valor fuera del sistema de 8pt debe corregirse.
-- Escalas tipográficas rígidas deben migrarse a `clamp()`.
-
----
-
-## 🎨 6. Sistema de Color
-
-Se define una paleta basada en un color primario, un secundario neutro y un color de foreground. Las variaciones deben mantener consistencia visual y accesibilidad (contraste adecuado).
-
-### 6.1 Colores Base
-
-- **Primary:** `#f28080`
-- **Secondary:** `#f3ebee`
-- **Foreground (texto principal):** `#251a1a`
-
----
-
-### 6.2 Escala del Primary (Tonalidades)
-
-Generar variaciones usando claridad/oscuridad manteniendo la identidad del color:
-
-| Token         | Valor   | Uso              |
-| ------------- | ------- | ---------------- |
-| `primary-100` | #fde6e6 | Fondos suaves    |
-| `primary-200` | #f9bcbc | Hover light      |
-| `primary-300` | #f59a9a | Elementos suaves |
-| `primary-400` | #f28080 | Base             |
-| `primary-500` | #e06666 | Hover            |
-| `primary-600` | #cc4d4d | Active           |
-| `primary-700` | #993838 | Estados fuertes  |
-
----
-
-### 6.3 Escala del Secondary (Neutrales cálidos)
-
-| Token           | Valor   | Uso             |
-| --------------- | ------- | --------------- |
-| `secondary-100` | #ffffff | Background base |
-| `secondary-200` | #f8f4f5 | Surface         |
-| `secondary-300` | #f3ebee | Base            |
-| `secondary-400` | #e6dede | Bordes          |
-| `secondary-500` | #d6cdcf | Divider         |
-
----
-
-### 6.4 Foreground
-
-| Token          | Valor   | Uso                 |
-| -------------- | ------- | ------------------- |
-| `fg-primary`   | #251a1a | Texto principal     |
-| `fg-secondary` | #5c4a4a | Texto secundario    |
-| `fg-muted`     | #8a7a7a | Texto deshabilitado |
-
----
-
-### 6.5 Reglas de Uso
-
-- El **Primary** se usa para acciones (botones, links, estados activos).
-- El **Secondary** se usa para fondos y superficies.
-- El **Foreground** se usa para texto.
-- Mantener contraste mínimo accesible (WCAG AA).
-- Evitar usar colores fuera de la paleta definida.
-
----
-
-### 6.6 Estados
-
-- **Hover:** usar un tono más oscuro del mismo color.
-- **Active:** usar 1–2 niveles más oscuros.
-- **Disabled:** usar `fg-muted` + baja opacidad.
-
-| Token          | Valor   | Uso                 |
-| -------------- | ------- | ------------------- |
-| `fg-primary`   | #251a1a | Texto principal     |
-| `fg-secondary` | #5c4a4a | Texto secundario    |
-| `fg-muted`     | #8a7a7a | Texto deshabilitado |
-
----
-
-### 6.5 Reglas de Uso
-
-- El **Primary** se usa para acciones (botones, links, estados activos).
-- El **Secondary** se usa para fondos y superficies.
-- El **Foreground** se usa para texto.
-- Mantener contraste mínimo accesible (WCAG AA).
-- Evitar usar colores fuera de la paleta definida.
-
----
-
-### 6.6 Estados
-
-- **Hover:** usar un tono más oscuro del mismo color.
-- **Active:** usar 1–2 niveles más oscuros.
-- **Disabled:** usar `fg-muted` + baja opacidad.
-
----
+- **Botones:** Los botones principales se rellenan con el color Lavanda (#f3c2ff) y texto de alto contraste. Deben sentirse “acolchados”, utilizando un padding horizontal generoso. Los botones secundarios usan un borde Terciario (#be9aed) sin relleno.
+- **Cards:** Las tarjetas de producto utilizan un fondo Secundario (#fafafa) con una sombra ambiental muy suave. Las imágenes dentro de las tarjetas deben heredar un radio de borde ligeramente menor que el de la tarjeta para dar sensación de estar anidadas.
+- **Chips/Etiquetas:** Utilizados para etiquetas como “Material” (por ejemplo, algodón o acrílico) o “Dificultad”. Deben tener forma de píldora con un fondo Terciario (#be9aed) al 15% de opacidad.
+- **Campos de entrada:** Fondos grises suaves con un estado focus que transiciona hacia un borde Lavanda de 2px.
+- **Checkboxes:** Completamente redondeados (circulares) para evitar interrupciones visuales “puntiagudas”, utilizando un ícono de check que recuerde una puntada simplificada.
+- **Barras de progreso:** Utilizadas para “Crochet-alongs” o seguimiento de pedidos. Deben ser gruesas y con forma de píldora, utilizando un degradado desde Lavanda hasta Púrpura Oscuro.

@@ -4,56 +4,56 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Colors - Stitch UI Palette */
-  --color-primary-100: #fde6e6;
-  --color-primary-200: #f9bcbc;
-  --color-primary-300: #f59a9a;
-  --color-primary-400: #f28080; /* Base Action */
-  --color-primary-500: #e06666; /* Hover */
-  --color-primary-600: #cc4d4d; /* Active */
-  --color-primary-700: #993838; /* Strong */
+  /* Colors - Francia Crochet Palette */
+  --color-primary-100: #f9d8ff;
+  --color-primary-200: #f3c2ff;
+  --color-primary-300: #e6b6f2;
+  --color-primary-400: #774f84;
+  --color-primary-500: #6f4e9b;
+  --color-primary-600: #5e386b;
+  --color-primary-700: #2e0a3c;
 
-  --color-secondary-100: #ffffff; /* BG Base */
-  --color-secondary-200: #f5ede4; /* Surface - tint más cálido */
-  --color-secondary-300: #e5ded1; /* Base Neutral - nuevo Secondary */
-  --color-secondary-400: #d4c9bc; /* Borders */
-  --color-secondary-500: #c4b8a8; /* Divider */
+  --color-secondary-100: #ffffff;
+  --color-secondary-200: #faf1f6;
+  --color-secondary-300: #fff7fb;
+  --color-secondary-400: #e9e0e5;
+  --color-secondary-500: #cfc3ce;
 
-  --color-fg-primary: #251a1a;
-  --color-fg-secondary: #5c4a4a;
-  --color-fg-muted: #8a7a7a;
+  --color-fg-primary: #1e1a1e;
+  --color-fg-secondary: #4c444d;
+  --color-fg-muted: #7e747e;
 
   /* Shadcn Mapping */
-  --color-background: var(--color-secondary-100);
+  --color-background: var(--color-secondary-300);
   --color-foreground: var(--color-fg-primary);
 
-  --color-primary: var(--color-primary-400);
-  --color-primary-foreground: var(--color-secondary-100);
+  --color-primary: var(--color-primary-200);
+  --color-primary-foreground: var(--color-fg-primary);
 
-  --color-secondary: var(--color-secondary-300);
+  --color-secondary: var(--color-secondary-200);
   --color-secondary-foreground: var(--color-fg-primary);
 
-  --color-muted: var(--color-secondary-200);
+  --color-muted: var(--color-secondary-400);
   --color-muted-foreground: var(--color-fg-muted);
 
-  --color-accent: var(--color-primary-100);
-  --color-accent-foreground: var(--color-primary-700);
+  --color-accent: var(--color-primary-300);
+  --color-accent-foreground: var(--color-secondary-100);
 
-  --color-destructive: #ef4444;
+  --color-destructive: #ba1a1a;
   --color-destructive-foreground: #ffffff;
 
-  --color-border: var(--color-secondary-400);
+  --color-border: var(--color-secondary-500);
   --color-input: var(--color-secondary-400);
   --color-ring: var(--color-primary-400);
 
-  /* Radius - Artisan Aesthetic */
+  /* Radius */
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
 
-  /* Spacing - 8-Point Grid */
+  /* Spacing - 8pt */
   --spacing-space-4: 4px;
   --spacing-space-8: 8px;
   --spacing-space-16: 16px;
@@ -62,9 +62,10 @@
   --spacing-space-48: 48px;
   --spacing-space-64: 64px;
 
-  /* Typography Fonts */
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui;
+  /* Typography */
+  --font-sans: var(--font-varela-round), ui-sans-serif, system-ui;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular;
+  --font-heading: var(--font-handlee), cursive;
 }
 
 :root {
@@ -72,17 +73,16 @@
 }
 
 .dark {
-  /* Note: Design system currently focuses on light/warm theme for artisan feel. 
-     Minimal dark mode mapping for now. */
-  --color-background: #1a1515;
-  --color-foreground: #f3ebee;
-  --color-border: #3d2e2e;
+  --color-background: #332f33;
+  --color-foreground: #f7eef4;
+  --color-border: #7e747e;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings:
@@ -93,15 +93,19 @@
   }
 
   h1 {
+    font-family: var(--font-heading);
     font-size: clamp(32px, 5vw, 48px);
     line-height: 1.2;
-    @apply font-bold;
+    letter-spacing: -0.02em;
+    font-weight: 400;
   }
 
   h2 {
+    font-family: var(--font-heading);
     font-size: clamp(24px, 3vw, 32px);
     line-height: 1.3;
-    @apply font-semibold;
+    letter-spacing: -0.02em;
+    font-weight: 400;
   }
 }
 
@@ -111,11 +115,11 @@
   }
 
   .stitch-card {
-    @apply rounded-2xl bg-white p-space-24 shadow-sm border border-secondary-400;
+    @apply rounded-2xl border border-border bg-white p-space-24 shadow-sm;
   }
 
   .stitch-button {
-    @apply h-[48px] px-space-24 rounded-lg font-medium transition-colors;
+    @apply h-[48px] rounded-lg px-space-24 font-medium transition-colors;
   }
 
   .stitch-caption {
@@ -124,7 +128,12 @@
     @apply text-fg-secondary;
   }
 
-  /* Artisan Decoratives */
+  .stitch-heading {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+
   .thread-divider {
     @apply relative mx-auto my-space-32 h-px w-full max-w-4xl bg-secondary-500;
   }
@@ -132,12 +141,13 @@
   .thread-divider::before,
   .thread-divider::after {
     content: "";
-    @apply absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full border border-primary-400 bg-background;
+    @apply absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full border border-primary-300 bg-background;
   }
 
   .thread-divider::before {
     left: 18%;
   }
+
   .thread-divider::after {
     right: 18%;
   }
@@ -146,13 +156,13 @@
     background-image:
       radial-gradient(
         circle at 8px 8px,
-        color-mix(in srgb, var(--color-primary-400) 70%, transparent) 4px,
+        color-mix(in srgb, var(--color-primary-300) 60%, transparent) 4px,
         transparent 4px
       ),
       linear-gradient(
         90deg,
         transparent 0 16px,
-        color-mix(in srgb, var(--color-primary-400) 55%, transparent) 16px 24px,
+        color-mix(in srgb, var(--color-primary-200) 55%, transparent) 16px 24px,
         transparent 24px 32px
       );
     background-size: 32px 16px;

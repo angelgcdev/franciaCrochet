@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
+import { Handlee } from "next/font/google";
 import { useState } from "react";
-import { Playwrite_US_Trad } from "next/font/google";
-import { Menu, ShoppingBag, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   DropdownMenu,
@@ -12,17 +13,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const links = [
-  { id: "inicio", label: "Inicio" },
-  { id: "productos", label: "Productos" },
-  { id: "sobre-mi", label: "Sobre mí" },
+  { id: "productos", label: "Catálogo" },
+  { id: "sobre-mi", label: "Historia" },
   { id: "pedido-personalizado", label: "A medida" },
-  { id: "experiencias", label: "Experiencias" },
-  { id: "contacto", label: "Contacto" },
+  { id: "experiencias", label: "Opiniones" },
+  { id: "contacto", label: "Contáctame" },
 ];
 
-const playwriteUS = Playwrite_US_Trad({
-  weight: ["100", "200", "300", "400"],
-  variable: "--font-playwrite",
+const handlee = Handlee({
+  weight: "400",
+  variable: "--font-handlee",
+  subsets: ["latin"],
 });
 
 const Header = () => {
@@ -37,8 +38,8 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/90 px-space-24 shadow-sm backdrop-blur-xl supports-backdrop-filter:bg-background/75">
-      <div className="section-shell flex h-space-64 items-center justify-between md:h-20">
+    <header className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/88 px-space-16 shadow-[0_8px_24px_rgba(119,79,132,0.08)] backdrop-blur-md md:px-space-32">
+      <div className="section-shell flex h-space-64 items-center justify-between gap-space-16 md:h-[72px]">
         <div
           onClick={() => scrollToSection("inicio")}
           tabIndex={0}
@@ -48,20 +49,33 @@ const Header = () => {
               scrollToSection("inicio");
             }
           }}
-          className={`${playwriteUS.className} group inline-flex cursor-pointer items-center gap-4 text-primary transition-colors duration-200 hover:text-primary/80 active:scale-95 focus:outline-none focus-visible:rounded-2xl focus-visible:ring-2 focus-visible:ring-primary`}
+          className="group inline-flex min-w-0 cursor-pointer items-center gap-space-8 rounded-xl text-fg-primary transition-transform duration-200 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
         >
-          {/* <span className="flex size-10 items-center justify-center rounded-xl border border-primary/25 bg-white text-primary shadow-sm transition-transform duration-200 group-hover:-rotate-6 md:size-12 md:rounded-2xl">
-            <ShoppingBag className="size-5 md:size-6" aria-hidden="true" />
-          </span> */}
-          <h2 className="truncate font-bold">Francia Crochet</h2>
+          <div className="relative size-space-32 overflow-hidden rounded-full border border-primary-200/70 bg-white shadow-[0_4px_12px_rgba(119,79,132,0.10)]">
+            <Image
+              src="/images/logo.png"
+              alt="Logo de Francia Crochet"
+              fill
+              priority
+              className="object-cover"
+              sizes="32px"
+            />
+          </div>
+
+          <h2
+            className={`${handlee.className} truncate text-[clamp(24px,2.5vw,32px)] leading-[1.1] tracking-[-0.02em] text-fg-primary transition-colors duration-200 group-hover:text-primary-400`}
+          >
+            Francia Crochet
+          </h2>
         </div>
 
-        <nav className="hidden items-center gap-1 rounded-2xl border border-border/80 bg-white/75 px-2 py-2 shadow-sm md:flex">
+        <nav className={`${handlee.className} hidden items-center gap-space-24 md:flex`}>
           {links.map(({ id, label }) => (
-            <button suppressHydrationWarning
+            <button
+              suppressHydrationWarning
               key={id}
               onClick={() => scrollToSection(id)}
-              className="rounded-lg px-4 py-2 text-sm font-medium leading-5 text-foreground/75 transition-colors hover:bg-secondary hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="cursor-pointer rounded-lg px-space-8 py-space-8 text-base leading-[1.6] text-fg-secondary transition-[color,background-color,transform] duration-200 hover:bg-primary-100/45 hover:text-primary-400 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
             >
               {label}
             </button>
@@ -70,8 +84,9 @@ const Header = () => {
 
         <DropdownMenu onOpenChange={(open) => setIsMenuOpen(open)}>
           <DropdownMenuTrigger asChild>
-            <button suppressHydrationWarning
-              className="flex size-12 items-center justify-center rounded-2xl border border-border bg-white text-primary shadow-sm md:hidden"
+            <button
+              suppressHydrationWarning
+              className="flex size-12 cursor-pointer items-center justify-center rounded-xl border border-border bg-white/92 text-primary-400 shadow-[0_4px_12px_rgba(119,79,132,0.10)] transition-[background-color,transform,box-shadow] duration-200 hover:bg-secondary hover:shadow-[0_6px_16px_rgba(119,79,132,0.12)] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 md:hidden"
               aria-label="Abrir menú"
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -103,15 +118,16 @@ const Header = () => {
           <DropdownMenuContent
             align="end"
             side="bottom"
-            className="w-56 rounded-2xl border-border bg-white p-2 shadow-xl"
+            sideOffset={8}
+            className={`${handlee.className} w-56 rounded-2xl border-border bg-white/98 p-space-8 shadow-[0_20px_40px_rgba(119,79,132,0.12)]`}
           >
             {links.map(({ id, label }) => (
               <DropdownMenuItem
                 key={id}
                 onSelect={() => scrollToSection(id)}
-                className="cursor-pointer rounded-lg text-base leading-6"
+                className="cursor-pointer rounded-xl px-space-16 py-space-8 text-base leading-[1.6] text-fg-secondary outline-none transition-[color,background-color,transform] duration-200 hover:bg-primary-100/45 hover:text-primary-400 focus:bg-secondary focus:text-primary-400 active:scale-[0.98]"
               >
-                <div className="text-foreground">{label}</div>
+                <div>{label}</div>
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
