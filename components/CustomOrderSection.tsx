@@ -1,6 +1,6 @@
 "use client";
 
-import { Playwrite_US_Trad } from "next/font/google";
+import { Handlee } from "next/font/google";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { MessageCircle, Send } from "lucide-react";
@@ -12,9 +12,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-const playwriteUS = Playwrite_US_Trad({
-  weight: ["100", "200", "300", "400"],
-  variable: "--font-playwrite",
+const handlee = Handlee({
+  weight: "400",
+  subsets: ["latin"],
 });
 
 const customOrderSchema = z.object({
@@ -64,42 +64,47 @@ Idea: ${values.idea}
   return (
     <section
       id="pedido-personalizado"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#f7dcdf_0%,#fff8f7_100%)] px-space-24 py-20 scroll-mt-20 md:py-24"
+      className="bg-[linear-gradient(180deg,#faf1f6_0%,#fff7fb_100%)] px-space-16 py-space-48 scroll-mt-20 md:px-space-32 md:py-space-64"
     >
-      <div className="absolute inset-x-0 bottom-0 h-24 yarn-line opacity-25" />
-      <div className="section-shell relative">
-        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr]">
+      <div className="section-shell">
+        <div className="grid items-start gap-space-32 lg:grid-cols-[minmax(0,1fr)_minmax(320px,520px)] lg:gap-space-48">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
+            className="max-w-[560px]"
           >
-            <p className="stitch-caption font-semibold uppercase tracking-[0.25em] text-primary">
+            <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-primary-400">
               Pedido personalizado
             </p>
+
             <h2
-              className={`${playwriteUS.className} stitch-h2 mt-4 font-semibold text-foreground`}
+              className={`${handlee.className} mt-space-16 text-[clamp(32px,3.2vw,48px)] leading-[1.2] tracking-[-0.02em] text-fg-primary`}
             >
               Tejemos tu idea a medida
             </h2>
-            <p className="stitch-body mt-6 max-w-xl text-muted-foreground">
+
+            <p className="mt-space-24 max-w-[520px] text-[clamp(16px,1.4vw,18px)] leading-[1.6] text-fg-secondary">
               Si tienes una foto, color o personaje en mente, envíame la idea y
               coordinamos materiales, tiempos y detalles por WhatsApp.
             </p>
 
-            <div className="mt-8 rounded-2xl border border-white/70 bg-white/65 p-6 shadow-lg shadow-primary/5">
-              <div className="flex items-start gap-4">
-                <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
+            <div className="mt-space-32 rounded-[24px] bg-white/90 p-space-24 shadow-[0_16px_36px_rgba(119,79,132,0.08)]">
+              <div className="flex items-start gap-space-16">
+                <span className="flex size-space-48 shrink-0 items-center justify-center rounded-[16px] bg-primary-100 text-primary-400 shadow-[0_8px_18px_rgba(243,194,255,0.32)]">
                   <MessageCircle className="size-6" aria-hidden="true" />
                 </span>
+
                 <div>
-                  <h3 className="stitch-body font-semibold text-foreground">
+                  <h3
+                    className={`${handlee.className} text-[clamp(24px,2.2vw,32px)] leading-[1.2] tracking-[-0.02em] text-fg-primary`}
+                  >
                     Respuesta directa
                   </h3>
-                  <p className="stitch-body mt-2 text-muted-foreground">
-                    El formulario no guarda datos: prepara tu mensaje y lo
-                    abre en WhatsApp para continuar la conversación.
+                  <p className="mt-space-8 text-[clamp(15px,1.3vw,17px)] leading-[1.6] text-fg-secondary">
+                    El formulario no guarda datos: prepara tu mensaje y lo abre
+                    en WhatsApp para continuar la conversación.
                   </p>
                 </div>
               </div>
@@ -112,52 +117,67 @@ Idea: ${values.idea}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.35, delay: 0.08, ease: "easeOut" }}
             onSubmit={handleSubmit(onSubmit)}
-            className="rounded-2xl border border-border/80 bg-white p-6 shadow-2xl shadow-primary/10"
+            className="rounded-[24px] bg-white p-space-24 shadow-[0_20px_48px_rgba(119,79,132,0.10)]"
           >
-            <div className="grid gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="custom-name">Nombre</Label>
+            <div className="grid gap-space-16">
+              <div className="grid gap-space-8">
+                <Label
+                  htmlFor="custom-name"
+                  className="text-sm font-medium text-fg-primary"
+                >
+                  Nombre
+                </Label>
                 <Input
                   id="custom-name"
                   placeholder="Tu nombre"
-                  className="h-12 rounded-lg bg-background px-4"
+                  className="h-12 rounded-lg border-border/70 bg-secondary px-space-16"
                   aria-invalid={!!errors.name}
                   {...register("name")}
                 />
                 {errors.name ? (
-                  <p className="stitch-caption text-destructive">
+                  <p className="text-sm leading-[1.4] text-destructive">
                     {errors.name.message}
                   </p>
                 ) : null}
               </div>
 
-              <div className="grid gap-2">
-                <Label htmlFor="custom-contact">Contacto</Label>
+              <div className="grid gap-space-8">
+                <Label
+                  htmlFor="custom-contact"
+                  className="text-sm font-medium text-fg-primary"
+                >
+                  Contacto
+                </Label>
                 <Input
                   id="custom-contact"
                   placeholder="Teléfono o correo"
-                  className="h-12 rounded-lg bg-background px-4"
+                  className="h-12 rounded-lg border-border/70 bg-secondary px-space-16"
                   aria-invalid={!!errors.contact}
                   {...register("contact")}
                 />
                 {errors.contact ? (
-                  <p className="stitch-caption text-destructive">
+                  <p className="text-sm leading-[1.4] text-destructive">
                     {errors.contact.message}
                   </p>
                 ) : null}
               </div>
 
-              <div className="grid gap-2">
-                <Label htmlFor="custom-idea">Cuéntame tu idea</Label>
+              <div className="grid gap-space-8">
+                <Label
+                  htmlFor="custom-idea"
+                  className="text-sm font-medium text-fg-primary"
+                >
+                  Cuéntame tu idea
+                </Label>
                 <Textarea
                   id="custom-idea"
                   placeholder="Ej. Un conejito tejido en tonos rosa y crema para regalo..."
-                  className="min-h-40 rounded-lg bg-background px-4"
+                  className="min-h-40 rounded-lg border-border/70 bg-secondary px-space-16 py-space-16"
                   aria-invalid={!!errors.idea}
                   {...register("idea")}
                 />
                 {errors.idea ? (
-                  <p className="stitch-caption text-destructive">
+                  <p className="text-sm leading-[1.4] text-destructive">
                     {errors.idea.message}
                   </p>
                 ) : null}
@@ -167,9 +187,9 @@ Idea: ${values.idea}
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="mt-6 h-12 w-full rounded-lg bg-primary px-6 text-base font-semibold leading-6 hover:bg-primary/90"
+              className="mt-space-24 h-12 w-full rounded-full bg-primary px-space-24 text-base font-semibold leading-6 text-fg-primary shadow-[0_12px_24px_rgba(243,194,255,0.42)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-100 hover:shadow-[0_16px_28px_rgba(243,194,255,0.48)] active:scale-[0.98]"
             >
-              <Send className="size-6" aria-hidden="true" />
+              <Send className="size-5" aria-hidden="true" />
               Enviar idea por WhatsApp
             </Button>
           </motion.form>
