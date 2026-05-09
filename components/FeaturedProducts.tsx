@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Playwrite_US_Trad } from "next/font/google";
+import { Handlee } from "next/font/google";
 import { motion } from "framer-motion";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { toast } from "sonner";
@@ -9,9 +9,9 @@ import { getPublicProducts } from "@/app/api";
 import { ProductInfo } from "@/app/admin/products/types";
 import { ProductCard } from "./ProductCard";
 
-const playwriteUS = Playwrite_US_Trad({
-  weight: ["100", "200", "300", "400"],
-  variable: "--font-playwrite",
+const handlee = Handlee({
+  weight: "400",
+  subsets: ["latin"],
 });
 
 const FeaturedProducts = () => {
@@ -62,7 +62,7 @@ const FeaturedProducts = () => {
   return (
     <section
       id="productos"
-      className="bg-[linear-gradient(180deg,#fff8f7_0%,#f7dcdf_100%)] px-space-24 py-20 scroll-mt-20 md:py-24"
+      className="bg-[linear-gradient(180deg,#fff8fb_0%,#fcf3f8_100%)] px-space-16 py-space-48 scroll-mt-20 md:px-space-32 md:py-space-64"
     >
       <div className="section-shell">
         <motion.div
@@ -70,58 +70,55 @@ const FeaturedProducts = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="mx-auto max-w-3xl text-center"
+          className="mx-auto max-w-[640px] text-center"
         >
-          <p className="stitch-caption font-semibold uppercase tracking-[0.25em] text-primary">
-            Catálogo
-          </p>
           <h2
-            className={`${playwriteUS.className} stitch-h2 mt-4 font-semibold text-foreground`}
+            className={`${handlee.className} text-[clamp(32px,3.5vw,48px)] leading-[1.2] tracking-[-0.02em] text-fg-primary`}
           >
-            Piezas listas para regalar
+            Nuestro Catálogo
           </h2>
-          <p className="stitch-body mt-4 text-muted-foreground">
-            Amigurumis, ropita y accesorios tejidos con materiales suaves,
-            pensados para celebrar momentos pequeños con mucho cariño.
+          <p className="mx-auto mt-space-16 max-w-[520px] text-[clamp(16px,1.4vw,18px)] leading-[1.6] text-fg-secondary">
+            Cada pieza es tejida punto por punto, asegurando la mayor suavidad
+            para la piel de tu bebé.
           </p>
         </motion.div>
 
-        <div className="thread-divider" />
-
-        <InfiniteScroll
-          dataLength={products.length}
-          next={loadMore}
-          hasMore={hasMore}
-          loader={
-            <div className="stitch-caption py-10 text-center font-medium text-primary">
-              Cargando más piezas...
+        <div className="mt-space-48">
+          <InfiniteScroll
+            dataLength={products.length}
+            next={loadMore}
+            hasMore={hasMore}
+            loader={
+              <div className="pt-space-32 text-center text-sm font-medium text-primary-400">
+                Cargando más piezas...
+              </div>
+            }
+            endMessage={
+              products.length > 0 ? (
+                <p className="pt-space-32 text-center text-sm font-medium text-fg-muted">
+                  Ya viste todas las piezas disponibles por ahora.
+                </p>
+              ) : null
+            }
+          >
+            <div className="grid grid-cols-1 gap-space-32 md:grid-cols-2 xl:grid-cols-3">
+              {products.map((product, index) => (
+                <motion.div
+                  key={product.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: Math.min(index * 0.04, 0.16),
+                  }}
+                >
+                  <ProductCard product={product} />
+                </motion.div>
+              ))}
             </div>
-          }
-          endMessage={
-            products.length > 0 ? (
-              <p className="stitch-caption py-10 text-center font-medium text-muted-foreground">
-                Ya viste todas las piezas disponibles por ahora.
-              </p>
-            ) : null
-          }
-        >
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {products.map((product, index) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.3,
-                  delay: Math.min(index * 0.04, 0.16),
-                }}
-              >
-                <ProductCard product={product} />
-              </motion.div>
-            ))}
-          </div>
-        </InfiniteScroll>
+          </InfiniteScroll>
+        </div>
       </div>
     </section>
   );
