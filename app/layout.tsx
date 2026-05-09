@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${varelaRound.variable} ${geistMono.variable} ${handlee.variable} bg-background text-foreground antialiased`}
+        className={`${varelaRound.variable} ${varelaRound.className} ${geistMono.variable} ${handlee.variable} bg-background text-foreground antialiased`}
       >
         <SessionProvider>
           <CategoriesProvider>{children}</CategoriesProvider>

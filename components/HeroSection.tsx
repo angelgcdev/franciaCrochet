@@ -1,14 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { Playwrite_US_Trad } from "next/font/google";
-import { ArrowDown, Heart, MessageCircle } from "lucide-react";
+import { Handlee } from "next/font/google";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
-const playwriteUS = Playwrite_US_Trad({
-  weight: ["100", "200", "300", "400"],
-  variable: "--font-playwrite",
+const handlee = Handlee({
+  weight: "400",
+  subsets: ["latin"],
 });
 
 const HeroSection = () => {
@@ -19,57 +18,54 @@ const HeroSection = () => {
     }
   };
 
-  const message = "Hola 👋 quiero conocer más sobre tus productos";
+  const message = "Hola, quiero conocer más sobre tus productos.";
 
   return (
     <section
       id="inicio"
-      className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#fff8f7_0%,#f7dcdf_100%)] scroll-mt-20 flex h-[100dvh] w-screen items-center px-space-24 md:h-auto md:min-h-screen md:w-full"
+      className="relative isolate overflow-hidden bg-background px-space-16 py-space-48 scroll-mt-20 md:px-space-32 md:py-[88px]"
     >
-      <div className="absolute inset-x-0 top-0 h-24 yarn-line opacity-30" />
-      <div className="absolute -left-24 top-32 size-64 rounded-2xl border border-primary/20" />
-      <div className="absolute -right-32 bottom-16 size-80 rounded-2xl border border-accent/20" />
+      <div
+        className="absolute inset-0 opacity-45"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 12px 12px, rgba(243, 194, 255, 0.28) 3px, transparent 3px), radial-gradient(circle at 28px 28px, rgba(233, 224, 229, 0.8) 3px, transparent 3px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
 
-      <div className="section-shell relative grid items-center gap-space-8 md:gap-12 md:grid-cols-2 py-space-16 md:py-space-64">
+      <div className="absolute inset-x-0 bottom-0 h-space-64 bg-secondary/60" />
+
+      <div className="section-shell relative grid items-center gap-space-32 md:grid-cols-[minmax(0,1fr)_minmax(320px,416px)] md:gap-[80px]">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
-          className="flex flex-col items-center text-center md:items-start md:text-left"
+          className="flex max-w-[440px] flex-col items-start"
         >
-          <p className="stitch-caption mb-space-8 inline-flex items-center gap-2 rounded-xl border border-primary/20 bg-white/75 px-space-16 py-space-8 font-medium text-primary shadow-sm">
-            <Heart className="size-5 fill-primary" aria-hidden="true" />
-            Tejidos hechos a mano en Bolivia
-          </p>
-
           <h1
-            className={`${playwriteUS.className} stitch-h1 max-w-3xl font-bold text-fg-primary`}
+            className={`${handlee.className} max-w-[360px] text-left text-[clamp(40px,4.8vw,56px)] leading-[1.2] tracking-[-0.02em] text-fg-primary`}
           >
-            Francia Crochet
+            Tejidos con amor para tu bebé.
           </h1>
 
-          <p className="stitch-h2 mt-space-8 max-w-2xl font-semibold text-fg-secondary">
-            Piezas suaves, únicas y tejidas con paciencia para acompañar los
-            primeros abrazos de tu bebé.
+          <p className="mt-space-32 max-w-[432px] text-left text-[clamp(16px,1.4vw,18px)] leading-[1.6] text-fg-secondary">
+            Piezas únicas hechas a mano a crochet y palillo. Diseñadas para
+            abrazar, abrigar y acompañar los primeros pasos de tu pequeño
+            tesoro.
           </p>
 
-          <p className="stitch-body mt-space-8 hidden max-w-2xl text-fg-muted md:block">
-            Cada amigurumi, conjunto y accesorio nace con materiales pensados
-            para la comodidad de los más pequeños y la emoción de regalar algo
-            hecho a mano.
-          </p>
-
-          <div className="mt-space-16 flex w-full flex-col gap-space-16 min-[520px]:w-auto min-[520px]:flex-row">
+          <div className="mt-space-32 flex w-full max-w-[224px] flex-col gap-space-16">
             <Button
-              className="stitch-button bg-primary text-white shadow-lg shadow-primary/20 hover:bg-primary-500 active:bg-primary-600"
               onClick={scrollToProducts}
+              className="h-12 w-full cursor-pointer rounded-full bg-primary px-space-24 text-base font-semibold uppercase tracking-[0.01em] text-fg-primary shadow-[0_12px_24px_rgba(243,194,255,0.42)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-100 hover:shadow-[0_16px_28px_rgba(243,194,255,0.48)] active:scale-[0.98]"
             >
-              Ver catálogo
-              <ArrowDown className="ml-2 size-5" aria-hidden="true" />
+              VER CATÁLOGO
             </Button>
+
             <Button
               variant="outline"
-              className="stitch-button border-primary/30 bg-white/80 text-primary hover:bg-secondary-200"
+              className="h-12 w-full cursor-pointer rounded-full border-0 bg-primary-400 px-space-24 text-base font-semibold uppercase tracking-[0.01em] text-white shadow-[0_12px_24px_rgba(119,79,132,0.24)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-500 hover:shadow-[0_16px_28px_rgba(119,79,132,0.28)] active:scale-[0.98]"
               asChild
             >
               <a
@@ -79,45 +75,28 @@ const HeroSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MessageCircle className="mr-2 size-5" aria-hidden="true" />
-                WhatsApp
+                WHATSAPP
               </a>
             </Button>
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
+          initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-          className="relative mx-auto w-full max-w-[240px] md:max-w-[560px]"
+          transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
+          className="mx-auto w-full max-w-[416px]"
         >
-          {/* Decorative Backdrops */}
-          <div className="absolute -left-space-8 top-space-8 z-0 hidden h-32 w-32 rounded-2xl bg-white/70 shadow-xl md:block" />
-          <div className="absolute -right-space-8 bottom-space-16 z-0 hidden h-24 w-24 rounded-2xl bg-secondary-300 shadow-lg md:block" />
-
-          <div className="relative z-10 overflow-hidden rounded-2xl border border-white/80 bg-white p-space-8 shadow-2xl shadow-primary/10">
-            <div className="relative aspect-square overflow-hidden rounded-xl bg-secondary-200 md:aspect-[4/5]">
-              <Image
-                src="https://res.cloudinary.com/dngkwtctt/image/upload/v1762649139/Adobe_Express_-_file_2_fefo0x.png"
-                alt="Muñeco tejido de Francia Crochet"
-                fill
-                priority
-                className="object-contain p-space-24 transition-transform duration-500 hover:scale-105"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-[0_20px_50px_rgba(119,79,132,0.14)] transition-transform duration-300 hover:-translate-y-1">
+            <Image
+              src="https://res.cloudinary.com/dngkwtctt/image/upload/v1762649139/Adobe_Express_-_file_2_fefo0x.png"
+              alt="Conejo tejido a crochet de Francia Crochet"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 416px"
+            />
           </div>
-
-          {/* Floating Artisan Tag */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6 }}
-            className="absolute -right-space-16 -top-space-16 z-20 hidden rounded-full bg-accent-foreground px-space-16 py-space-8 text-sm font-bold text-white shadow-lg md:block"
-          >
-            100% Artesanal
-          </motion.div>
         </motion.div>
       </div>
     </section>
