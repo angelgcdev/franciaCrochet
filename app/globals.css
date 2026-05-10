@@ -59,6 +59,8 @@
   --spacing-space-16: 16px;
   --spacing-space-24: 24px;
   --spacing-space-32: 32px;
+  --spacing-space-40: 40px;
+  --spacing-space-44: 44px;
   --spacing-space-48: 48px;
   --spacing-space-64: 64px;
 
@@ -131,6 +133,14 @@
 
   .stitch-heading {
     font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+
+  .stitch-h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.3;
     letter-spacing: -0.02em;
     font-weight: 400;
   }

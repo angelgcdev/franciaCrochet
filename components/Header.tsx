@@ -38,7 +38,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/88 px-space-16 shadow-[0_8px_24px_rgba(119,79,132,0.08)] backdrop-blur-md md:px-space-32">
+    <header className="sticky top-0 z-50 w-full bg-background/88 px-space-16 shadow-[0_8px_24px_rgba(119,79,132,0.08)] backdrop-blur-md md:px-space-32">
       <div className="section-shell flex h-space-64 items-center justify-between gap-space-16 md:h-[72px]">
         <div
           onClick={() => scrollToSection("inicio")}
@@ -51,7 +51,7 @@ const Header = () => {
           }}
           className="group inline-flex min-w-0 cursor-pointer items-center gap-space-8 rounded-xl text-fg-primary transition-transform duration-200 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
         >
-          <div className="relative size-space-32 overflow-hidden rounded-full border border-primary-200/70 bg-white shadow-[0_4px_12px_rgba(119,79,132,0.10)]">
+          <div className="relative size-space-44 overflow-hidden rounded-full border border-primary-200/70 bg-white shadow-[0_8px_24px_rgba(119,79,132,0.10)]">
             <Image
               src="/images/logo.png"
               alt="Logo de Francia Crochet"
@@ -63,19 +63,21 @@ const Header = () => {
           </div>
 
           <h2
-            className={`${handlee.className} truncate text-[clamp(24px,2.5vw,32px)] leading-[1.1] tracking-[-0.02em] text-fg-primary transition-colors duration-200 group-hover:text-primary-400`}
+            className={`${handlee.className} truncate text-[clamp(24px,2.5vw,32px)] leading-[1.1] tracking-[-0.02em] text-primary-400 transition-colors duration-200 group-hover:text-primary-400`}
           >
             Francia Crochet
           </h2>
         </div>
 
-        <nav className={`${handlee.className} hidden items-center gap-space-24 md:flex`}>
+        <nav
+          className={`${handlee.className} hidden items-center gap-space-24 md:flex`}
+        >
           {links.map(({ id, label }) => (
             <button
               suppressHydrationWarning
               key={id}
               onClick={() => scrollToSection(id)}
-              className="cursor-pointer rounded-lg px-space-8 py-space-8 text-base leading-[1.6] text-fg-secondary transition-[color,background-color,transform] duration-200 hover:bg-primary-100/45 hover:text-primary-400 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
+              className="cursor-pointer rounded-lg px-space-8 py-space-8 text-lg leading-[1.6] text-fg-secondary transition-[color,background-color,transform] duration-200 hover:bg-primary-100/45 hover:text-primary-400 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
             >
               {label}
             </button>

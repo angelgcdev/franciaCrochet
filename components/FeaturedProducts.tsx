@@ -73,7 +73,7 @@ const FeaturedProducts = () => {
           className="mx-auto max-w-[640px] text-center"
         >
           <h2
-            className={`${handlee.className} text-[clamp(32px,3.5vw,48px)] leading-[1.2] tracking-[-0.02em] text-fg-primary`}
+            className={`${handlee.className} text-[clamp(32px,3.5vw,48px)] leading-[1.2] tracking-[-0.02em] text-primary-400`}
           >
             Nuestro Catálogo
           </h2>

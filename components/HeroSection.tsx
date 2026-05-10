@@ -44,7 +44,7 @@ const HeroSection = () => {
           className="flex max-w-[440px] flex-col items-start"
         >
           <h1
-            className={`${handlee.className} max-w-[360px] text-left text-[clamp(40px,4.8vw,56px)] leading-[1.2] tracking-[-0.02em] text-fg-primary`}
+            className={`${handlee.className} max-w-[360px] text-left text-[clamp(40px,4.8vw,56px)] leading-[1.2] tracking-[-0.02em] text-primary-400`}
           >
             Tejidos con amor para tu bebé.
           </h1>
@@ -58,14 +58,14 @@ const HeroSection = () => {
           <div className="mt-space-32 flex w-full max-w-[224px] flex-col gap-space-16">
             <Button
               onClick={scrollToProducts}
-              className="h-12 w-full cursor-pointer rounded-full bg-primary px-space-24 text-base font-semibold uppercase tracking-[0.01em] text-fg-primary shadow-[0_12px_24px_rgba(243,194,255,0.42)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-100 hover:shadow-[0_16px_28px_rgba(243,194,255,0.48)] active:scale-[0.98]"
+              className="h-12 w-full cursor-pointer rounded-full bg-primary px-space-24 text-base font-semibold tracking-[0.01em] text-primary-400 shadow-[0_12px_24px_rgba(243,194,255,0.42)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-100 hover:shadow-[0_16px_28px_rgba(243,194,255,0.48)] active:scale-[0.98]"
             >
-              VER CATÁLOGO
+              Ver Catálogo
             </Button>
 
             <Button
               variant="outline"
-              className="h-12 w-full cursor-pointer rounded-full border-0 bg-primary-400 px-space-24 text-base font-semibold uppercase tracking-[0.01em] text-white shadow-[0_12px_24px_rgba(119,79,132,0.24)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-500 hover:shadow-[0_16px_28px_rgba(119,79,132,0.28)] active:scale-[0.98]"
+              className="h-12 w-full cursor-pointer rounded-full border-0 bg-primary-400 px-space-24 text-base font-semibold tracking-[0.01em] text-primary shadow-[0_12px_24px_rgba(119,79,132,0.24)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-500 hover:shadow-[0_16px_28px_rgba(119,79,132,0.28)] active:scale-[0.98]"
               asChild
             >
               <a
@@ -75,7 +75,7 @@ const HeroSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                WHATSAPP
+                WhatsApp
               </a>
             </Button>
           </div>

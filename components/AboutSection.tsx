@@ -45,30 +45,30 @@ const AboutSection = () => {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="mx-auto max-w-[640px] text-center lg:text-left"
           >
-            <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-primary-400">
+            {/* <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-primary-400">
               Sobre mí
-            </p>
+            </p> */}
 
             <h2
-              className={`${handlee.className} mt-space-16 text-[clamp(32px,3.2vw,48px)] leading-[1.2] tracking-[-0.02em] text-fg-primary`}
+              className={`${handlee.className} mt-space-16 text-[clamp(32px,3.2vw,48px)] leading-[1.2] tracking-[-0.02em] text-primary-400`}
             >
               Cada puntada cuenta una historia
             </h2>
 
             <div className="mt-space-24 space-y-space-16 text-[clamp(16px,1.4vw,18px)] leading-[1.6] text-fg-secondary">
               <p>
-                Soy Francia, artesana apasionada del crochet. Creo piezas
-                únicas que acompañan y cuidan a los más pequeños del hogar.
+                Soy Francia, artesana apasionada del crochet. Creo piezas únicas
+                que acompañan y cuidan a los más pequeños del hogar.
               </p>
               <p>
-                Cada producto nace del amor y la paciencia, usando materiales
-                de calidad para proteger la delicada piel de tu bebé y darle
+                Cada producto nace del amor y la paciencia, usando materiales de
+                calidad para proteger la delicada piel de tu bebé y darle
                 comodidad en cada momento.
               </p>
               <p>
                 Me especializo en ropita para bebés, accesorios y amigurumis
-                personalizados que se convierten en compañeros para los
-                primeros años de vida.
+                personalizados que se convierten en compañeros para los primeros
+                años de vida.
               </p>
             </div>
           </motion.div>
