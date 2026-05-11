@@ -49,16 +49,16 @@ const Header = () => {
               scrollToSection("inicio");
             }
           }}
-          className="group inline-flex min-w-0 cursor-pointer items-center gap-space-8 rounded-xl text-fg-primary transition-transform duration-200 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
+          className="flex cursor-pointer items-center justify-center gap-2 transition-transform duration-200 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
         >
-          <div className="relative size-space-44 overflow-hidden rounded-full border border-primary-200/70 bg-white shadow-[0_8px_24px_rgba(119,79,132,0.10)]">
+          <div className="relative size-12 overflow-hidden rounded-full border border-primary-200/70 bg-primary shadow-[0_8px_24px_rgba(119,79,132,0.10)]">
             <Image
               src="/images/logo.png"
               alt="Logo de Francia Crochet"
               fill
               priority
-              className="object-cover"
-              sizes="32px"
+              className="object-contain"
+              sizes="48px"
             />
           </div>
 

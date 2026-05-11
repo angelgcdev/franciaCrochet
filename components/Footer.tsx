@@ -12,11 +12,13 @@ function Footer() {
   const message = "Hola 👋 quiero conocer más sobre tus productos";
 
   return (
-    <footer id="contacto" className="bg-primary-100 px-space-24">
+    <footer id="contacto" className="bg-transparent px-space-24">
       <div className="py-space-48 md:py-space-64">
         <div className="text-center flex flex-col gap-8">
           <div className="flex items-center justify-center gap-4">
-            <p className={`${handlee.className} text-2xl text-primary-400`}>
+            <p
+              className={`${handlee.className} text-2xl text-primary md:text-primary-400`}
+            >
               Síguenos en:
             </p>
             <div className="flex gap-2">
@@ -63,7 +65,7 @@ function Footer() {
               ))}
             </div>
           </div>
-          <p className="text-fg-muted">
+          <p className="text-secondary md:text-fg-muted">
             © {new Date().getFullYear()}{" "}
             <span className={`${handlee.className}`}>Francia Crochet</span>.
             Todos los derechos reservados.

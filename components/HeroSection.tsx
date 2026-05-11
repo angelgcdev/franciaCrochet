@@ -23,50 +23,51 @@ const HeroSection = () => {
   return (
     <section
       id="inicio"
-      className="relative isolate overflow-hidden bg-background px-space-16 py-space-48 scroll-mt-20 md:px-space-32 md:py-[88px]"
+      className="relative flex min-h-[100svh] w-full items-center justify-center scroll-mt-20"
     >
-      <div
-        className="absolute inset-0 opacity-45"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 12px 12px, rgba(243, 194, 255, 0.28) 3px, transparent 3px), radial-gradient(circle at 28px 28px, rgba(233, 224, 229, 0.8) 3px, transparent 3px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
+      <div className="fixed inset-0 -z-10">
+        <Image
+          src="https://res.cloudinary.com/dngkwtctt/image/upload/v1778381057/fondo2-frc_qmq7ja.png"
+          alt="Fondo de tejidos y muñeca a crochet"
+          fill
+          priority
+          className="object-cover object-[center_right] md:object-center"
+          sizes="100vw"
+        />
+        {/* Overlay suave en móviles para asegurar legibilidad si la imagen recorta distinto */}
+        <div className="absolute inset-0 bg-fg-primary/40 md:bg-transparent" />
+      </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-space-64 bg-secondary/60" />
-
-      <div className="section-shell relative grid items-center gap-space-32 md:grid-cols-[minmax(0,1fr)_minmax(320px,416px)] md:gap-[80px]">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1280px] items-center justify-center px-6 lg:justify-start lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
-          className="flex max-w-[440px] flex-col items-start"
+          className="flex w-full max-w-[600px] flex-col items-center text-center lg:ml-[5%]"
         >
           <h1
-            className={`${handlee.className} max-w-[360px] text-left text-[clamp(40px,4.8vw,56px)] leading-[1.2] tracking-[-0.02em] text-primary-400`}
+            className={`${handlee.className} text-[clamp(44px,5vw,68px)] leading-[1.2] tracking-[-0.02em] text-secondary md:text-fg-primary`}
           >
             Tejidos con amor para tu bebé.
           </h1>
 
-          <p className="mt-space-32 max-w-[432px] text-left text-[clamp(16px,1.4vw,18px)] leading-[1.6] text-fg-secondary">
+          <p className="mt-12 w-full text-[clamp(16px,1.5vw,18px)] leading-[1.6] text-secondary-400 md:mt-6 md:text-fg-secondary">
             Piezas únicas hechas a mano a crochet y palillo. Diseñadas para
             abrazar, abrigar y acompañar los primeros pasos de tu pequeño
             tesoro.
           </p>
 
-          <div className="mt-space-32 flex w-full max-w-[224px] flex-col gap-space-16">
+          <div className="mt-16 flex w-full flex-col justify-center gap-6 sm:flex-row sm:gap-4 md:mt-8">
             <Button
               onClick={scrollToProducts}
-              className="h-12 w-full cursor-pointer rounded-full bg-primary px-space-24 text-base font-semibold tracking-[0.01em] text-primary-400 shadow-[0_12px_24px_rgba(243,194,255,0.42)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-100 hover:shadow-[0_16px_28px_rgba(243,194,255,0.48)] active:scale-[0.98]"
+              className="h-12 rounded-full bg-primary-400 px-8 text-sm font-bold tracking-[0.05em] text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-primary-500 hover:shadow-lg"
             >
               Ver Catálogo
             </Button>
 
             <Button
-              variant="outline"
-              className="h-12 w-full cursor-pointer rounded-full border-0 bg-primary-400 px-space-24 text-base font-semibold tracking-[0.01em] text-primary shadow-[0_12px_24px_rgba(119,79,132,0.24)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-500 hover:shadow-[0_16px_28px_rgba(119,79,132,0.28)] active:scale-[0.98]"
               asChild
+              className="h-12 rounded-full bg-secondary-200 px-8 text-sm font-bold  tracking-[0.05em] text-fg-secondary shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-secondary-400 hover:shadow-lg"
             >
               <a
                 href={`https://api.whatsapp.com/send?phone=59178614070&text=${encodeURIComponent(
@@ -78,24 +79,6 @@ const HeroSection = () => {
                 WhatsApp
               </a>
             </Button>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
-          className="mx-auto w-full max-w-[416px]"
-        >
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] shadow-[0_20px_50px_rgba(119,79,132,0.14)] transition-transform duration-300 hover:-translate-y-1">
-            <Image
-              src="https://res.cloudinary.com/dngkwtctt/image/upload/v1762649139/Adobe_Express_-_file_2_fefo0x.png"
-              alt="Conejo tejido a crochet de Francia Crochet"
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 416px"
-            />
           </div>
         </motion.div>
       </div>

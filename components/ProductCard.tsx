@@ -35,7 +35,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Card className="group overflow-hidden rounded-[24px] border-transparent bg-white p-space-16 shadow-[0_12px_30px_rgba(119,79,132,0.08)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(119,79,132,0.12)]">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-secondary">
+      <div className="relative aspect-4/5 overflow-hidden rounded-[24px] bg-secondary">
         <Badge
           className={`${handlee.className} absolute left-space-16 top-space-16 z-10 rounded-full bg-primary-400 px-3 py-2 text-sm tracking-[0.08em] text-primary-100 shadow-[0_8px_16px_rgba(119,79,132,0.24)] hover:bg-primary-400`}
         >
@@ -60,7 +60,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </p>
 
         <p
-          className={`${handlee.className} mt-space-24 text-[clamp(22px,1.8vw,28px)] leading-[1.2] tracking-[-0.02em] text-primary text-shadow-[1px_1px_1px_rgba(0,0,0,0.4)]`}
+          className={`${handlee.className} mt-4 text-[clamp(22px,1.8vw,28px)] leading-[1.2] tracking-[-0.02em] text-primary text-shadow-[1px_1px_1px_rgba(0,0,0,0.4)]`}
         >
           {price}
         </p>
