@@ -69,13 +69,13 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="overflow-hidden p-0">
+      <Card className="overflow-hidden p-0 rounded-2xl border-border bg-white shadow-sm">
         <CardContent className="grid p-0 md:grid-cols-2">
           {/* --- FORMULARIO --- */}
           <Form {...form}>
             <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col items-center gap-2 mb-6 text-center">
-                <h1 className="text-2xl font-bold">Bienvenido</h1>
+                <h1 className="stitch-h2">Bienvenido</h1>
                 <p className="text-muted-foreground">
                   Inicia sesión en tu cuenta de Francia Crochet
                 </p>
@@ -143,7 +143,7 @@ export function LoginForm({
               <Button
                 type="submit"
                 disabled={isSubmitting || !isDirty}
-                className="w-full mt-4"
+                className="stitch-button w-full mt-4"
               >
                 {isSubmitting ? "Verificando..." : "Iniciar Sesión"}
               </Button>
@@ -151,12 +151,12 @@ export function LoginForm({
           </Form>
 
           {/* --- IMAGEN DERECHA --- */}
-          <div className="relative hidden md:block bg-[#f2eade]">
+          <div className="relative hidden md:block bg-secondary-200">
             <Image
               fill
-              src="https://res.cloudinary.com/dngkwtctt/image/upload/v1763217522/Generated_Image_November_15_2025_-_10_28AM_1_1_hfzk6j.png"
+              src="https://res.cloudinary.com/dngkwtctt/image/upload/v1778466573/logo_2_e5w4m8.png"
               alt="Image"
-              className="object-scale-down"
+              className="object-cover"
             />
           </div>
         </CardContent>
