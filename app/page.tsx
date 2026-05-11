@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import AboutSection from "@/components/AboutSection";
 import CustomOrderSection from "@/components/CustomOrderSection";
 import FeaturedProducts from "@/components/FeaturedProducts";
+import FeaturedProductsSkeleton from "@/components/FeaturedProductsSkeleton";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
@@ -11,7 +13,9 @@ export default function Home() {
     <>
       <Header />
       <HeroSection />
-      <FeaturedProducts />
+      <Suspense fallback={<FeaturedProductsSkeleton />}>
+        <FeaturedProducts />
+      </Suspense>
       <AboutSection />
       <CustomOrderSection />
       <TestimonialsSection />
