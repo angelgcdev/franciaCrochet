@@ -252,7 +252,7 @@ const ProductModalForm = ({
       }}
     >
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="overflow-auto h-[70vh] sm:h-auto bg-[#F2EADF]">
+      <DialogContent className="overflow-auto h-[70vh] sm:h-auto bg-white sm:rounded-2xl">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             {isEditing ? "Editar Producto" : "Agrega un nuevo producto"}
@@ -264,7 +264,7 @@ const ProductModalForm = ({
           </DialogDescription>
         </DialogHeader>
 
-        <Card className="w-full border rounded bg-[#F2EADF] ">
+        <Card className="w-full border-none shadow-none bg-transparent">
           <CardContent>
             <Form {...form}>
               <form className="space-y-8">
@@ -278,7 +278,7 @@ const ProductModalForm = ({
                       <div className="flex flex-col gap-4 items-center">
                         {!previewUrl && (
                           <label
-                            className={`mt-2 flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-[#8C6B64] rounded-lg cursor-pointer hover:bg-muted ${
+                            className={`mt-2 flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-border rounded-xl cursor-pointer hover:bg-secondary-100 transition-colors ${
                               loading ? "opacity-50 cursor-not-allowed" : ""
                             }`}
                           >
@@ -348,7 +348,7 @@ const ProductModalForm = ({
                       <FormLabel>Nombre</FormLabel>
                       <FormControl>
                         <Input
-                          className="border-[#8C6B64]/30"
+                          className="border-border rounded-xl focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:border-primary-400 bg-white"
                           id="name"
                           placeholder="Nombre del producto"
                           {...field}
@@ -366,7 +366,7 @@ const ProductModalForm = ({
                       <FormLabel>Descripción</FormLabel>
                       <FormControl>
                         <Textarea
-                          className="overflow-auto max-h-40 resize-y border-[#8C6B64]/30"
+                          className="overflow-auto max-h-40 resize-y border-border rounded-xl focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:border-primary-400 bg-white"
                           id="tiktok-comment-text"
                           placeholder="Escribe alguna descripción......"
                           {...field}
@@ -381,7 +381,7 @@ const ProductModalForm = ({
                   control={form.control}
                   name="is_visible"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4 shadow-sm border-[#8C6B64]/30">
+                    <FormItem className="flex flex-row items-center justify-between rounded-xl border border-border bg-white p-4 shadow-sm">
                       <div className="space-y-0.5">
                         <FormLabel className="text-base">Visible en tienda</FormLabel>
                         <p className="text-sm text-muted-foreground">
@@ -407,7 +407,7 @@ const ProductModalForm = ({
                         <FormLabel>Precio (BOB)</FormLabel>
                         <FormControl>
                           <Input
-                            className="border-[#8C6B64]/30"
+                            className="border-border rounded-xl focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:border-primary-400 bg-white"
                             type="text"
                             inputMode="decimal" // ayuda en móviles
                             id="price"
@@ -438,19 +438,13 @@ const ProductModalForm = ({
                             onValueChange={(value) => field.onChange(value)}
                             value={field.value?.toString() ?? ""}
                           >
-                            <SelectTrigger className="border-[#8C6B64]/30">
+                            <SelectTrigger className="border-border rounded-xl focus:ring-2 focus:ring-primary-400 bg-white">
                               <SelectValue placeholder="Selecciona una opción." />
                             </SelectTrigger>
-                            <SelectContent className="bg-[#F2EADF]">
+                            <SelectContent className="bg-white rounded-xl border-border">
                               {categories.map((category) => (
                                 <SelectItem
-                                  className=" bg-[#F2EADF]
-    data-[highlighted]:bg-[#D9CFCF]
-    data-[state=checked]:bg-[#CBB6B6]
-    data-[state=checked]:font-semibold
-    data-[highlighted]:text-foreground
-    cursor-pointer
-  "
+                                  className=" cursor-pointer rounded-lg focus:bg-primary-100 focus:text-primary-700"
                                   key={category.id}
                                   value={category.id.toString()}
                                 >
@@ -478,7 +472,7 @@ const ProductModalForm = ({
                 setSelectedFile(null);
                 setPreviewUrl(null);
               }}
-              className="bg-black hover:bg-black/40 text-white"
+              className="bg-transparent border border-primary-300 text-primary-600 rounded-xl hover:bg-primary-50 transition-colors"
             >
               Cancelar
             </Button>
@@ -490,7 +484,7 @@ const ProductModalForm = ({
                 isSubmitting ||
                 (!isEditing && !previewUrl && !selectedFile)
               }
-              className="bg-black hover:bg-black/40 text-white"
+              className="bg-primary-400 text-white hover:bg-primary-500 rounded-xl shadow-md transition-transform hover:-translate-y-1 hover:shadow-lg"
             >
               {isSubmitting ? (
                 <>

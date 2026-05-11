@@ -162,7 +162,7 @@ export const ProductList = ({
       >
         <div className="bg-secondary-200 m-4 rounded-xl p-4 shadow-sm">
           <div className="flex items-center justify-end mb-4">
-            <Badge className="bg-fg-secondary font-bold">
+            <Badge className="bg-fg-secondary text-secondary">
               {products.length} productos
             </Badge>
           </div>

@@ -14,6 +14,12 @@ import { ProductInfo } from "@/app/admin/products/types";
 import Image from "next/image";
 import { useState } from "react";
 import ProductModalForm from "./ProductModalForm";
+import { Handlee } from "next/font/google";
+
+const handlee = Handlee({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export interface ProductCardProps {
   product: ProductInfo;
@@ -34,7 +40,7 @@ const ProductCard = ({
 
   return (
     <>
-      <Card className="rounded-xl shadow-sm border border-secondary-400 p-4 bg-secondary-200 h-full">
+      <Card className="rounded-xl shadow-sm border border-border p-4 bg-white h-full transition-all duration-300 hover:shadow-md hover:-translate-y-1">
         <div className="flex flex-row gap-4 items-center h-full">
           <div className="relative w-[100px] h-[130px] rounded-lg overflow-hidden shrink-0">
             <Image
@@ -47,7 +53,7 @@ const ProductCard = ({
 
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
-              <h3 className="font-semibold text-base truncate">
+              <h3 className={`${handlee.className} text-lg font-semibold truncate text-primary-500`}>
                 {product.name}
               </h3>
               <DropdownMenu>
@@ -55,25 +61,25 @@ const ProductCard = ({
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-8 w-8 p-0 shrink-0 text-primary-400 font-semibold hover:bg-primary-100"
+                    className="h-8 w-8 p-0 shrink-0 text-primary-400 font-semibold hover:bg-primary-100 rounded-full"
                   >
                     <ArrowRightToLine className="h-5 w-5" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   align="end"
-                  className="w-48 rounded-xl p-2 bg-secondary-200 shadow-lg border border-secondary-400"
+                  className="w-48 rounded-xl p-2 bg-white shadow-lg border border-border"
                 >
                   <DropdownMenuItem
                     onClick={() => setShowEditModal(true)}
-                    className="h-10 px-3 rounded-lg cursor-pointer focus:bg-secondary-200"
+                    className="h-10 px-3 rounded-lg cursor-pointer focus:bg-primary-100"
                   >
-                    <Pencil className="mr-3 h-4 w-4 text-fg-secondary" />
+                    <Pencil className="mr-3 h-4 w-4 text-primary-400" />
                     <span className="text-sm">Editar</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => handleToggleVisibility(product)}
-                    className="h-10 px-3 rounded-lg cursor-pointer focus:bg-secondary-200"
+                    className="h-10 px-3 rounded-lg cursor-pointer focus:bg-primary-100"
                   >
                     {product.is_visible !== false ? (
                       <>
@@ -106,13 +112,13 @@ const ProductCard = ({
               <div className="flex gap-2 items-center">
                 <Badge
                   variant="secondary"
-                  className="text-xs bg-secondary-300 text-fg-secondary"
+                  className="text-xs bg-primary-100 text-primary-700 rounded-full px-3 py-0.5 border-none"
                 >
                   {product.category.name}
                 </Badge>
                 <Badge
                   variant="secondary"
-                  className={`text-xs ${product.is_visible !== false ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+                  className={`text-xs rounded-full px-3 py-0.5 border-none ${product.is_visible !== false ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
                 >
                   {product.is_visible !== false ? "Visible" : "Oculto"}
                 </Badge>

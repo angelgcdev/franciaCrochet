@@ -10,6 +10,12 @@ import { getProducts } from "./api";
 import { toast } from "sonner";
 import { ProductInfo } from "./types";
 import { useCategories } from "@/context/CategoryContext";
+import { Handlee } from "next/font/google";
+
+const handlee = Handlee({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<ProductInfo[]>([]);
@@ -21,7 +27,11 @@ const ProductsPage = () => {
   const { categories } = useCategories();
 
   const fetchProducts = useCallback(
-    async (cursor: number | null, reset = false, search: string | null = null) => {
+    async (
+      cursor: number | null,
+      reset = false,
+      search: string | null = null,
+    ) => {
       const res = await getProducts(cursor, 20, search);
 
       if (!res.ok) {
@@ -35,7 +45,7 @@ const ProductsPage = () => {
         setProducts((prev) => {
           const ids = new Set(prev.map((p) => p.id));
           const uniqueNew = res.data.data.filter(
-            (item: ProductInfo) => !ids.has(item.id)
+            (item: ProductInfo) => !ids.has(item.id),
           );
           return [...prev, ...uniqueNew];
         });
@@ -44,7 +54,7 @@ const ProductsPage = () => {
       setHasMore(res.data.hasMore);
       setNextCursor(res.data.nextCursor || null);
     },
-    []
+    [],
   );
 
   useEffect(() => {
@@ -70,41 +80,21 @@ const ProductsPage = () => {
   return (
     <div className="">
       <header className="py-4 px-4 sm:py-4 sm:px-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold">Productos</h1>
-
-            <ProductModalForm
-              categories={categories}
-              fetchProducts={() => fetchProducts(null, true, displaySearch || null)}
-              trigger={
-                <Button className="h-12 px-4 sm:px-6 bg-primary-400 hover:bg-primary-500 cursor-pointer font-medium rounded-lg sm:hidden">
-                  <Plus />
-                  <span>Nuevo Producto</span>
-                </Button>
-              }
-            />
+            <h1 className={`${handlee.className} text-3xl text-primary-400`}>
+              Productos
+            </h1>
           </div>
 
-          <div className="hidden sm:flex gap-4">
-            <ProductModalForm
-              categories={categories}
-              fetchProducts={() => fetchProducts(null, true, displaySearch || null)}
-              trigger={
-                <Button className="h-12 px-6 bg-primary-400 hover:bg-primary-500 cursor-pointer font-medium rounded-lg">
-                  <Plus />
-                  <span>Nuevo Producto</span>
-                </Button>
-              }
-            />
-
-            <div className="relative">
+          <div className="flex flex-col-reverse sm:flex-row gap-4 w-full sm:w-auto">
+            <div className="relative w-full sm:w-auto">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Buscar por nombre..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="h-12 pl-10 pr-10 w-64 rounded-lg bg-secondary-100"
+                className="h-12 pl-10 pr-10 w-full sm:w-64 rounded-xl bg-white shadow-sm border-border focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:border-primary-400"
               />
               {searchTerm && (
                 <Button
@@ -117,26 +107,19 @@ const ProductsPage = () => {
                 </Button>
               )}
             </div>
-          </div>
 
-          <div className="relative sm:hidden">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Buscar por nombre..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="h-12 pl-10 pr-10 w-full rounded-lg bg-secondary-100"
+            <ProductModalForm
+              categories={categories}
+              fetchProducts={() =>
+                fetchProducts(null, true, displaySearch || null)
+              }
+              trigger={
+                <Button className="h-12 w-full sm:w-auto px-6 bg-primary-400 hover:bg-primary-500 cursor-pointer font-medium rounded-xl shadow-md transition-transform hover:-translate-y-1 text-primary">
+                  <Plus />
+                  <span>Nuevo Producto</span>
+                </Button>
+              }
             />
-            {searchTerm && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleClearSearch}
-                className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 p-0 hover:bg-transparent"
-              >
-                <X className="h-4 w-4 text-muted-foreground" />
-              </Button>
-            )}
           </div>
         </div>
       </header>

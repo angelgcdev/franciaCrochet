@@ -10,7 +10,7 @@ export default function AdminLayout({
   return (
     <SidebarProvider className="">
       <AppSidebar variant="sidebar" className="shadow-2xl p-0" />
-      <SidebarInset className="bg-secondary-200">
+      <SidebarInset className="bg-background">
         <SiteHeader />
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">

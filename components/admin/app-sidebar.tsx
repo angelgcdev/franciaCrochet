@@ -1,6 +1,6 @@
 "use client";
 
-import { Playwrite_US_Trad } from "next/font/google";
+import { Handlee } from "next/font/google";
 
 import {
   Sidebar,
@@ -34,9 +34,9 @@ const data = {
   ],
 };
 
-const playwriteUS = Playwrite_US_Trad({
-  weight: ["100", "200", "300", "400"],
-  variable: "--font-playwrite",
+const handlee = Handlee({
+  weight: "400",
+  subsets: ["latin"],
 });
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -65,16 +65,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="h-16 hover:bg-secondary-300 focus:bg-secondary-300 active:bg-secondary-300"
             >
               <a href="#">
-                <div className="relative w-14 h-14">
+                <div className="relative size-12 bg-primary rounded-full overflow-hidden">
                   <Image
                     src="/images/logo.png"
                     alt="logo de la empresa"
                     fill
-                    className="object-cover"
+                    className="object-contain"
+                    sizes="48px"
                   />
                 </div>
                 <span
-                  className={`text-base font-bold text-primary-400 ${playwriteUS.className}`}
+                  className={`text-[clamp(20px,2vw,24px)] font-bold text-primary-400 ${handlee.className}`}
                 >
                   Francia Crochet
                 </span>

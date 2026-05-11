@@ -5,6 +5,12 @@ import { SidebarTrigger } from "../ui/sidebar";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import { Box, ChartSpline } from "lucide-react";
+import { Handlee } from "next/font/google";
+
+const handlee = Handlee({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -29,8 +35,8 @@ export function SiteHeader() {
           className="mx-2 h-4"
         />
         <div className="flex items-center gap-2">
-          <Icon className="h-6 w-6" />
-          <h1 className="text-lg font-bold">{currentPage.title}</h1>
+          <Icon className="h-6 w-6 text-primary-400" />
+          <h1 className={`text-xl font-bold text-primary-500 ${handlee.className}`}>{currentPage.title}</h1>
         </div>{" "}
       </div>
     </header>
