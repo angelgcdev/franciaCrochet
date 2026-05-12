@@ -30,7 +30,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const price = formatPrice(product.price);
   const categoryName = product.category?.name || "Francia Crochet";
 
-  const whatsappMessage = `Hola, quiero pedir este producto:%0A%0AProducto: ${product.name}%0APrecio: ${price}%0AFoto: ${imageUrl}`;
+  const whatsappMessage = `🧶 ¡Hola! Me interesa este producto de *Francia Crochet*:%0A%0A📦 *${product.name}*%0A💰 ${price}%0A%0A📸 Ver foto: ${imageUrl}%0A%0A¡Gracias! 😊`;
   const whatsappUrl = `https://api.whatsapp.com/send?phone=59178614070&text=${whatsappMessage}`;
 
   return (
