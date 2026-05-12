@@ -1,4 +1,10 @@
+import { Metadata } from "next";
 import { LoginForm } from "@/components/login/login-form";
+
+export const metadata: Metadata = {
+  title: "Iniciar Sesión",
+  robots: { index: false, follow: false },
+};
 
 export default function LoginPage() {
   return (

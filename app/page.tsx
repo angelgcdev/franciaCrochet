@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { Metadata } from "next";
 import AboutSection from "@/components/AboutSection";
 import CustomOrderSection from "@/components/CustomOrderSection";
 import FeaturedProducts from "@/components/FeaturedProducts";
@@ -7,6 +8,12 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+
+export const metadata: Metadata = {
+  title: "Inicio",
+  description:
+    "Explora nuestros tejidos artesanales, amigurumis y realiza pedidos personalizados.",
+};
 
 export default function Home() {
   return (

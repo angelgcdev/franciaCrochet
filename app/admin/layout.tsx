@@ -1,6 +1,15 @@
+import { Metadata } from "next";
 import { AppSidebar } from "@/components/admin/app-sidebar";
 import { SiteHeader } from "@/components/admin/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Panel Admin",
+    template: "%s | Admin Francia Crochet",
+  },
+  robots: { index: false, follow: false },
+};
 
 export default function AdminLayout({
   children,

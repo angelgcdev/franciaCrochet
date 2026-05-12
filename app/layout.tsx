@@ -23,9 +23,37 @@ const handlee = Handlee({
 });
 
 export const metadata: Metadata = {
-  title: "Francia Crochet",
+  title: {
+    default: "Francia Crochet",
+    template: "%s | Francia Crochet",
+  },
   description:
     "Tejidos artesanales, amigurumis y pedidos personalizados hechos a mano.",
+  metadataBase: new URL("https://francia-crochet.vercel.app"),
+  openGraph: {
+    type: "website",
+    locale: "es_BO",
+    url: "https://francia-crochet.vercel.app",
+    siteName: "Francia Crochet",
+    title: "Francia Crochet — Tejidos Artesanales",
+    description:
+      "Descubre nuestra colección de tejidos a mano, amigurumis y pedidos personalizados.",
+    images: [
+      {
+        url: "/images/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Francia Crochet — Tejidos Artesanales",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Francia Crochet — Tejidos Artesanales",
+    description:
+      "Tejidos artesanales, amigurumis y pedidos personalizados hechos a mano.",
+    images: ["/images/logo.png"],
+  },
 };
 
 export default function RootLayout({
