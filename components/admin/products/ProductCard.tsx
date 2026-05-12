@@ -40,9 +40,9 @@ const ProductCard = ({
 
   return (
     <>
-      <Card className="rounded-xl shadow-sm border border-border p-4 bg-white h-full transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-        <div className="flex flex-row gap-4 items-center h-full">
-          <div className="relative w-[100px] h-[130px] rounded-lg overflow-hidden shrink-0">
+      <Card className="rounded-xl shadow-sm border border-border p-3 sm:p-4 bg-white h-full transition-all duration-300 hover:shadow-md hover:-translate-y-1 overflow-hidden">
+        <div className="flex flex-row gap-3 sm:gap-4 items-center h-full">
+          <div className="relative w-[72px] h-[96px] sm:w-[100px] sm:h-[130px] rounded-lg overflow-hidden shrink-0">
             <Image
               src={product.images?.[0]?.image_url || "/placeholder.svg"}
               alt={product.name}
@@ -108,7 +108,7 @@ const ProductCard = ({
               {product.description}
             </p>
 
-            <div className="flex items-center justify-between mt-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 mt-3">
               <div className="flex gap-2 items-center">
                 <Badge
                   variant="secondary"

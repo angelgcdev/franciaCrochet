@@ -41,9 +41,13 @@ export const ProductListClient = ({
 }: ProductListClientProps) => {
   const [products, setProducts] = useState<ProductInfo[]>(initialProducts);
   const [hasMore, setHasMore] = useState(initialHasMore);
-  const [nextCursor, setNextCursor] = useState<number | null>(initialNextCursor);
+  const [nextCursor, setNextCursor] = useState<number | null>(
+    initialNextCursor,
+  );
   const [isDeleting, setIsDeleting] = useState(false);
-  const [productToDelete, setProductToDelete] = useState<ProductInfo | null>(null);
+  const [productToDelete, setProductToDelete] = useState<ProductInfo | null>(
+    null,
+  );
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const router = useRouter();
 
@@ -207,7 +211,7 @@ export const ProductListClient = ({
               {products.length} productos
             </Badge>
           </div>
-          <div className="grid gap-4 [grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
             {products.map((product) => (
               <ProductCard
                 key={product.id}
