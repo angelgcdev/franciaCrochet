@@ -24,8 +24,7 @@ export default async function FeaturedProducts() {
             Nuestro Catálogo
           </h2>
           <p className="mx-auto mt-space-16 max-w-[520px] text-[clamp(16px,1.4vw,18px)] leading-[1.6] text-fg-secondary">
-            Cada pieza es tejida punto por punto, asegurando la mayor suavidad
-            para la piel de tu bebé.
+            Explora nuestras creaciones artesanales hechas a mano
           </p>
         </div>
 

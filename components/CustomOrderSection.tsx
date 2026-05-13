@@ -82,12 +82,14 @@ Idea: ${values.idea}
             <h2
               className={`${handlee.className} mt-space-16 text-[clamp(32px,3.2vw,48px)] leading-[1.2] tracking-[-0.02em] text-primary-400`}
             >
-              Tejemos tu idea a medida
+              Creamos tu idea a medida{" "}
             </h2>
 
             <p className="mt-space-24 max-w-[520px] text-[clamp(16px,1.4vw,18px)] leading-[1.6] text-fg-secondary">
-              Si tienes una foto, color o personaje en mente, envíame la idea y
-              coordinamos materiales, tiempos y detalles por WhatsApp.
+              ¿Tienes un personaje, diseño o idea especial? <br></br>Creamos
+              amigurumis y tejidos personalizados según tus gustos, colores y
+              detalles favoritos. Cuéntanos cómo imaginas tu pedido y lo
+              convertiremos en una pieza única hecha especialmente para ti.
             </p>
 
             <div className="mt-space-32 rounded-[24px] bg-white/90 p-space-24 shadow-[0_16px_36px_rgba(119,79,132,0.08)]">

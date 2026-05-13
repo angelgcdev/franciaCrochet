@@ -52,12 +52,12 @@ const TestimonialsSection = () => {
           <h2
             className={`${handlee.className} mt-space-16 text-[clamp(32px,3.2vw,48px)] leading-[1.2] tracking-[-0.02em] text-primary-400`}
           >
-            Lo que dicen nuestros clientes
+            La confianza de nuestros clientes nos inspira{" "}
           </h2>
 
           <p className="mx-auto mt-space-16 max-w-[520px] text-[clamp(16px,1.4vw,18px)] leading-[1.6] text-fg-secondary">
-            La mejor parte de cada pedido es saber que una pieza tejida llegó a
-            una nueva historia.
+            Cada opinión refleja el cariño y la dedicación que ponemos en cada
+            tejido.
           </p>
         </motion.div>
 

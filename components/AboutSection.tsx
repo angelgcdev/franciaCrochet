@@ -57,8 +57,8 @@ const AboutSection = () => {
 
             <div className="mt-space-24 space-y-space-16 text-[clamp(16px,1.4vw,18px)] leading-[1.6] text-fg-secondary">
               <p>
-                Soy Francia, artesana apasionada del crochet. Creo piezas únicas
-                que acompañan y cuidan a los más pequeños del hogar.
+                Somos un emprendimiento familiar apasionado por crear tejidos
+                artesanales hechos a mano con amor, detalle y dedicación.
               </p>
               <p>
                 Cada producto nace del amor y la paciencia, usando materiales de
@@ -66,9 +66,11 @@ const AboutSection = () => {
                 comodidad en cada momento.
               </p>
               <p>
-                Me especializo en ropita para bebés, accesorios y amigurumis
-                personalizados que se convierten en compañeros para los primeros
-                años de vida.
+                Hoy elaboramos amigurumis personalizados, tejidos para bebés,
+                llaveros y accesorios artesanales hechos completamente a mano,
+                cuidando cada puntada para crear piezas especiales para cada
+                cliente. Realizamos envíos a toda Bolivia y también pedidos
+                internacionales.
               </p>
             </div>
           </motion.div>

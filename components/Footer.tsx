@@ -19,7 +19,7 @@ function Footer() {
             <p
               className={`${handlee.className} text-2xl text-primary md:text-primary-400`}
             >
-              Síguenos en:
+              Hablemos de tu próximo tejido especial{" "}
             </p>
             <div className="flex gap-2">
               {[

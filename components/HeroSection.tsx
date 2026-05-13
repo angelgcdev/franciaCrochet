@@ -48,13 +48,13 @@ const HeroSection = () => {
           <h1
             className={`${handlee.className} text-[clamp(44px,5vw,68px)] leading-[1.2] tracking-[-0.02em] text-secondary md:text-fg-primary`}
           >
-            Tejidos con amor para tu bebé.
+            Amigurumis y tejidos hechos a mano con amor, calidad y detalle{" "}
           </h1>
 
           <p className="mt-12 w-full text-[clamp(16px,1.5vw,18px)] leading-[1.6] text-secondary-400 md:mt-6 md:text-fg-secondary">
-            Piezas únicas hechas a mano a crochet y palillo. Diseñadas para
-            abrazar, abrigar y acompañar los primeros pasos de tu pequeño
-            tesoro.
+            Creamos piezas únicas y personalizadas para momentos especiales e
+            inolvidables. Cada tejido está elaborado artesanalmente con
+            dedicación y materiales de calidad.
           </p>
 
           <div className="mt-16 flex w-full flex-col justify-center gap-6 sm:flex-row sm:gap-4 md:mt-8">
@@ -76,7 +76,7 @@ const HeroSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                WhatsApp
+                Realiza tu pedido por WhatsApp
               </a>
             </Button>
           </div>
