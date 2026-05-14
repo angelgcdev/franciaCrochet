@@ -5,12 +5,17 @@ import Compressor from "compressorjs";
 export const compressImage = (file: File): Promise<File> => {
   return new Promise((resolve, reject) => {
     new Compressor(file, {
-      quality: 0.6,
+      quality: 0.8,
       maxWidth: 1920,
-      convertTypes: ["image/png"],
-      convertSize: 1000000,
+      mimeType: "image/webp",
       success(result) {
-        resolve(result as File);
+        // Convertimos el Blob resultante a un objeto File con extensión .webp
+        const webpFile = new File(
+          [result],
+          file.name.replace(/\.[^/.]+$/, "") + ".webp",
+          { type: "image/webp" }
+        );
+        resolve(webpFile);
       },
       error(err) {
         reject(err);
