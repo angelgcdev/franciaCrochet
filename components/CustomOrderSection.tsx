@@ -92,9 +92,9 @@ Idea: ${values.idea}
               convertiremos en una pieza única hecha especialmente para ti.
             </p>
 
-            <div className="mt-space-32 rounded-[24px] bg-white/90 p-space-24 shadow-[0_16px_36px_rgba(119,79,132,0.08)]">
+            <div className="mt-space-32 rounded-2xl bg-white/90 p-space-24 shadow-[0_16px_36px_rgba(119,79,132,0.08)]">
               <div className="flex items-start gap-space-16">
-                <span className="flex size-space-48 shrink-0 items-center justify-center rounded-[16px] bg-primary-100 text-primary-400 shadow-[0_8px_18px_rgba(243,194,255,0.32)]">
+                <span className="flex size-space-48 shrink-0 items-center justify-center rounded-xl bg-primary-100 text-primary-400 shadow-[0_8px_18px_rgba(243,194,255,0.32)]">
                   <MessageCircle className="size-6" aria-hidden="true" />
                 </span>
 
@@ -119,7 +119,7 @@ Idea: ${values.idea}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.35, delay: 0.08, ease: "easeOut" }}
             onSubmit={handleSubmit(onSubmit)}
-            className="rounded-[24px] bg-white p-space-24 shadow-[0_20px_48px_rgba(119,79,132,0.10)]"
+            className="rounded-2xl bg-white p-space-24 shadow-[0_20px_48px_rgba(119,79,132,0.10)]"
           >
             <div className="grid gap-space-16">
               <div className="grid gap-space-8">
@@ -189,7 +189,7 @@ Idea: ${values.idea}
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="mt-space-24 h-12 w-full rounded-full bg-primary px-space-24 text-base font-semibold leading-6 text-primary-400 shadow-[0_12px_24px_rgba(243,194,255,0.42)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-100 hover:shadow-[0_16px_28px_rgba(243,194,255,0.48)] active:scale-[0.98]"
+              className="mt-space-24 h-12 w-full rounded-lg bg-primary px-space-24 text-base font-semibold leading-6 text-primary-400 shadow-[0_12px_24px_rgba(243,194,255,0.42)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-100 hover:shadow-[0_16px_28px_rgba(243,194,255,0.48)] active:scale-[0.98]"
             >
               <Send className="size-5" aria-hidden="true" />
               Envía tu idea por WhatsApp

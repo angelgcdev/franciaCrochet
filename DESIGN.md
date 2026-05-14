@@ -82,11 +82,11 @@ typography:
     lineHeight: "1.0"
     letterSpacing: 0.05em
 rounded:
-  sm: 0.25rem
-  DEFAULT: 0.5rem
-  md: 0.75rem
-  lg: 1rem
-  xl: 1.5rem
+  sm: 0.125rem
+  DEFAULT: 0.25rem
+  md: 0.375rem
+  lg: 0.5rem
+  xl: 0.75rem
   full: 9999px
 spacing:
   base: 8px
@@ -135,11 +135,11 @@ Para mantener la sensación artesanal, la profundidad se crea mediante **Sombras
 
 ## Formas
 
-El lenguaje visual de las formas está definido por una **Redondez Moderadamente Alta**. No existen esquinas afiladas en este sistema de diseño.
+El lenguaje visual de las formas está definido por una **Redondez Moderadamente**. No existen esquinas afiladas en este sistema de diseño.
 
 - **Elementos estándar (botones, inputs):** Utilizar un radio de 0.5rem (8px).
-- **Contenedores grandes (cards, modales):** Utilizar un radio de 1rem (16px).
-- **Elementos destacados:** Utilizar 1.5rem (24px) para imágenes prominentes o secciones de “Agregar al carrito”, enfatizando la naturaleza suave y redondeada de los puntos de crochet.
+- **Contenedores grandes (cards, modales):** Utilizar un radio de 0.5rem (8px).
+- **Elementos destacados:** Utilizar 0.5rem (8px) para imágenes prominentes o secciones de “Agregar al carrito”, enfatizando la naturaleza suave y redondeada de los puntos de crochet.
 
 ## Componentes
 

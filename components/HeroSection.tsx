@@ -60,14 +60,14 @@ const HeroSection = () => {
           <div className="mt-16 flex w-full flex-col justify-center gap-6 sm:flex-row sm:gap-4 md:mt-8">
             <Button
               onClick={scrollToProducts}
-              className="h-12 rounded-full bg-primary-400 px-8 text-sm font-bold tracking-[0.05em] text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-primary-500 hover:shadow-lg"
+              className="h-12 rounded-lg bg-primary-400 px-8 text-sm font-bold tracking-[0.05em] text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-primary-500 hover:shadow-lg"
             >
               Ver Catálogo
             </Button>
 
             <Button
               asChild
-              className="h-12 rounded-full bg-secondary-200 px-8 text-sm font-bold  tracking-[0.05em] text-fg-secondary shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-secondary-400 hover:shadow-lg"
+              className="h-12 rounded-lg bg-secondary-200 px-8 text-sm font-bold  tracking-[0.05em] text-fg-secondary shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-secondary-400 hover:shadow-lg"
             >
               <a
                 href={`https://api.whatsapp.com/send?phone=59178614070&text=${encodeURIComponent(
@@ -82,6 +82,9 @@ const HeroSection = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Gradiente de transición suave hacia la siguiente sección */}
+      {/* <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-secondary to-transparent" /> */}
     </section>
   );
 };

@@ -70,7 +70,7 @@ const TestimonialsSection = () => {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.3, delay: index * 0.08 }}
             >
-              <Card className="h-full rounded-[24px] border-transparent bg-white/92 p-space-24 shadow-[0_16px_36px_rgba(119,79,132,0.08)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_20px_42px_rgba(119,79,132,0.12)]">
+              <Card className="h-full rounded-2xl border-transparent bg-white/92 p-space-24 shadow-[0_16px_36px_rgba(119,79,132,0.08)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_20px_42px_rgba(119,79,132,0.12)]">
                 <CardContent className="flex h-full flex-col px-0 py-0">
                   <div className="mb-space-16 flex gap-space-8">
                     {Array.from({ length: testimonial.rating }).map((_, i) => (

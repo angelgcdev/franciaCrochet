@@ -34,10 +34,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const whatsappUrl = `https://api.whatsapp.com/send?phone=59178614070&text=${whatsappMessage}`;
 
   return (
-    <Card className="group overflow-hidden rounded-[24px] border-transparent bg-white p-space-16 shadow-[0_12px_30px_rgba(119,79,132,0.08)] hover:shadow-[0_18px_36px_rgba(119,79,132,0.12)]">
-      <div className="relative aspect-4/5 overflow-hidden rounded-[24px] bg-secondary">
+    <Card className="group overflow-hidden rounded-2xl border-transparent bg-white p-space-16 shadow-[0_12px_30px_rgba(119,79,132,0.08)] hover:shadow-[0_18px_36px_rgba(119,79,132,0.12)]">
+      <div className="relative aspect-4/5 overflow-hidden rounded-2xl bg-secondary">
         <Badge
-          className={`${handlee.className} absolute left-space-16 top-space-16 z-10 rounded-full bg-primary-400 px-3 py-2 text-sm tracking-[0.08em] text-primary-100 shadow-[0_8px_16px_rgba(119,79,132,0.24)] hover:bg-primary-400`}
+          className={`${handlee.className} absolute left-space-16 top-space-16 z-10 rounded-full bg-primary-400 px-2 py-1 text-sm tracking-[0.08em] text-primary-100 shadow-[0_8px_16px_rgba(119,79,132,0.24)] hover:bg-primary-400`}
         >
           {categoryName}
         </Badge>
@@ -68,7 +68,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
       <CardFooter className="px-space-8 pb-space-8">
         <Button
-          className="h-12 w-full cursor-pointer rounded-full bg-primary px-space-24 text-sm font-semibold tracking-[0.02em] text-primary-400 shadow-[0_10px_20px_rgba(243,194,255,0.42)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-300 hover:shadow-[0_14px_28px_rgba(243,194,255,0.48)] active:scale-[0.98]"
+          className="h-12 w-full cursor-pointer rounded-lg bg-primary px-space-24 text-sm font-semibold tracking-[0.02em] text-primary-400 shadow-[0_10px_20px_rgba(243,194,255,0.42)] transition-[transform,box-shadow,background-color] duration-200 hover:bg-primary-300 hover:shadow-[0_14px_28px_rgba(243,194,255,0.48)] active:scale-[0.98]"
           asChild
         >
           <a

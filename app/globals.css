@@ -46,12 +46,14 @@
   --color-input: var(--color-secondary-400);
   --color-ring: var(--color-primary-400);
 
-  /* Radius */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
+  /* Radius - Controla el redondeo del proyecto */
+  --radius-sm: 0.125rem; /* rounded-sm: Elementos muy pequeños */
+  --radius-md: 0.375rem; /* rounded-md: Redondeo intermedio */
+  --radius-lg: 0.5rem; /* rounded-lg: Botones e Inputs (Base de shadcn) */
+  --radius-xl: 0.5rem; /* rounded-xl: Tarjetas (Cards) pequeñas */
+  --radius-2xl: 0.5rem; /* rounded-2xl: Tarjetas grandes y secciones */
+  --radius-3xl: 0.5rem; /* rounded-3xl: Redondeo muy pronunciado */
+  --radius: 0.25rem; /* rounded: El valor por defecto (4px) */
 
   /* Spacing - 8pt */
   --spacing-space-4: 4px;
@@ -71,7 +73,7 @@
 }
 
 :root {
-  --radius: 1rem;
+  --radius: 0.25rem;
 }
 
 .dark {

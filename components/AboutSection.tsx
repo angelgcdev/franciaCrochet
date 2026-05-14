@@ -24,9 +24,9 @@ const AboutSection = () => {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="relative mx-auto w-full max-w-[440px]"
           >
-            <div className="absolute inset-0 translate-x-space-8 translate-y-space-8 rounded-[24px] bg-primary-100/50" />
-            <div className="relative overflow-hidden rounded-[24px] bg-white p-space-16 shadow-[0_20px_48px_rgba(119,79,132,0.10)]">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[20px]">
+            <div className="absolute inset-0 translate-x-space-8 translate-y-space-8 rounded-2xl bg-primary-100/50" />
+            <div className="relative overflow-hidden rounded-2xl bg-white p-space-16 shadow-[0_20px_48px_rgba(119,79,132,0.10)]">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
                 <Image
                   src="https://res.cloudinary.com/dngkwtctt/image/upload/v1762649073/Generated_Image_November_08_2025_-_8_04PM_yc8stk.png"
                   alt="Francia Crochet trabajando piezas artesanales"

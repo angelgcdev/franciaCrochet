@@ -14,7 +14,7 @@ export default async function FeaturedProducts() {
   return (
     <section
       id="productos"
-      className="bg-[linear-gradient(180deg,#fff8fb_0%,#fcf3f8_100%)] px-space-16 py-space-48 scroll-mt-20 md:px-space-32 md:py-space-64"
+      className="bg-secondary px-space-16 py-space-48 scroll-mt-20 md:px-space-32 md:py-space-64"
     >
       <div className="section-shell">
         <div className="mx-auto max-w-[640px] text-center">
