@@ -13,7 +13,7 @@ const AboutSection = () => {
   return (
     <section
       id="sobre-mi"
-      className="bg-[linear-gradient(180deg,#fff7fb_0%,#faf1f6_100%)] px-space-16 py-space-48 scroll-mt-20 md:px-space-32 md:py-space-64"
+      className=" bg-white/10 backdrop-blur-xl px-space-16 py-space-48 scroll-mt-20 md:px-space-32 md:py-space-64"
     >
       <div className="section-shell">
         <div className="grid items-center gap-space-32 lg:grid-cols-[minmax(320px,440px)_minmax(0,1fr)] lg:gap-space-48">
@@ -50,12 +50,12 @@ const AboutSection = () => {
             </p> */}
 
             <h2
-              className={`${handlee.className} mt-space-16 text-[clamp(32px,3.2vw,48px)] leading-[1.2] tracking-[-0.02em] text-primary-400`}
+              className={`${handlee.className} mt-space-16 text-[clamp(32px,3.2vw,48px)] leading-[1.2] tracking-[-0.02em] text-primary-300 md:text-primary-400`}
             >
               Cada puntada cuenta una historia
             </h2>
 
-            <div className="mt-space-24 space-y-space-16 text-[clamp(16px,1.4vw,18px)] leading-[1.6] text-fg-secondary">
+            <div className="mt-space-24 space-y-space-16 text-[clamp(16px,1.4vw,18px)] leading-[1.6] text-secondary-400 md:text-fg-secondary">
               <p>
                 Somos un emprendimiento familiar apasionado por crear tejidos
                 artesanales hechos a mano con amor, detalle y dedicación.

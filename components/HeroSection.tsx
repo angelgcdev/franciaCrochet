@@ -27,7 +27,7 @@ const HeroSection = () => {
     >
       <div className="fixed inset-0 -z-10">
         <Image
-          src="https://res.cloudinary.com/dngkwtctt/image/upload/v1778381057/fondo2-frc_qmq7ja.png"
+          src="https://res.cloudinary.com/dngkwtctt/image/upload/v1778723841/bg-image_xh1rgq.webp"
           alt="Fondo de tejidos y muñeca a crochet"
           fill
           priority

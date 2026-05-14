@@ -38,7 +38,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/88 px-space-16 shadow-[0_8px_24px_rgba(119,79,132,0.08)] backdrop-blur-md md:px-space-32">
+    <header className="sticky top-0 z-50 w-full bg-white/10 backdrop-blur-xl px-space-16 shadow-[0_8px_24px_rgba(119,79,132,0.08)] backdrop-blur-md md:px-space-32">
       <div className="section-shell flex h-space-64 items-center justify-between gap-space-16 md:h-[72px]">
         <div
           onClick={() => scrollToSection("inicio")}
