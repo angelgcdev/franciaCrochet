@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
   const limit = limitParam ? parseInt(limitParam, 10) : 20;
   const search = searchParam || null;
 
-  const result = await getAllProductsService(+userId, cursor, limit, search);
+  const result = await getAllProductsService(userId, cursor, limit, search);
 
   return NextResponse.json(result);
 }
