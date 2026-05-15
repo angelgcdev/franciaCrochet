@@ -121,70 +121,72 @@ export function UserManagementList({ initialEmails }: { initialEmails: AllowedEm
   };
 
   return (
-    <div className="grid gap-8 md:grid-cols-[1fr_350px]">
+    <div className="flex flex-col gap-12 max-w-4xl mx-auto font-varela">
       {/* Diálogo de Edición */}
       <Dialog open={!!emailToEdit} onOpenChange={(open) => !open && setEmailToEdit(null)}>
-        <DialogContent className="rounded-2xl border-border sm:max-w-[425px]">
+        <DialogContent className="rounded-lg border-border sm:max-w-[425px] bg-secondary shadow-xl border-none">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Pencil className="h-5 w-5 text-primary-500" />
-              Editar Correo
+            <DialogTitle className="flex items-center gap-2 font-handlee text-2xl text-primary-400">
+              <Pencil className="h-5 w-5" />
+              Editar Correo Autorizado
             </DialogTitle>
-            <DialogDescription>
-              Modifica el correo electrónico autorizado.
+            <DialogDescription className="font-varela text-on-surface-variant">
+              Modifica el correo electrónico para actualizar sus credenciales de acceso.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleUpdate} className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label htmlFor="edit-email">Correo Electrónico</Label>
+              <Label htmlFor="edit-email" className="text-on-surface-variant font-medium">Correo Electrónico</Label>
               <Input
                 id="edit-email"
                 type="email"
                 value={editValue}
                 onChange={(e) => setEditValue(e.target.value)}
-                className="rounded-xl border-border focus:ring-primary-500"
+                className="rounded-lg border-outline-variant bg-white focus:ring-primary/20 focus:border-primary h-12"
                 required
               />
             </div>
-            <DialogFooter>
+            <DialogFooter className="gap-2">
               <Button 
                 type="button" 
                 variant="outline" 
                 onClick={() => setEmailToEdit(null)}
-                className="rounded-xl"
+                className="rounded-lg border-outline-variant hover:bg-surface-container"
               >
                 Cancelar
               </Button>
               <Button 
                 type="submit" 
                 disabled={isUpdating}
-                className="rounded-xl bg-primary-500 hover:bg-primary-600 text-white min-w-[100px]"
+                className="rounded-lg bg-primary-400 hover:bg-primary-500 text-white min-w-[120px] shadow-sm"
               >
-                {isUpdating ? <Loader2 className="h-4 w-4 animate-spin" /> : "Guardar"}
+                {isUpdating ? <Loader2 className="h-4 w-4 animate-spin" /> : "Guardar Cambios"}
               </Button>
             </DialogFooter>
+
+
           </form>
         </DialogContent>
       </Dialog>
 
       {/* Diálogo de Confirmación */}
       <AlertDialog open={!!emailToDelete} onOpenChange={(open) => !open && setEmailToDelete(null)}>
-        <AlertDialogContent className="rounded-2xl border-border">
+        <AlertDialogContent className="rounded-lg border-border bg-secondary shadow-xl border-none">
           <AlertDialogHeader>
-            <AlertDialogTitle className="flex items-center gap-2 text-destructive">
-              <UserX className="h-5 w-5" />
+            <AlertDialogTitle className="flex items-center gap-2 text-error font-handlee text-2xl">
+              <UserX className="h-6 w-6" />
               Revocar Acceso
             </AlertDialogTitle>
-            <AlertDialogDescription>
+            <AlertDialogDescription className="font-varela text-on-surface-variant">
               ¿Estás seguro de que deseas eliminar a <strong>{emailToDelete?.email}</strong>? 
-              Esta persona ya no podrá acceder al panel administrativo de forma inmediata.
+              Esta persona ya no podrá acceder al panel administrativo.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="rounded-xl">Cancelar</AlertDialogCancel>
+            <AlertDialogCancel className="rounded-lg border-outline-variant">Cancelar</AlertDialogCancel>
             <AlertDialogAction 
               onClick={handleDelete}
-              className="rounded-xl bg-destructive hover:bg-destructive/90 text-white"
+              className="rounded-lg bg-error hover:bg-error/90 text-white shadow-sm"
             >
               Confirmar Eliminación
             </AlertDialogAction>
@@ -192,41 +194,93 @@ export function UserManagementList({ initialEmails }: { initialEmails: AllowedEm
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* --- LISTA DE CORREOS --- */}
-      <Card className="rounded-2xl overflow-hidden border-border bg-white shadow-sm">
-        <CardHeader className="border-b bg-muted/30">
-          <CardTitle className="text-xl flex items-center gap-2">
-            <Mail className="h-5 w-5 text-primary-500" />
+
+      {/* --- FORMULARIO DE AGREGAR (ARRIBA) --- */}
+      <Card className="rounded-lg border-border bg-surface-container-low shadow-sm overflow-hidden border-none">
+        <div className="absolute top-0 left-0 w-full h-1 bg-primary-container" />
+        <CardHeader>
+          <CardTitle className="text-2xl flex items-center gap-2 font-handlee text-primary-400">
+            <Plus className="h-6 w-6" />
+            Nuevo Acceso Administrativo
+          </CardTitle>
+          <CardDescription className="font-varela">
+            Añade un nuevo correo electrónico a la lista blanca para autorizar su ingreso.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleAdd} className="flex flex-col sm:flex-row gap-4 items-end">
+            <div className="flex-1 w-full space-y-2">
+              <Label htmlFor="new-email" className="text-on-surface-variant ml-1">Correo del Administrador</Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-outline" />
+                <Input
+                  id="new-email"
+                  type="email"
+                  placeholder="ejemplo@gmail.com"
+                  value={newEmail}
+                  onChange={(e) => setNewEmail(e.target.value)}
+                  className="rounded-lg border-outline-variant bg-white pl-10 h-12 focus:ring-primary/20 focus:border-primary transition-all"
+                  required
+                />
+              </div>
+            </div>
+            <Button 
+              type="submit" 
+              className="rounded-lg bg-primary-400 hover:bg-primary-500 text-white font-medium h-12 px-8 shadow-sm transition-all hover:shadow-md active:scale-95 disabled:opacity-50"
+              disabled={isAdding}
+            >
+              {isAdding ? (
+                <Loader2 className="h-5 w-5 animate-spin" />
+              ) : (
+                "Autorizar Acceso"
+              )}
+            </Button>
+
+          </form>
+
+          <div className="mt-6 p-4 rounded-lg bg-primary-container/20 border border-primary-container/30 flex gap-3 items-center">
+            <AlertCircle className="h-5 w-5 text-primary shrink-0" />
+            <p className="text-xs text-on-primary-container font-varela leading-relaxed">
+              <strong>Nota:</strong> Solo correos de Google son compatibles con el sistema de autenticación actual.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* --- LISTA DE CORREOS (ABAJO) --- */}
+      <Card className="rounded-lg overflow-hidden border-none bg-white shadow-md">
+        <CardHeader className="border-b border-surface-container-high bg-surface-container-lowest">
+          <CardTitle className="text-xl flex items-center gap-2 font-handlee text-on-surface">
+            <ShieldCheck className="h-5 w-5 text-primary" />
             Correos Autorizados
           </CardTitle>
-          <CardDescription>
-            Solo estos correos pueden iniciar sesión en el administrador.
+          <CardDescription className="font-varela">
+            Lista de personas con permiso para gestionar la tienda.
           </CardDescription>
         </CardHeader>
         <CardContent className="p-0">
           <Table>
-            <TableHeader>
-              <TableRow className="hover:bg-transparent">
-                <TableHead className="pl-6">Correo Electrónico</TableHead>
-                <TableHead>Rol</TableHead>
-                <TableHead className="text-right pr-6">Acciones</TableHead>
+            <TableHeader className="bg-surface-container-low">
+              <TableRow className="hover:bg-transparent border-none">
+                <TableHead className="pl-6 font-varela text-on-surface-variant uppercase text-[11px] tracking-wider">Correo Electrónico</TableHead>
+                <TableHead className="font-varela text-on-surface-variant uppercase text-[11px] tracking-wider text-center">Rol de Acceso</TableHead>
+                <TableHead className="text-right pr-6 font-varela text-on-surface-variant uppercase text-[11px] tracking-wider">Acciones</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               <AnimatePresence mode="popLayout">
                 {emails.map((item) => (
-                  <TableRow key={item.id} className="group transition-colors hover:bg-muted/50">
-                    <TableCell className="font-medium pl-6 py-4 text-fg-primary">
+                  <TableRow key={item.id} className="group transition-colors hover:bg-surface-container-lowest border-surface-container">
+                    <TableCell className="font-medium pl-6 py-5 text-on-surface font-varela">
                       {item.email}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="text-center">
                       {item.isSuperuser ? (
-                        <Badge variant="default" className="bg-primary-500 hover:bg-primary-600 rounded-lg px-2 py-0.5">
-                          <ShieldCheck className="h-3 w-3 mr-1" />
-                          Superuser
+                        <Badge variant="secondary" className="bg-primary-container text-on-primary-container rounded-lg px-3 py-1 font-varela border-none">
+                          Superusuario
                         </Badge>
                       ) : (
-                        <Badge variant="outline" className="rounded-lg px-2 py-0.5 border-secondary-200 text-secondary-700">
+                        <Badge variant="outline" className="rounded-lg px-3 py-1 font-varela border-outline-variant text-on-surface-variant bg-transparent">
                           Administrador
                         </Badge>
                       )}
@@ -239,7 +293,7 @@ export function UserManagementList({ initialEmails }: { initialEmails: AllowedEm
                           setEmailToEdit(item);
                           setEditValue(item.email);
                         }}
-                        className="h-9 w-9 text-muted-foreground hover:text-primary-500 hover:bg-primary-50 rounded-xl transition-all"
+                        className="h-9 w-9 text-outline hover:text-primary hover:bg-primary-container/30 rounded-lg transition-all"
                       >
                         <Pencil className="h-4 w-4" />
                       </Button>
@@ -250,7 +304,7 @@ export function UserManagementList({ initialEmails }: { initialEmails: AllowedEm
                           size="icon"
                           disabled={isDeleting === item.id}
                           onClick={() => setEmailToDelete({ id: item.id, email: item.email })}
-                          className="h-9 w-9 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-xl transition-all"
+                          className="h-9 w-9 text-outline hover:text-error hover:bg-error-container/30 rounded-lg transition-all"
                         >
                           {isDeleting === item.id ? (
                             <Loader2 className="h-4 w-4 animate-spin" />
@@ -260,7 +314,6 @@ export function UserManagementList({ initialEmails }: { initialEmails: AllowedEm
                         </Button>
                       )}
                     </TableCell>
-
                   </TableRow>
                 ))}
               </AnimatePresence>
@@ -268,54 +321,7 @@ export function UserManagementList({ initialEmails }: { initialEmails: AllowedEm
           </Table>
         </CardContent>
       </Card>
-
-
-      {/* --- FORMULARIO DE AGREGAR --- */}
-      <div className="space-y-6">
-        <Card className="rounded-2xl border-border bg-white shadow-sm sticky top-8">
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2">
-              <Plus className="h-5 w-5 text-primary-500" />
-              Nuevo Acceso
-            </CardTitle>
-            <CardDescription>
-              Añade un correo para permitirle la entrada.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleAdd} className="space-y-4">
-              <div className="space-y-2">
-                <Input
-                  type="email"
-                  placeholder="usuario@gmail.com"
-                  value={newEmail}
-                  onChange={(e) => setNewEmail(e.target.value)}
-                  className="rounded-xl border-border focus:ring-primary-500"
-                  required
-                />
-              </div>
-              <Button 
-                type="submit" 
-                className="w-full rounded-xl bg-primary-500 hover:bg-primary-600 text-white font-medium h-11 transition-all"
-                disabled={isAdding}
-              >
-                {isAdding ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  "Autorizar Correo"
-                )}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-
-        <div className="p-4 rounded-2xl bg-secondary-50 border border-secondary-100 flex gap-3">
-          <AlertCircle className="h-5 w-5 text-secondary-500 shrink-0" />
-          <p className="text-xs text-secondary-700 leading-relaxed">
-            <strong>Importante:</strong> Los usuarios autorizados deben iniciar sesión con su cuenta de Google. No se requiere contraseña adicional.
-          </p>
-        </div>
-      </div>
     </div>
   );
 }
+
