@@ -38,3 +38,22 @@ export async function removeAllowedEmail(id: string) {
     return { error: "Error al eliminar el correo." };
   }
 }
+
+export async function updateAllowedEmail(id: string, email: string) {
+  try {
+    await prisma.allowedEmail.update({
+      where: { id },
+      data: {
+        email: email.toLowerCase().trim(),
+      },
+    });
+    revalidatePath("/admin/users");
+    return { success: true };
+  } catch (error: any) {
+    if (error.code === "P2002") {
+      return { error: "Este correo ya está en uso por otro administrador." };
+    }
+    return { error: "Error al actualizar el correo." };
+  }
+}
+
