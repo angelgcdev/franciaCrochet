@@ -5,6 +5,8 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 
+import { revalidatePath } from "next/cache";
+
 // types/product.ts
 export interface CreateProductDto {
   name: string;
@@ -52,6 +54,8 @@ export async function createProductInfo(
       return product;
     });
 
+    revalidatePath("/admin/products");
+
     return {
       ok: true,
       data: result,
@@ -91,6 +95,8 @@ export async function deleteProductInfo(id: number) {
         },
       });
     });
+
+    revalidatePath("/admin/products");
 
     return {
       ok: true,
@@ -142,6 +148,8 @@ export async function updateProductInfo(
       return product;
     });
 
+    revalidatePath("/admin/products");
+
     return {
       ok: true,
       data: updated,
@@ -173,6 +181,8 @@ export async function toggleProductVisibility(
       data: { is_visible: isVisible },
     });
 
+    revalidatePath("/admin/products");
+
     return {
       ok: true,
       data: updated,
@@ -185,3 +195,4 @@ export async function toggleProductVisibility(
     };
   }
 }
+

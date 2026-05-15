@@ -20,7 +20,7 @@ import {
   toggleProductVisibility,
 } from "@/lib/products/actions";
 import { deleteImageFromCloudinary } from "@/lib/utils/deleteImageFromCloudinary";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { useRouter } from "next/navigation";
 
@@ -50,6 +50,13 @@ export const ProductListClient = ({
   );
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const router = useRouter();
+
+  // Sincronizar estado local con las props del servidor cuando cambian
+  useEffect(() => {
+    setProducts(initialProducts);
+    setHasMore(initialHasMore);
+    setNextCursor(initialNextCursor);
+  }, [initialProducts, initialHasMore, initialNextCursor]);
 
   // Fetch more products for infinite scroll (client-side pagination)
   const fetchMore = useCallback(async () => {
