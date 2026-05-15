@@ -3,29 +3,33 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  // Las categorías se pueden seguir pre-cargando
-  const categories = [
-    { name: "Bufandas" },
-    { name: "Amigurumis" },
-    { name: "Gorros" },
-    { name: "Decoración" },
-  ];
+  const superuserEmail = process.env.SUPERUSER_EMAIL;
 
-  for (const cat of categories) {
-    await prisma.category.upsert({
-      where: { name: cat.name },
-      update: {},
-      create: cat,
-    });
+  if (!superuserEmail) {
+    console.error("Error: SUPERUSER_EMAIL no está definido en las variables de entorno.");
+    process.exit(1);
   }
 
-  console.log("✔ Categorías pre-cargadas correctamente");
+  console.log(`Seeding superuser: ${superuserEmail}`);
+
+  await prisma.allowedEmail.upsert({
+    where: { email: superuserEmail },
+    update: { isSuperuser: true },
+    create: {
+      email: superuserEmail,
+      isSuperuser: true,
+    },
+  });
+
+
+  console.log("Seeding completed successfully.");
 }
 
 main()
-  .then(() => prisma.$disconnect())
-  .catch(async (e) => {
+  .catch((e) => {
     console.error(e);
-    await prisma.$disconnect();
     process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
   });

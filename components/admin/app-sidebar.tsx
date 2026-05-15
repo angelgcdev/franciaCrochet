@@ -12,12 +12,13 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Box, CircleGauge } from "lucide-react";
+import { Box, CircleGauge, Users } from "lucide-react";
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
 import Image from "next/image";
 import { Separator } from "../ui/separator";
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 const data = {
   navMain: [
@@ -39,9 +40,6 @@ const handlee = Handlee({
   subsets: ["latin"],
 });
 
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session } = useSession();
   const { state } = useSidebar();
@@ -50,6 +48,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const navItems = useMemo(() => {
+    const items = [...data.navMain];
+    if (session?.user?.role === "SUPERUSER") {
+      items.push({
+        title: "Usuarios",
+        url: "/admin/users",
+        icon: Users,
+      });
+    }
+    return items;
+  }, [session]);
+
 
   const user = {
     email: session?.user?.email || "usuario@ejemplo.com",
@@ -90,8 +101,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <Separator />
       <SidebarContent className="bg-secondary-200">
-        <NavMain items={data.navMain} />
+        <NavMain items={navItems} />
       </SidebarContent>
+
       <SidebarFooter className="bg-secondary-200">
         {mounted && <NavUser user={user} />}
       </SidebarFooter>

@@ -14,12 +14,18 @@ datasource db {
   // url      = env("DATABASE_URL")
 }
 
+enum UserRole {
+  ADMIN
+  SUPERUSER
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  role          UserRole  @default(ADMIN)
   created_at    DateTime  @default(now())
   updated_at    DateTime  @updatedAt
 
@@ -27,6 +33,15 @@ model User {
   sessions Session[]
   products Product[]
 }
+
+model AllowedEmail {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  isSuperuser Boolean  @default(false)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
 
 model Account {
   id                String  @id @default(cuid())

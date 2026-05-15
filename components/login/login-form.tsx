@@ -5,15 +5,26 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import { useState } from "react";
-import { Loader2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
+import { Loader2, AlertCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
+  const error = searchParams.get("error");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (error === "AccessDenied") {
+      setErrorMessage("Tu correo no está autorizado para acceder al sistema. Contacta al administrador.");
+    }
+  }, [error]);
+
 
   const handleGoogleLogin = async () => {
     setIsLoading(true);
@@ -38,7 +49,24 @@ export function LoginForm({
               </p>
             </div>
 
+            <AnimatePresence>
+              {errorMessage && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="mb-6 p-4 rounded-xl bg-destructive/10 border border-destructive/20 flex items-start gap-3 text-left"
+                >
+                  <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+                  <p className="text-xs text-destructive font-medium leading-relaxed">
+                    {errorMessage}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             <Button
+
               onClick={handleGoogleLogin}
               disabled={isLoading}
               variant="outline"

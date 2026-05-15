@@ -27,19 +27,49 @@ export const authOptions: AuthOptions = {
   },
 
   callbacks: {
+    async signIn({ user }) {
+      if (!user.email) return false;
+      
+      const allowed = await prisma.allowedEmail.findUnique({
+        where: { email: user.email },
+      });
+
+      return !!allowed;
+    },
     async session({ session, token }) {
       if (session.user && token.sub) {
         session.user.id = token.sub;
+
+        // Validación en vivo para "expulsión en siguiente iteración"
+        const allowed = await prisma.allowedEmail.findUnique({
+          where: { email: session.user.email! },
+        });
+
+        if (!allowed) {
+          return null as any; // Invalida la sesión si ya no está en la lista blanca
+        }
+
+        session.user.role = allowed.isSuperuser ? "SUPERUSER" : "ADMIN";
       }
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        
+        const allowed = await prisma.allowedEmail.findUnique({
+          where: { email: user.email! },
+        });
+        
+        if (allowed) {
+          token.role = allowed.isSuperuser ? "SUPERUSER" : "ADMIN";
+        }
       }
       return token;
     },
+
   },
+
 };
 
 const handler = NextAuth(authOptions);
