@@ -30,28 +30,15 @@ export function NavUser({
   user,
 }: {
   user: {
+    name: string;
     email: string;
     avatar: string;
   };
 }) {
   const { isMobile } = useSidebar();
 
-  const router = useRouter();
-
   const handleLogout = async () => {
-    try {
-      //Eliminar datos de localStorage
-      localStorage.removeItem("token");
-      localStorage.removeItem("userId");
-      localStorage.removeItem("email");
-      localStorage.removeItem("role");
-
-      // 4. Redirigir al login
-      // Luego llamas a signOut, que cierra sesión y redirige
-      signOut({ callbackUrl: "/login" });
-    } catch (error) {
-      console.error("Error al cerrar sesión:", error);
-    }
+    signOut({ callbackUrl: "/login" });
   };
 
   return (
@@ -63,12 +50,17 @@ export function NavUser({
               size="lg"
               className="data-[state=open]:bg-secondary-300 data-[state=open]:text-sidebar-accent-foreground hover:bg-secondary-300 cursor-pointer"
             >
-              <Avatar className="h-8 w-8 rounded-lg grayscale">
-                <AvatarImage src={user.avatar} alt="icono de usuario" />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+              <Avatar className="h-8 w-8 rounded-lg">
+                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarFallback className="rounded-lg">
+                  {user.name.charAt(0)}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="text-muted-foreground truncate text-xs">
+                <span className="truncate font-semibold text-fg-primary">
+                  {user.name}
+                </span>
+                <span className="truncate text-xs text-muted-foreground">
                   {user.email}
                 </span>
               </div>
@@ -84,11 +76,16 @@ export function NavUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt="icono de user" />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarFallback className="rounded-lg">
+                    {user.name.charAt(0)}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="text-muted-foreground truncate text-xs">
+                  <span className="truncate font-semibold text-fg-primary">
+                    {user.name}
+                  </span>
+                  <span className="truncate text-xs text-muted-foreground">
                     {user.email}
                   </span>
                 </div>

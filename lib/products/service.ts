@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 
 export async function getAllProductsService(
-  user_id: number,
+  user_id: string,
   cursor: number | null = null,
   limit: number = 20,
   search: string | null = null

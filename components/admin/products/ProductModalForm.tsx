@@ -78,8 +78,13 @@ const ProductModalForm = ({
   const isEditing = !!product;
 
   // 1. Estados
+  const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [internalOpen, setInternalOpen] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Controlled vs uncontrolled
   const isControlled = open !== undefined;
@@ -87,6 +92,7 @@ const ProductModalForm = ({
   const setIsOpen = isControlled 
     ? onOpenChange! 
     : setInternalOpen;
+    
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [imageChanged, setImageChanged] = useState(false);
@@ -235,6 +241,8 @@ const ProductModalForm = ({
       setLoading(false);
     }
   };
+
+  if (!mounted) return null;
 
   return (
     <Dialog

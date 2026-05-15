@@ -34,7 +34,7 @@ export async function createProductInfo(
       const product = await tx.product.create({
         data: {
           ...data,
-          user_id: +userId,
+          user_id: userId,
         },
       });
 

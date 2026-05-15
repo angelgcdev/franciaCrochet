@@ -39,18 +39,22 @@ const handlee = Handlee({
   subsets: ["latin"],
 });
 
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const email = useMemo(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("email") || "usuario@ejemplo.com";
-    }
-    return "usuario@ejemplo.com";
+  const { data: session } = useSession();
+  const { state } = useSidebar();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
   }, []);
-  const { state, setOpenMobile } = useSidebar();
 
   const user = {
-    email,
-    avatar: "/images/user.png",
+    email: session?.user?.email || "usuario@ejemplo.com",
+    name: session?.user?.name || "Usuario",
+    avatar: session?.user?.image || "/images/user.png",
   };
 
   console.log("Estado del UseSidebar:", state);
@@ -89,7 +93,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter className="bg-secondary-200">
-        <NavUser user={user} />
+        {mounted && <NavUser user={user} />}
       </SidebarFooter>
     </Sidebar>
   );

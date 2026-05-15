@@ -20,7 +20,7 @@ export async function ProductList({ query, categories }: ProductListProps) {
     );
   }
 
-  const userId = +session.user.id;
+  const userId = session.user.id;
   const result = await getAllProductsService(userId, null, 20, query || null);
 
   return (

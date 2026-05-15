@@ -1,8 +1,7 @@
 export type User = {
-  id: number;
+  id: string;
   name?: string;
   email: string;
-  password: string;
   created_at: Date;
   updated_at: Date;
 };
@@ -13,7 +12,7 @@ export type Category = {
 };
 
 export type Product = {
-  user_id: number;
+  user_id: string;
   category_id: number;
   name: string;
   description?: string;
@@ -34,7 +33,7 @@ export type ProductImage = {
 
 export type ProductInfo = {
   id: number;
-  user_id: number;
+  user_id: string;
   category_id: number;
   name: string;
   description?: string;

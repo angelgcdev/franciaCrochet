@@ -1,54 +1,25 @@
 import { PrismaClient } from "@prisma/client";
-import { hash } from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = "admin@admin.com";
-  const password = "123456";
+  // Las categorías se pueden seguir pre-cargando
+  const categories = [
+    { name: "Bufandas" },
+    { name: "Amigurumis" },
+    { name: "Gorros" },
+    { name: "Decoración" },
+  ];
 
-  const passwordHash = await hash(password, 10);
-
-  const existing = await prisma.user.findUnique({
-    where: { email },
-  });
-
-  if (!existing) {
-    await prisma.user.create({
-      data: {
-        email,
-        name: "Administrador",
-        password: passwordHash,
-      },
+  for (const cat of categories) {
+    await prisma.category.upsert({
+      where: { name: cat.name },
+      update: {},
+      create: cat,
     });
-
-    console.log("✔ Usuario creado correctamente");
-  } else {
-    console.log("⚠ Ya existe un usuario con ese email");
   }
 
-  // Segundo usuario
-  const email2 = "user@user.com";
-  const password2 = "123456";
-
-  const passwordHash2 = await hash(password2, 10);
-
-  const existing2 = await prisma.user.findUnique({
-    where: { email: email2 },
-  });
-
-  if (!existing2) {
-    await prisma.user.create({
-      data: {
-        email: email2,
-        name: "Usuario Normal",
-        password: passwordHash2,
-      },
-    });
-    console.log("✔ Usuario normal creado correctamente");
-  } else {
-    console.log("⚠ Ya existe un usuario normal con ese email");
-  }
+  console.log("✔ Categorías pre-cargadas correctamente");
 }
 
 main()
