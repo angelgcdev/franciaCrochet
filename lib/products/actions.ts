@@ -55,6 +55,7 @@ export async function createProductInfo(
     });
 
     revalidatePath("/admin/products");
+    revalidatePath("/");
 
     return {
       ok: true,
@@ -97,6 +98,7 @@ export async function deleteProductInfo(id: number) {
     });
 
     revalidatePath("/admin/products");
+    revalidatePath("/");
 
     return {
       ok: true,
@@ -149,6 +151,7 @@ export async function updateProductInfo(
     });
 
     revalidatePath("/admin/products");
+    revalidatePath("/");
 
     return {
       ok: true,
@@ -182,6 +185,7 @@ export async function toggleProductVisibility(
     });
 
     revalidatePath("/admin/products");
+    revalidatePath("/");
 
     return {
       ok: true,

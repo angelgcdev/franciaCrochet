@@ -9,6 +9,8 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Inicio",
   description:
